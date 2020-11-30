@@ -1,0 +1,6 @@
+framework module Pods_1RMCalTests {
+  umbrella header "Pods-1RMCalTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

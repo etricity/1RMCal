@@ -113,7 +113,6 @@
 				42BC18B7574416D863BFB941 /* Pods-1RMCalTests.debug.xcconfig */,
 				5A95DC11D851D4F20617B236 /* Pods-1RMCalTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -142,12 +141,13 @@
 		CD087E992574AA1100C53C9E /* 1RMCal */ = {
 			isa = PBXGroup;
 			children = (
+				CDDF44D72574ABA2000D3649 /* Model */,
+				CDDF44D92574ABAE000D3649 /* View Model */,
+				CDDF44D82574ABA8000D3649 /* View Controllers */,
+				CDDF44D62574AB9D000D3649 /* View */,
 				CD087E9A2574AA1100C53C9E /* AppDelegate.swift */,
 				CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */,
-				CD087E9E2574AA1100C53C9E /* ViewController.swift */,
-				CD087EA02574AA1100C53C9E /* Main.storyboard */,
 				CD087EA62574AA1200C53C9E /* Assets.xcassets */,
-				CD087EA82574AA1200C53C9E /* LaunchScreen.storyboard */,
 				CD087EAB2574AA1200C53C9E /* Info.plist */,
 				CD087EA32574AA1100C53C9E /* _RMCal.xcdatamodeld */,
 			);
@@ -170,6 +170,37 @@
 				CD087EC12574AA1200C53C9E /* Info.plist */,
 			);
 			path = 1RMCalUITests;
+			sourceTree = "<group>";
+		};
+		CDDF44D62574AB9D000D3649 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CD087EA02574AA1100C53C9E /* Main.storyboard */,
+				CD087EA82574AA1200C53C9E /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CDDF44D72574ABA2000D3649 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CDDF44D82574ABA8000D3649 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD087E9E2574AA1100C53C9E /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		CDDF44D92574ABAE000D3649 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

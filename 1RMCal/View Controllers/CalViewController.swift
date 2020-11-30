@@ -8,42 +8,30 @@
 
 import UIKit
 
-class CalViewController: UIViewController, UICollectionViewDelegate , UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CalViewController: UIViewController {
 
     
     //View Connections
-    @IBOutlet weak var setInfoStack: UICollectionView!
+    @IBOutlet weak var best: UILabel!
+    @IBOutlet weak var latest: UILabel!
+    @IBOutlet weak var new: UILabel!
+    
+    @IBOutlet weak var measurementControl: UISegmentedControl!
+    @IBOutlet weak var weightPicker: UIPickerView!
+    @IBOutlet weak var repPicker: UIPickerView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Delegation
-        self.setInfoStack.delegate = self
-        self.setInfoStack.dataSource = self
 
         // Do any additional setup after loading the view.
     }
-}
-
-extension CalViewController {
-    //Num items in section
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+    
+    @IBAction func cancel(_ sender: Any) {
+    }
+    @IBAction func done(_ sender: Any) {
     }
     
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomCollectionViewCell
-        cell.layer.borderColor = UIColor.blue.cgColor
-        cell.layer.borderWidth = 1
-        return cell
-    }
-    
-    //Defines cell dimensions
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let cellWidth = collectionView.frame.size.width;
-        let cellHeight = collectionView.frame.size.height;
-        return CGSize(width: cellWidth, height: cellHeight / 3)
-    }
 }

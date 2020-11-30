@@ -20,7 +20,6 @@
 		CD087EB52574AA1200C53C9E /* _RMCalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087EB42574AA1200C53C9E /* _RMCalTests.swift */; };
 		CD087EC02574AA1200C53C9E /* _RMCalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087EBF2574AA1200C53C9E /* _RMCalUITests.swift */; };
 		CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF44DD2574B08D000D3649 /* CalViewController.swift */; };
-		CDDF44E02574B1EE000D3649 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF44DF2574B1EE000D3649 /* CustomCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +64,6 @@
 		CD087EBF2574AA1200C53C9E /* _RMCalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _RMCalUITests.swift; sourceTree = "<group>"; };
 		CD087EC12574AA1200C53C9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDDF44DD2574B08D000D3649 /* CalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalViewController.swift; sourceTree = "<group>"; };
-		CDDF44DF2574B1EE000D3649 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		D363315B2B0BABF706BED086 /* Pods-1RMCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1RMCal.debug.xcconfig"; path = "Target Support Files/Pods-1RMCal/Pods-1RMCal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,7 +210,6 @@
 		CDDF44DA2574AC2A000D3649 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				CDDF44DF2574B1EE000D3649 /* CustomCollectionViewCell.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -424,7 +421,6 @@
 				CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */,
 				CD087EA52574AA1100C53C9E /* _RMCal.xcdatamodeld in Sources */,
 				CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */,
-				CDDF44E02574B1EE000D3649 /* CustomCollectionViewCell.swift in Sources */,
 				CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

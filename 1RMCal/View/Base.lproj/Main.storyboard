@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,61 +38,73 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="G2B-y1-ZaP">
+                                <rect key="frame" x="0.0" y="182.5" width="414" height="471"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fwR-hn-Bgy" userLabel="Weight Stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="whz-B1-vBD" userLabel="measurement control">
+                                                <rect key="frame" x="0.0" y="92.5" width="207" height="32"/>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgi-9H-HtW" userLabel="weight picker">
+                                                <rect key="frame" x="207" y="0.0" width="207" height="216"/>
+                                            </pickerView>
+                                        </subviews>
+                                    </stackView>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWe-Ay-Vbr" userLabel="rep picker">
+                                        <rect key="frame" x="0.0" y="255" width="414" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="7aF-RY-CBT" userLabel="Button Stack">
-                                <rect key="frame" x="0.0" y="711" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="745" width="414" height="51"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdP-mA-z5A">
                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TdP-sY-cVL"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdX-Mw-xhB">
                                         <rect key="frame" x="230.5" y="0.0" width="183.5" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="done:" destination="BYZ-38-t0r" eventType="touchUpInside" id="awn-bd-IkJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eoO-jo-87v" userLabel="Set Info CollectionView">
-                                <rect key="frame" x="0.0" y="182.5" width="414" height="528.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xAh-A1-2yU">
-                                    <size key="itemSize" width="414" height="176.09999999999999"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="customCell" id="Jzd-FK-4FS" customClass="CustomCollectionViewCell" customModule="_RMCal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="176"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ya2-og-AJW">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="176"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="5M2-50-EGb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3BT-MD-545"/>
-                            <constraint firstItem="7aF-RY-CBT" firstAttribute="top" secondItem="eoO-jo-87v" secondAttribute="bottom" id="617-6L-Hks"/>
-                            <constraint firstItem="5M2-50-EGb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="100" id="8Jg-K4-Ois"/>
-                            <constraint firstAttribute="trailing" secondItem="eoO-jo-87v" secondAttribute="trailing" id="A5L-0K-T4h"/>
-                            <constraint firstItem="eoO-jo-87v" firstAttribute="top" secondItem="5M2-50-EGb" secondAttribute="bottom" id="Cai-Bu-Gow"/>
-                            <constraint firstItem="7aF-RY-CBT" firstAttribute="trailing" secondItem="5M2-50-EGb" secondAttribute="trailing" id="JYr-bK-uRL"/>
-                            <constraint firstItem="7aF-RY-CBT" firstAttribute="leading" secondItem="5M2-50-EGb" secondAttribute="leading" id="Jn1-3z-ajW"/>
-                            <constraint firstItem="5M2-50-EGb" firstAttribute="leading" secondItem="eoO-jo-87v" secondAttribute="leading" id="Khk-Bm-ccH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7aF-RY-CBT" secondAttribute="bottom" constant="100" id="Wwg-30-znU"/>
-                            <constraint firstItem="7aF-RY-CBT" firstAttribute="centerX" secondItem="5M2-50-EGb" secondAttribute="centerX" id="ei2-fT-Hqs"/>
-                            <constraint firstItem="5M2-50-EGb" firstAttribute="trailing" secondItem="eoO-jo-87v" secondAttribute="trailing" id="iDa-OP-0ax"/>
-                            <constraint firstItem="eoO-jo-87v" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iUj-Ga-hyy"/>
+                            <constraint firstAttribute="bottom" secondItem="7aF-RY-CBT" secondAttribute="bottom" constant="100" id="72K-6z-rNz"/>
+                            <constraint firstItem="5M2-50-EGb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="EBv-Lt-XsP"/>
+                            <constraint firstItem="5M2-50-EGb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NkF-Bu-YBs"/>
+                            <constraint firstItem="7aF-RY-CBT" firstAttribute="centerX" secondItem="5M2-50-EGb" secondAttribute="centerX" id="PNr-yB-bw0"/>
+                            <constraint firstItem="G2B-y1-ZaP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UGo-i4-7vO"/>
+                            <constraint firstAttribute="trailing" secondItem="G2B-y1-ZaP" secondAttribute="trailing" id="ZqS-EP-Cqe"/>
+                            <constraint firstItem="7aF-RY-CBT" firstAttribute="leading" secondItem="5M2-50-EGb" secondAttribute="leading" id="c9f-J3-qhX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5M2-50-EGb" secondAttribute="trailing" id="e5f-Ku-xkv"/>
+                            <constraint firstItem="G2B-y1-ZaP" firstAttribute="top" secondItem="5M2-50-EGb" secondAttribute="bottom" id="q1X-6H-xK5"/>
+                            <constraint firstItem="7aF-RY-CBT" firstAttribute="trailing" secondItem="5M2-50-EGb" secondAttribute="trailing" id="v9l-uz-V4m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="setInfoStack" destination="eoO-jo-87v" id="A6i-gY-gmO"/>
+                        <outlet property="best" destination="P99-et-zXX" id="DnZ-bL-viw"/>
+                        <outlet property="latest" destination="H4g-9g-PcG" id="qNq-H3-6Uu"/>
+                        <outlet property="measurementControl" destination="whz-B1-vBD" id="35x-CW-Si4"/>
+                        <outlet property="new" destination="FTF-fd-lga" id="B9K-Co-eu5"/>
+                        <outlet property="repPicker" destination="XWe-Ay-Vbr" id="tSC-Jc-r1R"/>
+                        <outlet property="weightPicker" destination="lgi-9H-HtW" id="agi-op-RDF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

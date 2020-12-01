@@ -10,6 +10,7 @@
 		0C6846EE249E5828C54C0536 /* Pods_1RMCal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4F0F7C4D90F41E6AB1834A /* Pods_1RMCal.framework */; };
 		8492EC1ECAB3620B4283CCDC /* Pods_1RMCalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36FD34F2110769F7EDD8ED1 /* Pods_1RMCalTests.framework */; };
 		905157052B2EE76913B1FEE1 /* Pods_1RMCal_1RMCalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9637796602407E5FA883D877 /* Pods_1RMCal_1RMCalUITests.framework */; };
+		CD0447DC2576E33C002035BF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0447DB2576E33C002035BF /* Extensions.swift */; };
 		CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9A2574AA1100C53C9E /* AppDelegate.swift */; };
 		CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */; };
 		CD087E9F2574AA1100C53C9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9E2574AA1100C53C9E /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		9637796602407E5FA883D877 /* Pods_1RMCal_1RMCalUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_1RMCal_1RMCalUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84DBD1616F47E1A17CEFC52 /* Pods-1RMCal-1RMCalUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1RMCal-1RMCalUITests.debug.xcconfig"; path = "Target Support Files/Pods-1RMCal-1RMCalUITests/Pods-1RMCal-1RMCalUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C36FD34F2110769F7EDD8ED1 /* Pods_1RMCalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_1RMCalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD0447DB2576E33C002035BF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CD087E972574AA1100C53C9E /* 1RMCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1RMCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD087E9A2574AA1100C53C9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		CDDF44DA2574AC2A000D3649 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				CD0447DB2576E33C002035BF /* Extensions.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD087E9F2574AA1100C53C9E /* ViewController.swift in Sources */,
+				CD0447DC2576E33C002035BF /* Extensions.swift in Sources */,
 				CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */,
 				CD087EA52574AA1100C53C9E /* _RMCal.xcdatamodeld in Sources */,
 				CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */,

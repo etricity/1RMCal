@@ -39,25 +39,34 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="G2B-y1-ZaP">
-                                <rect key="frame" x="0.0" y="182.5" width="414" height="471"/>
+                                <rect key="frame" x="0.0" y="232.5" width="414" height="343"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fwR-hn-Bgy" userLabel="Weight Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fwR-hn-Bgy" userLabel="Weight Stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="whz-B1-vBD" userLabel="measurement control">
-                                                <rect key="frame" x="0.0" y="92.5" width="207" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
                                                 <segments>
-                                                    <segment title="First"/>
-                                                    <segment title="Second"/>
+                                                    <segment title="kg"/>
+                                                    <segment title="lbs"/>
                                                 </segments>
                                             </segmentedControl>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgi-9H-HtW" userLabel="weight picker">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="216"/>
-                                            </pickerView>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vRh-Hl-1Su">
+                                                <rect key="frame" x="0.0" y="54" width="414" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="vRh-Hl-1Su" firstAttribute="trailing" secondItem="whz-B1-vBD" secondAttribute="trailing" id="2On-9F-UfW"/>
+                                            <constraint firstItem="vRh-Hl-1Su" firstAttribute="width" secondItem="whz-B1-vBD" secondAttribute="width" id="3yN-bU-VFu"/>
+                                            <constraint firstAttribute="trailing" secondItem="whz-B1-vBD" secondAttribute="trailing" id="Ila-pK-Qut"/>
+                                            <constraint firstItem="vRh-Hl-1Su" firstAttribute="leading" secondItem="whz-B1-vBD" secondAttribute="leading" id="LJY-0O-8St"/>
+                                            <constraint firstItem="whz-B1-vBD" firstAttribute="leading" secondItem="fwR-hn-Bgy" secondAttribute="leading" id="oSb-Sk-20z"/>
+                                        </constraints>
                                     </stackView>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWe-Ay-Vbr" userLabel="rep picker">
-                                        <rect key="frame" x="0.0" y="255" width="414" height="216"/>
+                                        <rect key="frame" x="0.0" y="127" width="414" height="216"/>
                                     </pickerView>
                                 </subviews>
                             </stackView>
@@ -93,7 +102,7 @@
                             <constraint firstAttribute="trailing" secondItem="G2B-y1-ZaP" secondAttribute="trailing" id="ZqS-EP-Cqe"/>
                             <constraint firstItem="7aF-RY-CBT" firstAttribute="leading" secondItem="5M2-50-EGb" secondAttribute="leading" id="c9f-J3-qhX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5M2-50-EGb" secondAttribute="trailing" id="e5f-Ku-xkv"/>
-                            <constraint firstItem="G2B-y1-ZaP" firstAttribute="top" secondItem="5M2-50-EGb" secondAttribute="bottom" id="q1X-6H-xK5"/>
+                            <constraint firstItem="G2B-y1-ZaP" firstAttribute="top" secondItem="5M2-50-EGb" secondAttribute="bottom" constant="50" id="q1X-6H-xK5"/>
                             <constraint firstItem="7aF-RY-CBT" firstAttribute="trailing" secondItem="5M2-50-EGb" secondAttribute="trailing" id="v9l-uz-V4m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -104,7 +113,7 @@
                         <outlet property="measurementControl" destination="whz-B1-vBD" id="35x-CW-Si4"/>
                         <outlet property="new" destination="FTF-fd-lga" id="B9K-Co-eu5"/>
                         <outlet property="repPicker" destination="XWe-Ay-Vbr" id="tSC-Jc-r1R"/>
-                        <outlet property="weightPicker" destination="lgi-9H-HtW" id="agi-op-RDF"/>
+                        <outlet property="weightField" destination="vRh-Hl-1Su" id="BMM-pV-G9k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

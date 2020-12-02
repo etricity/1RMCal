@@ -19,7 +19,7 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var repPicker: UIPickerView!
         
 
-    
+    let settings = Settings.shared
     
     //1RM Values
     let repRange : [Int] = Array(0...100)
@@ -51,10 +51,15 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         
         var currentWeight : Double = weightField.text?.toDouble() ?? 0
         
+        let key = SettingTypes.appWeightUnit.rawValue
         switch(sender.selectedSegmentIndex){
         case 0:
+            let units = Weight.kg.rawValue
+            settings.updateSetting(key: key , value: units)
             currentWeight /= 2.20462
         case 1:
+            let units = Weight.lbs.rawValue
+            settings.updateSetting(key: key , value: units)
             currentWeight *= 2.20462
         default:
             break
@@ -72,11 +77,27 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     
     //Calculate 1 RM
     func calculate1RM() -> Double {
-        var calculated1RM : Double = 0
+        var value : Double = 0
         let weight : Double = weightField.text?.toDouble() ?? 0
         let reps : Double = Double(self.reps)
         
-        calculated1RM = weight * (1 + (reps/30))
+        value = weight * (1 + (reps/30))
+        
+        //check settings
+        let units = Weight.init(rawValue: settings.getSetting(key: SettingTypes.appWeightUnit.rawValue) ?? "")
+        
+        var convertedUnit = UnitMass.kilograms
+        switch units {
+        case .kg:
+            convertedUnit = UnitMass.kilograms
+        case .lbs:
+        convertedUnit = UnitMass.pounds
+        default:
+            convertedUnit = UnitMass.kilograms
+        }
+        
+        var calculated1RM = Measurement(value: value, unit: convertedUnit).value
+        
         calculated1RM = calculated1RM.round(to: 2)
         return calculated1RM
     }
@@ -84,6 +105,8 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     func updateNewRM() {
         let new1RM = calculate1RM()
         new.text = String(new1RM)
+        best.text = new.text
+        latest.text = new.text
     }
 }
 

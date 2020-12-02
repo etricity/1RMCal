@@ -33,3 +33,9 @@ extension UIViewController{
         view.endEditing(true)
     }
 }
+
+extension String {
+func toDouble() -> Double? {
+    return NumberFormatter().number(from: self)?.doubleValue
+ }
+}

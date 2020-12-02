@@ -17,12 +17,14 @@ class CalViewController: UIViewController {
     @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var measurementControl: UISegmentedControl!
     @IBOutlet weak var repPicker: UIPickerView!
-    
-    var testData : [Double] = [0,1,2,3,4,5,6,7,8,9,10]
-    
+        
     let repPickerDelegate = RepPickerDelegate()
     let weightFieldDeleate = WeighFieldDelegate()
     
+    
+    //1RM Values
+    var weight : Double = 0
+    var reps : Double = 0
     
     
     override func viewDidLoad() {
@@ -42,30 +44,48 @@ class CalViewController: UIViewController {
     @IBAction func cancel(_ sender: Any) {
     }
     @IBAction func done(_ sender: Any) {
+        let new1RM = calculate1RM()
+        new.text = String(new1RM)
+    }
+    
+    //Calculate 1 RM
+    func calculate1RM() -> Double {
+        var calculated1RM : Double = 0
+        let weight : Double = weightField.text?.toDouble() ?? 0
+        let reps : Double = Double(repPickerDelegate.reps)
+        
+        calculated1RM = weight * (1 + (reps/30))
+        return calculated1RM
     }
     
 }
 
 class RepPickerDelegate: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    let reps : [Int] = Array(0...100)
+    let repRange : [Int] = Array(0...100)
+    var reps : Int = 0
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return reps.count
+        return repRange.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(reps[row])
+        return String(repRange[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent  component: Int) {
+        reps = repRange[row]
     }
 }
 
 class WeighFieldDelegate : NSObject, UITextFieldDelegate {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        
         return true
     }
     

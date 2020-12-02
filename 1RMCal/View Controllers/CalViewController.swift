@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalViewController: UIViewController {
+class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     //View Connections
     @IBOutlet weak var best: UILabel!
@@ -18,52 +18,76 @@ class CalViewController: UIViewController {
     @IBOutlet weak var measurementControl: UISegmentedControl!
     @IBOutlet weak var repPicker: UIPickerView!
         
-    let repPickerDelegate = RepPickerDelegate()
-    let weightFieldDeleate = WeighFieldDelegate()
+
     
     
     //1RM Values
-    var weight : Double = 0
-    var reps : Double = 0
+    let repRange : [Int] = Array(0...100)
+    var reps : Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Rep picker configuration
-        self.repPicker.delegate = repPickerDelegate
-        self.repPicker.dataSource = repPickerDelegate
+        self.repPicker.delegate = self
+        self.repPicker.dataSource = self
         
         //Weight field configuarion
-        weightField.delegate = weightFieldDeleate
+        weightField.delegate = self
         weightField.keyboardType = .decimalPad
         weightField.inputAccessoryView = toolBar()
+        
+        configureLabels()
         
     }
     
     @IBAction func cancel(_ sender: Any) {
     }
     @IBAction func done(_ sender: Any) {
-        let new1RM = calculate1RM()
-        new.text = String(new1RM)
+    }
+    
+    @IBAction func unitsChanged(_ sender: UISegmentedControl) {
+        
+        var currentWeight : Double = weightField.text?.toDouble() ?? 0
+        
+        switch(sender.selectedSegmentIndex){
+        case 0:
+            currentWeight /= 2.20462
+        case 1:
+            currentWeight *= 2.20462
+        default:
+            break
+        }
+        
+        weightField.text = String(currentWeight)
+    }
+    
+    //Init functions
+    func configureLabels() {
+        new.adjustsFontSizeToFitWidth = true
+        latest.adjustsFontSizeToFitWidth = true
+        best.adjustsFontSizeToFitWidth = true
     }
     
     //Calculate 1 RM
     func calculate1RM() -> Double {
         var calculated1RM : Double = 0
         let weight : Double = weightField.text?.toDouble() ?? 0
-        let reps : Double = Double(repPickerDelegate.reps)
+        let reps : Double = Double(self.reps)
         
         calculated1RM = weight * (1 + (reps/30))
+        calculated1RM = calculated1RM.round(to: 2)
         return calculated1RM
     }
     
+    func updateNewRM() {
+        let new1RM = calculate1RM()
+        new.text = String(new1RM)
+    }
 }
 
-class RepPickerDelegate: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
-    
-    let repRange : [Int] = Array(0...100)
-    var reps : Int = 0
+extension CalViewController {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -79,14 +103,13 @@ class RepPickerDelegate: NSObject, UIPickerViewDataSource, UIPickerViewDelegate 
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent  component: Int) {
         reps = repRange[row]
+        updateNewRM()
     }
-}
-
-class WeighFieldDelegate : NSObject, UITextFieldDelegate {
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
+        updateNewRM()
         return true
-    }
+      }
     
 }
+

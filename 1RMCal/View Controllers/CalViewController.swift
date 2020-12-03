@@ -17,7 +17,8 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var measurementControl: UISegmentedControl!
     @IBOutlet weak var repPicker: UIPickerView!
-        
+    @IBOutlet weak var navBar: UINavigationItem!
+    
 
     let settings = Settings.shared
     var currentUnitSetting : Weight = .kg
@@ -29,6 +30,8 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navBar.title = "Bench Press"
         
         //Rep picker configuration
         self.repPicker.delegate = self

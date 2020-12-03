@@ -20,6 +20,7 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         
 
     let settings = Settings.shared
+    var currentUnitSetting : Weight = .kg
     
     //1RM Values
     let repRange : [Int] = Array(0...100)
@@ -51,20 +52,18 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         
         var currentWeight : Double = weightField.text?.toDouble() ?? 0
         
-        let key = SettingTypes.appWeightUnit.rawValue
         switch(sender.selectedSegmentIndex){
         case 0:
-            let units = Weight.kg.rawValue
-            settings.updateSetting(key: key , value: units)
+            currentUnitSetting = Weight.kg
             currentWeight /= 2.20462
         case 1:
-            let units = Weight.lbs.rawValue
-            settings.updateSetting(key: key , value: units)
+            currentUnitSetting = Weight.lbs
             currentWeight *= 2.20462
         default:
             break
         }
         
+        currentWeight = currentWeight.round(to: 2)
         weightField.text = String(currentWeight)
     }
     
@@ -73,32 +72,35 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         new.adjustsFontSizeToFitWidth = true
         latest.adjustsFontSizeToFitWidth = true
         best.adjustsFontSizeToFitWidth = true
+        
+        new.text = "0.0"
+        latest.text = "0.0"
+        best.text = "0.0"
+    }
+    
+    func checkSameUnit(current : Weight, global : Weight) -> Bool {
+        return current == global
     }
     
     //Calculate 1 RM
     func calculate1RM() -> Double {
-        var value : Double = 0
+        var calculated1RM : Double = 0
         let weight : Double = weightField.text?.toDouble() ?? 0
         let reps : Double = Double(self.reps)
         
-        value = weight * (1 + (reps/30))
+        calculated1RM = weight * (1 + (reps/30))
         
-        //check settings
-        let units = Weight.init(rawValue: settings.getSetting(key: SettingTypes.appWeightUnit.rawValue) ?? "")
+        //check global & current unit settings
+        let globalUnit : Weight = Weight.init(rawValue: settings.getSetting(key: SettingTypes.appWeightUnit.rawValue) ?? "")
         
-        var convertedUnit = UnitMass.kilograms
-        switch units {
-        case .kg:
-            convertedUnit = UnitMass.kilograms
-        case .lbs:
-        convertedUnit = UnitMass.pounds
-        default:
-            convertedUnit = UnitMass.kilograms
+        //change kg to lbs
+        if !checkSameUnit(current: globalUnit, global: currentUnitSetting) && currentUnitSetting == .kg {
+            calculated1RM *=  2.20462
+        } else if !checkSameUnit(current: globalUnit, global: currentUnitSetting) && currentUnitSetting == .lbs {
+            calculated1RM /= 2.20462
         }
         
-        var calculated1RM = Measurement(value: value, unit: convertedUnit).value
-        
-        calculated1RM = calculated1RM.round(to: 2)
+        calculated1RM = calculated1RM.rounded()
         return calculated1RM
     }
     

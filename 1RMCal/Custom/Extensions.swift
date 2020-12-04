@@ -10,13 +10,15 @@ import Foundation
 import UIKit
 
 extension UIViewController{
+    
+    //Tool bar for calculator decimal pad
     func toolBar() -> UIToolbar{
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
         toolBar.isTranslucent = true
         toolBar.barTintColor = UIColor.init(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.5) //Write what you want for color
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let buttonTitle = "Done" //Or "Tamam"
+        let buttonTitle = "Done"
         let doneButton = UIBarButtonItem(title: buttonTitle, style: .done, target: self, action: #selector(onClickDoneButton))
         doneButton.tintColor = .white
         toolBar.setItems([space, doneButton, space], animated: false)
@@ -24,28 +26,29 @@ extension UIViewController{
         toolBar.sizeToFit()
         return toolBar
     }
-
+    
+    //action for toolbar "done" button
     @objc func onClickDoneButton(){
-        view.endEditing(true)
-    }
-
-    @objc func onClickCancelButton(){
         view.endEditing(true)
     }
 }
 
 extension String {
-func toDouble() -> Double? {
-    return NumberFormatter().number(from: self)?.doubleValue
- }
+    //String to Double
+    func toDouble() -> Double? {
+        return NumberFormatter().number(from: self)?.doubleValue
+        
+    }
 }
 
 extension Double {
+    //round double to x decimal places
     func round(to places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }
 }
+
 
 //The extensions to UserDefaults allows the saving of objects. It is used to save city objects (currentCity, weatherCity)
 extension UserDefaults: ObjectSavable {

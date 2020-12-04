@@ -38,14 +38,17 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="G2B-y1-ZaP">
-                                <rect key="frame" x="0.0" y="196.5" width="414" height="514.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="G2B-y1-ZaP" userLabel="Set Stack">
+                                <rect key="frame" x="0.0" y="166.5" width="414" height="355"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fwR-hn-Bgy" userLabel="Weight Stack">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="whz-B1-vBD" userLabel="measurement control">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="IPJ-k9-2Po"/>
+                                                </constraints>
                                                 <segments>
                                                     <segment title="kg"/>
                                                     <segment title="lbs"/>
@@ -58,25 +61,28 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vRh-Hl-1Su">
                                                 <rect key="frame" x="0.0" y="60" width="414" height="40"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="o1h-Aw-gxC"/>
+                                                </constraints>
                                                 <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="vRh-Hl-1Su" firstAttribute="trailing" secondItem="whz-B1-vBD" secondAttribute="trailing" id="2On-9F-UfW"/>
-                                            <constraint firstItem="vRh-Hl-1Su" firstAttribute="width" secondItem="whz-B1-vBD" secondAttribute="width" id="3yN-bU-VFu"/>
-                                            <constraint firstAttribute="trailing" secondItem="whz-B1-vBD" secondAttribute="trailing" id="Ila-pK-Qut"/>
-                                            <constraint firstItem="vRh-Hl-1Su" firstAttribute="leading" secondItem="whz-B1-vBD" secondAttribute="leading" id="LJY-0O-8St"/>
-                                            <constraint firstAttribute="height" constant="100" id="fif-qm-iQq"/>
-                                            <constraint firstItem="whz-B1-vBD" firstAttribute="leading" secondItem="fwR-hn-Bgy" secondAttribute="leading" id="oSb-Sk-20z"/>
+                                            <constraint firstItem="whz-B1-vBD" firstAttribute="leading" secondItem="fwR-hn-Bgy" secondAttribute="leading" id="5Qq-yg-Qlg"/>
+                                            <constraint firstItem="vRh-Hl-1Su" firstAttribute="leading" secondItem="whz-B1-vBD" secondAttribute="leading" id="EWj-ul-kQI"/>
+                                            <constraint firstItem="vRh-Hl-1Su" firstAttribute="trailing" secondItem="whz-B1-vBD" secondAttribute="trailing" id="Hkf-vH-l4V"/>
+                                            <constraint firstAttribute="trailing" secondItem="whz-B1-vBD" secondAttribute="trailing" id="hqq-dB-7Lu"/>
                                         </constraints>
                                     </stackView>
                                     <pickerView alpha="0.75" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="XWe-Ay-Vbr" userLabel="rep picker">
-                                        <rect key="frame" x="0.0" y="139" width="414" height="375.5"/>
+                                        <rect key="frame" x="0.0" y="139" width="414" height="216"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </pickerView>
                                 </subviews>
+                                <variation key="heightClass=compact-widthClass=regular" axis="horizontal" distribution="fillEqually"/>
+                                <variation key="heightClass=regular-widthClass=compact" axis="vertical"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="7aF-RY-CBT" userLabel="Button Stack">
                                 <rect key="frame" x="0.0" y="811" width="414" height="51"/>
@@ -102,17 +108,15 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="5M2-50-EGb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="4lM-Zm-iqZ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7aF-RY-CBT" secondAttribute="bottom" id="72K-6z-rNz"/>
-                            <constraint firstItem="7aF-RY-CBT" firstAttribute="top" relation="lessThanOrEqual" secondItem="XWe-Ay-Vbr" secondAttribute="bottom" constant="100" id="B0R-EH-huW"/>
-                            <constraint firstItem="5M2-50-EGb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NkF-Bu-YBs"/>
-                            <constraint firstItem="7aF-RY-CBT" firstAttribute="centerX" secondItem="5M2-50-EGb" secondAttribute="centerX" id="PNr-yB-bw0"/>
-                            <constraint firstItem="G2B-y1-ZaP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UGo-i4-7vO"/>
-                            <constraint firstAttribute="trailing" secondItem="G2B-y1-ZaP" secondAttribute="trailing" id="ZqS-EP-Cqe"/>
-                            <constraint firstItem="7aF-RY-CBT" firstAttribute="leading" secondItem="5M2-50-EGb" secondAttribute="leading" id="c9f-J3-qhX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5M2-50-EGb" secondAttribute="trailing" id="e5f-Ku-xkv"/>
-                            <constraint firstItem="G2B-y1-ZaP" firstAttribute="top" relation="lessThanOrEqual" secondItem="5M2-50-EGb" secondAttribute="bottom" constant="50" id="q1X-6H-xK5"/>
-                            <constraint firstItem="7aF-RY-CBT" firstAttribute="trailing" secondItem="5M2-50-EGb" secondAttribute="trailing" id="v9l-uz-V4m"/>
+                            <constraint firstItem="7aF-RY-CBT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="6Gh-7b-rcl"/>
+                            <constraint firstAttribute="trailing" secondItem="7aF-RY-CBT" secondAttribute="trailing" id="Kdn-o4-41f"/>
+                            <constraint firstAttribute="trailing" secondItem="5M2-50-EGb" secondAttribute="trailing" id="OGq-fx-OS8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="G2B-y1-ZaP" secondAttribute="trailing" id="Qjj-LP-L2N"/>
+                            <constraint firstItem="G2B-y1-ZaP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZG6-8x-qZF"/>
+                            <constraint firstItem="5M2-50-EGb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bZj-db-gT2"/>
+                            <constraint firstItem="G2B-y1-ZaP" firstAttribute="top" secondItem="5M2-50-EGb" secondAttribute="bottom" constant="20" id="kHk-lI-t0V"/>
+                            <constraint firstItem="5M2-50-EGb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="pfq-pS-Zt2"/>
+                            <constraint firstItem="7aF-RY-CBT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xyk-rv-hhl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

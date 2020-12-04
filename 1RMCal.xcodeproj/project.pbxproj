@@ -14,7 +14,7 @@
 		CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9A2574AA1100C53C9E /* AppDelegate.swift */; };
 		CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */; };
 		CD087E9F2574AA1100C53C9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9E2574AA1100C53C9E /* ViewController.swift */; };
-		CD087EA22574AA1100C53C9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA02574AA1100C53C9E /* Main.storyboard */; };
+		CD087EA22574AA1100C53C9E /* 1RMCalculator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA02574AA1100C53C9E /* 1RMCalculator.storyboard */; };
 		CD087EA52574AA1100C53C9E /* _RMCal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD087EA32574AA1100C53C9E /* _RMCal.xcdatamodeld */; };
 		CD087EA72574AA1200C53C9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA62574AA1200C53C9E /* Assets.xcassets */; };
 		CD087EAA2574AA1200C53C9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA82574AA1200C53C9E /* LaunchScreen.storyboard */; };
@@ -23,6 +23,9 @@
 		CDAB5B4A2577803800AD822A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B492577803800AD822A /* Settings.swift */; };
 		CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4C257780DA00AD822A /* Enums.swift */; };
 		CDAB5B502577871A00AD822A /* Savable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4F2577871A00AD822A /* Savable.swift */; };
+		CDD4D8EF2579F66200305382 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD4D8EE2579F66200305382 /* Main.storyboard */; };
+		CDD4D8F32579F7D200305382 /* CustomUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD4D8F22579F7D200305382 /* CustomUITabBarController.swift */; };
+		CDD4D8F52579F7F800305382 /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD4D8F42579F7F800305382 /* ExercisesViewController.swift */; };
 		CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF44DD2574B08D000D3649 /* CalViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +60,7 @@
 		CD087E9A2574AA1100C53C9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CD087E9E2574AA1100C53C9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CD087EA12574AA1100C53C9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CD087EA12574AA1100C53C9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/1RMCalculator.storyboard; sourceTree = "<group>"; };
 		CD087EA42574AA1100C53C9E /* _RMCal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = _RMCal.xcdatamodel; sourceTree = "<group>"; };
 		CD087EA62574AA1200C53C9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD087EA92574AA1200C53C9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -71,6 +74,9 @@
 		CDAB5B492577803800AD822A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CDAB5B4C257780DA00AD822A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CDAB5B4F2577871A00AD822A /* Savable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savable.swift; sourceTree = "<group>"; };
+		CDD4D8EE2579F66200305382 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CDD4D8F22579F7D200305382 /* CustomUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITabBarController.swift; sourceTree = "<group>"; };
+		CDD4D8F42579F7F800305382 /* ExercisesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
 		CDDF44DD2574B08D000D3649 /* CalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalViewController.swift; sourceTree = "<group>"; };
 		D363315B2B0BABF706BED086 /* Pods-1RMCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1RMCal.debug.xcconfig"; path = "Target Support Files/Pods-1RMCal/Pods-1RMCal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,8 +210,9 @@
 		CDDF44D62574AB9D000D3649 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CD087EA02574AA1100C53C9E /* Main.storyboard */,
+				CD087EA02574AA1100C53C9E /* 1RMCalculator.storyboard */,
 				CD087EA82574AA1200C53C9E /* LaunchScreen.storyboard */,
+				CDD4D8EE2579F66200305382 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +230,8 @@
 			children = (
 				CD087E9E2574AA1100C53C9E /* ViewController.swift */,
 				CDDF44DD2574B08D000D3649 /* CalViewController.swift */,
+				CDD4D8F22579F7D200305382 /* CustomUITabBarController.swift */,
+				CDD4D8F42579F7F800305382 /* ExercisesViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -342,8 +351,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD087EAA2574AA1200C53C9E /* LaunchScreen.storyboard in Resources */,
+				CDD4D8EF2579F66200305382 /* Main.storyboard in Resources */,
 				CD087EA72574AA1200C53C9E /* Assets.xcassets in Resources */,
-				CD087EA22574AA1100C53C9E /* Main.storyboard in Resources */,
+				CD087EA22574AA1100C53C9E /* 1RMCalculator.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDD4D8F52579F7F800305382 /* ExercisesViewController.swift in Sources */,
 				CD087E9F2574AA1100C53C9E /* ViewController.swift in Sources */,
 				CD0447DC2576E33C002035BF /* Extensions.swift in Sources */,
 				CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */,
@@ -445,6 +456,7 @@
 				CDAB5B4A2577803800AD822A /* Settings.swift in Sources */,
 				CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */,
 				CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */,
+				CDD4D8F32579F7D200305382 /* CustomUITabBarController.swift in Sources */,
 				CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,12 +493,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CD087EA02574AA1100C53C9E /* Main.storyboard */ = {
+		CD087EA02574AA1100C53C9E /* 1RMCalculator.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CD087EA12574AA1100C53C9E /* Base */,
 			);
-			name = Main.storyboard;
+			name = 1RMCalculator.storyboard;
 			sourceTree = "<group>";
 		};
 		CD087EA82574AA1200C53C9E /* LaunchScreen.storyboard */ = {

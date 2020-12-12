@@ -10,6 +10,7 @@
 		0C6846EE249E5828C54C0536 /* Pods_1RMCal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F4F0F7C4D90F41E6AB1834A /* Pods_1RMCal.framework */; };
 		8492EC1ECAB3620B4283CCDC /* Pods_1RMCalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36FD34F2110769F7EDD8ED1 /* Pods_1RMCalTests.framework */; };
 		905157052B2EE76913B1FEE1 /* Pods_1RMCal_1RMCalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9637796602407E5FA883D877 /* Pods_1RMCal_1RMCalUITests.framework */; };
+		CD03A66025858A58000DA1EF /* HomeViewControlller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03A65F25858A58000DA1EF /* HomeViewControlller.swift */; };
 		CD0447DC2576E33C002035BF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0447DB2576E33C002035BF /* Extensions.swift */; };
 		CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9A2574AA1100C53C9E /* AppDelegate.swift */; };
 		CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */; };
@@ -24,8 +25,6 @@
 		CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4C257780DA00AD822A /* Enums.swift */; };
 		CDAB5B502577871A00AD822A /* Savable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4F2577871A00AD822A /* Savable.swift */; };
 		CDD4D8EF2579F66200305382 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD4D8EE2579F66200305382 /* Main.storyboard */; };
-		CDD4D8F32579F7D200305382 /* CustomUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD4D8F22579F7D200305382 /* CustomUITabBarController.swift */; };
-		CDD4D8F52579F7F800305382 /* ExercisesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD4D8F42579F7F800305382 /* ExercisesViewController.swift */; };
 		CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF44DD2574B08D000D3649 /* CalViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +54,7 @@
 		9637796602407E5FA883D877 /* Pods_1RMCal_1RMCalUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_1RMCal_1RMCalUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84DBD1616F47E1A17CEFC52 /* Pods-1RMCal-1RMCalUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1RMCal-1RMCalUITests.debug.xcconfig"; path = "Target Support Files/Pods-1RMCal-1RMCalUITests/Pods-1RMCal-1RMCalUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C36FD34F2110769F7EDD8ED1 /* Pods_1RMCalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_1RMCalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD03A65F25858A58000DA1EF /* HomeViewControlller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControlller.swift; sourceTree = "<group>"; };
 		CD0447DB2576E33C002035BF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CD087E972574AA1100C53C9E /* 1RMCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1RMCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD087E9A2574AA1100C53C9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,8 +75,6 @@
 		CDAB5B4C257780DA00AD822A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CDAB5B4F2577871A00AD822A /* Savable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savable.swift; sourceTree = "<group>"; };
 		CDD4D8EE2579F66200305382 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		CDD4D8F22579F7D200305382 /* CustomUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITabBarController.swift; sourceTree = "<group>"; };
-		CDD4D8F42579F7F800305382 /* ExercisesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesViewController.swift; sourceTree = "<group>"; };
 		CDDF44DD2574B08D000D3649 /* CalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalViewController.swift; sourceTree = "<group>"; };
 		D363315B2B0BABF706BED086 /* Pods-1RMCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1RMCal.debug.xcconfig"; path = "Target Support Files/Pods-1RMCal/Pods-1RMCal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -230,8 +228,7 @@
 			children = (
 				CD087E9E2574AA1100C53C9E /* ViewController.swift */,
 				CDDF44DD2574B08D000D3649 /* CalViewController.swift */,
-				CDD4D8F22579F7D200305382 /* CustomUITabBarController.swift */,
-				CDD4D8F42579F7F800305382 /* ExercisesViewController.swift */,
+				CD03A65F25858A58000DA1EF /* HomeViewControlller.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -447,16 +444,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDD4D8F52579F7F800305382 /* ExercisesViewController.swift in Sources */,
 				CD087E9F2574AA1100C53C9E /* ViewController.swift in Sources */,
 				CD0447DC2576E33C002035BF /* Extensions.swift in Sources */,
+				CD03A66025858A58000DA1EF /* HomeViewControlller.swift in Sources */,
 				CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */,
 				CD087EA52574AA1100C53C9E /* _RMCal.xcdatamodeld in Sources */,
 				CDAB5B502577871A00AD822A /* Savable.swift in Sources */,
 				CDAB5B4A2577803800AD822A /* Settings.swift in Sources */,
 				CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */,
 				CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */,
-				CDD4D8F32579F7D200305382 /* CustomUITabBarController.swift in Sources */,
 				CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,7 +558,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -616,7 +612,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

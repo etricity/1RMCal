@@ -47,8 +47,11 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     @IBAction func cancel(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func done(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func unitsChanged(_ sender: UISegmentedControl) {

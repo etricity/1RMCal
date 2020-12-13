@@ -169,12 +169,23 @@
                     </view>
                     <navigationItem key="navigationItem" id="PBx-ZE-idx"/>
                     <connections>
-                        <segue destination="SIx-R9-rKJ" kind="show" identifier="goToExercises" id="LMS-7m-8yJ"/>
+                        <segue destination="SIx-R9-rKJ" kind="show" identifier="goToCal" id="LMS-7m-8yJ"/>
+                        <segue destination="8an-Yb-Lwj" kind="show" identifier="goToExercises" id="a6T-xd-Y5y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dm-Je-0eU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="821.73913043478262" y="-402.45535714285711"/>
+        </scene>
+        <!--ExercisesVC-->
+        <scene sceneID="Ut6-ul-hUT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Exercises" referencedIdentifier="ExercisesVC" id="8an-Yb-Lwj" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="NJY-Hq-f5O"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gh6-Xg-EsX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1369" y="-466"/>
         </scene>
         <!--CalVC-->
         <scene sceneID="9tc-zj-A7O">
@@ -184,7 +195,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bEi-V2-Vkj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1627" y="-526"/>
+            <point key="canvasLocation" x="1369" y="-317"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WVd-XX-G7V">

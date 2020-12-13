@@ -19,9 +19,10 @@ class HomeViewController: UIViewController {
     @IBAction func goToWorkouts(_ sender: Any) {
     }
     @IBAction func goToExercises(_ sender: Any) {
+        performSegue(withIdentifier: "goToExercises", sender: self)
     }
     @IBAction func goToCalculator(_ sender: Any) {
-        performSegue(withIdentifier: "goToExercises", sender: self)
+        performSegue(withIdentifier: "goToCal", sender: self)
     }
     @IBAction func goToStats(_ sender: Any) {
     }

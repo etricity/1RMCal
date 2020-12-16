@@ -29,7 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		032B14EB7FB9A1504013F343C4BD81EA /* Pods_1RMCal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_1RMCal.framework; path = "Pods-1RMCal.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		032B14EB7FB9A1504013F343C4BD81EA /* Pods_1RMCal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_1RMCal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0841F74F5DC98B1AF5BCC34037E89F80 /* Pods-1RMCal-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-1RMCal-acknowledgements.plist"; sourceTree = "<group>"; };
 		0E64E3633FF31D9559B8ABACA6075603 /* Pods-1RMCalTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-1RMCalTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		13D607A9734612206622A2B243D8A2B3 /* Pods-1RMCalTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-1RMCalTests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -38,7 +38,7 @@
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		33D3EC4E86C2F13ADB51FB38E9AE682B /* Pods-1RMCalTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-1RMCalTests-Info.plist"; sourceTree = "<group>"; };
 		37F21DAE5591C7DD2969E3E9E0E4C0E8 /* Pods-1RMCalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-1RMCalTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3C4EADB9C7D74DEAB3EC5B4C55226C1D /* Pods_1RMCal_1RMCalUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_1RMCal_1RMCalUITests.framework; path = "Pods-1RMCal-1RMCalUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C4EADB9C7D74DEAB3EC5B4C55226C1D /* Pods_1RMCal_1RMCalUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_1RMCal_1RMCalUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E8A405CECC652D51C92A8261510BE76 /* Pods-1RMCalTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-1RMCalTests.modulemap"; sourceTree = "<group>"; };
 		560616B239AC40EBEB5558B25044E295 /* Pods-1RMCal-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-1RMCal-Info.plist"; sourceTree = "<group>"; };
 		570F6A88E068926970492A907F7BEF0A /* Pods-1RMCal-1RMCalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-1RMCal-1RMCalUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -47,12 +47,12 @@
 		8460695F61F285233F4C9CBDDBDB4838 /* Pods-1RMCalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-1RMCalTests.release.xcconfig"; sourceTree = "<group>"; };
 		87B2BADBD9A0932A9CB78164FDA9ECB1 /* Pods-1RMCal-1RMCalUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-1RMCal-1RMCalUITests-umbrella.h"; sourceTree = "<group>"; };
 		9BED6F919D7A57CC50BBCFDA27FC3AF9 /* Pods-1RMCal-1RMCalUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-1RMCal-1RMCalUITests.modulemap"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A2716330A93EF5898EA8AEDE182E17EC /* Pods-1RMCal-1RMCalUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-1RMCal-1RMCalUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3A554C4D3B5755B8574BE21328D1A46 /* Pods-1RMCalTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-1RMCalTests-umbrella.h"; sourceTree = "<group>"; };
 		AAE3BD692DF145CD4DD14C8B52CF3EE0 /* Pods-1RMCalTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-1RMCalTests-dummy.m"; sourceTree = "<group>"; };
 		AF18EAD8B8344D69380E6DCD76B8EABB /* Pods-1RMCal-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-1RMCal-umbrella.h"; sourceTree = "<group>"; };
-		B06A6EDF390D53B9F4FF1A202FE21EF0 /* Pods_1RMCalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_1RMCalTests.framework; path = "Pods-1RMCalTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B06A6EDF390D53B9F4FF1A202FE21EF0 /* Pods_1RMCalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_1RMCalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D96A3FE4A9DC85B827660C971C986C /* Pods-1RMCal.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-1RMCal.modulemap"; sourceTree = "<group>"; };
 		B83B982466A3271D967F43B50978B756 /* Pods-1RMCal-1RMCalUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-1RMCal-1RMCalUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C240001C6FEE5D449159794E589F2A28 /* Pods-1RMCal-1RMCalUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-1RMCal-1RMCalUITests-Info.plist"; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1230;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -422,6 +422,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -602,6 +603,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

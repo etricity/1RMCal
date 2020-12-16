@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToExercises" {
-            guard let vc = segue.destination as? CalViewController else { return }
+//            guard let vc = segue.destination as? CalViewController else { return }
         }
     }
 

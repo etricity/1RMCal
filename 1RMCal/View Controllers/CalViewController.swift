@@ -31,7 +31,7 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navBar.title = "Bench Press"
+        navBar.title = "1RM Calculator"
         
         //Rep picker configuration
         self.repPicker.delegate = self
@@ -42,13 +42,16 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         weightField.keyboardType = .decimalPad
         weightField.inputAccessoryView = toolBar()
         
-        configureLabels()
+        configureView()
         
     }
     
     @IBAction func cancel(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func done(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func unitsChanged(_ sender: UISegmentedControl) {
@@ -79,6 +82,10 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         new.text = "0.0"
         latest.text = "0.0"
         best.text = "0.0"
+    }
+    
+    func configureView() {
+        configureLabels()
     }
     
     func checkSameUnit(current : Weight, global : Weight) -> Bool {
@@ -126,6 +133,7 @@ extension CalViewController {
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        repPicker.setValue(UIColor.black, forKey: "textColor")
         return String(repRange[row])
     }
     

@@ -11,26 +11,32 @@ import UIKit
 class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
     //View Connections
-    @IBOutlet weak var best: UILabel!
-    @IBOutlet weak var latest: UILabel!
-    @IBOutlet weak var new: UILabel!
+    @IBOutlet weak var bestRM: UILabel!
+    @IBOutlet weak var latestRM: UILabel!
+    @IBOutlet weak var newRM: UILabel!
+    @IBOutlet weak var bestSetRep: UILabel!
+    @IBOutlet weak var latestSetRep: UILabel!
+    @IBOutlet weak var newSetRep: UILabel!
     @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var measurementControl: UISegmentedControl!
     @IBOutlet weak var repPicker: UIPickerView!
     @IBOutlet weak var navBar: UINavigationItem!
     
-
+    //Settings current & global
     let settings = Settings.shared
-    var currentUnitSetting : Weight = .kg
+    var currentUnits : UnitMass = .kilograms
     
     //1RM Values
     let repRange : [Int] = Array(0...100)
-    var reps : Int = 0
     
+    var currentReps : Int = 0
+    var currentWeight : Measurement = Measurement(value: 0, unit: UnitMass.kilograms)
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //testing title
         navBar.title = "Bench Press"
         
         //Rep picker configuration
@@ -42,77 +48,105 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         weightField.keyboardType = .decimalPad
         weightField.inputAccessoryView = toolBar()
         
+        //init view
         configureLabels()
         
     }
     
+    //Button actions
     @IBAction func cancel(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     @IBAction func done(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func unitsChanged(_ sender: UISegmentedControl) {
         
-        var currentWeight : Double = weightField.text?.toDouble() ?? 0
-        
-        switch(sender.selectedSegmentIndex){
+        //Change current units (weight being lifted units)
+        switch (sender.selectedSegmentIndex) {
         case 0:
-            currentUnitSetting = Weight.kg
-            currentWeight /= 2.20462
-        case 1:
-            currentUnitSetting = Weight.lbs
-            currentWeight *= 2.20462
-        default:
+            currentUnits = .kilograms
             break
-        }
-        
-        currentWeight = currentWeight.round(to: 2)
-        weightField.text = String(currentWeight)
+        case 1:
+            currentUnits = .pounds
+            break
+        default:
+            currentUnits = .kilograms
+            break
     }
+        //update 1RM
+        updateNew1RM()
+}
     
     //Init functions
     func configureLabels() {
-        new.adjustsFontSizeToFitWidth = true
-        latest.adjustsFontSizeToFitWidth = true
-        best.adjustsFontSizeToFitWidth = true
+        newRM.adjustsFontSizeToFitWidth = true
+        latestRM.adjustsFontSizeToFitWidth = true
+        bestRM.adjustsFontSizeToFitWidth = true
         
-        new.text = "0.0"
-        latest.text = "0.0"
-        best.text = "0.0"
+        newRM.text = "0.0"
+        latestRM.text = "0.0"
+        bestRM.text = "0.0"
     }
+
     
-    func checkSameUnit(current : Weight, global : Weight) -> Bool {
-        return current == global
-    }
-    
-    //Calculate 1 RM
-    func calculate1RM() -> Double {
+    // 1 RM Formula
+    // This calculation is always done in kg and converted if needed in method updateNew1RM()
+    func calculate1RM(weight : Double, reps : Double) -> Double {
         var calculated1RM : Double = 0
-        let weight : Double = weightField.text?.toDouble() ?? 0
-        let reps : Double = Double(self.reps)
-        
         calculated1RM = weight * (1 + (reps/30))
-        
-        //check global & current unit settings
-        let globalUnit : Weight = Weight.init(rawValue: settings.getSetting(key: SettingTypes.appWeightUnit.rawValue) ?? "")
-        
-        //change kg to lbs
-        if !checkSameUnit(current: globalUnit, global: currentUnitSetting) && currentUnitSetting == .kg {
-            calculated1RM *=  2.20462
-        } else if !checkSameUnit(current: globalUnit, global: currentUnitSetting) && currentUnitSetting == .lbs {
-            calculated1RM /= 2.20462
-        }
-        
         calculated1RM = calculated1RM.rounded()
         return calculated1RM
     }
     
-    func updateNewRM() {
-        let new1RM = calculate1RM()
-        new.text = String(new1RM)
-        best.text = new.text
-        latest.text = new.text
+    func updateNew1RM() {
+        //ensure weight is updated to reflect view
+        updateWeight()
+        //calculate new rm
+        var value = calculate1RM(weight: self.currentWeight.value, reps: Double(self.currentReps))
+    
+        //convert value to global units
+        let globalUnits = Weight.init(rawValue: settings.getSetting(key: "appWeightUnit") ?? "")
+        var new1RM = Measurement(value: value, unit: UnitMass.kilograms)
+        
+        switch globalUnits {
+        case .kg:
+            new1RM = new1RM.converted(to: .kilograms)
+            break
+        case .lbs:
+            new1RM = new1RM.converted(to: .pounds)
+            break
+        default:
+            break
+        }
+        
+        //update labels
+        let text = String(new1RM.value.rounded())
+        let weightText = currentWeight.value.round(to: 2)
+        
+        newRM.text = text
+        bestRM.text = text
+        latestRM.text = text
+        newSetRep.text = "\(weightText) \(globalUnits.rawValue) x \(currentReps)"
     }
+    
+    // Updates weight to relfect user settings (weight entered & unit slider)
+    // Always converted to kg for calculations
+    func updateWeight() {
+        switch currentUnits {
+            case .kilograms:
+                self.currentWeight = Measurement(value: weightField.text?.toDouble() ?? 0, unit: UnitMass.kilograms)
+                break
+            case .pounds:
+                self.currentWeight = Measurement(value: weightField.text?.toDouble() ?? 0, unit: UnitMass.pounds)
+                self.currentWeight = self.currentWeight.converted(to: .kilograms)
+                break
+            default:
+                self.currentWeight = Measurement(value: weightField.text?.toDouble() ?? 0, unit: UnitMass.kilograms)
+        }
+    }
+
 }
 
 extension CalViewController {
@@ -130,14 +164,12 @@ extension CalViewController {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent  component: Int) {
-        reps = repRange[row]
-        updateNewRM()
+        currentReps = repRange[row]
+        updateNew1RM()
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        updateNewRM()
+        updateNew1RM()
         return true
       }
-    
 }
-

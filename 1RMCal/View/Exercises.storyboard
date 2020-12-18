@@ -112,14 +112,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Mg-nP-KIc" userLabel="subview">
                                 <rect key="frame" x="0.0" y="310" width="414" height="586"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PO6-0H-Rnt">
-                                        <rect key="frame" x="175.5" y="10" width="63" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PO6-0H-Rnt">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="l1B-3w-jQw"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wjb-bf-x6R">
-                                        <rect key="frame" x="0.0" y="34" width="414" height="552"/>
+                                        <rect key="frame" x="0.0" y="45" width="414" height="541"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="exerciseHistoryCell" id="xiH-Uv-dSP" customClass="ExerciseTableViewCell" customModule="_RMCal" customModuleProvider="target">
@@ -149,19 +152,21 @@
                                         </prototypes>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Wjb-bf-x6R" firstAttribute="top" secondItem="PO6-0H-Rnt" secondAttribute="bottom" id="9il-VD-kOq"/>
                                     <constraint firstAttribute="bottom" secondItem="Wjb-bf-x6R" secondAttribute="bottom" id="UPm-gF-sh8"/>
+                                    <constraint firstItem="PO6-0H-Rnt" firstAttribute="leading" secondItem="0Mg-nP-KIc" secondAttribute="leading" id="aaW-XI-62B"/>
                                     <constraint firstItem="PO6-0H-Rnt" firstAttribute="centerX" secondItem="0Mg-nP-KIc" secondAttribute="centerX" id="cb1-62-XZD"/>
+                                    <constraint firstAttribute="trailing" secondItem="PO6-0H-Rnt" secondAttribute="trailing" id="hrZ-nk-Sqc"/>
                                     <constraint firstItem="Wjb-bf-x6R" firstAttribute="leading" secondItem="0Mg-nP-KIc" secondAttribute="leading" id="n7d-kk-fPw"/>
                                     <constraint firstAttribute="trailing" secondItem="Wjb-bf-x6R" secondAttribute="trailing" id="vrb-S4-xCo"/>
-                                    <constraint firstItem="PO6-0H-Rnt" firstAttribute="top" secondItem="0Mg-nP-KIc" secondAttribute="top" constant="10" id="z8W-IY-xbp"/>
+                                    <constraint firstItem="PO6-0H-Rnt" firstAttribute="top" secondItem="0Mg-nP-KIc" secondAttribute="top" id="z8W-IY-xbp"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="G28-zj-50g"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="C0I-PC-IZF" firstAttribute="centerX" secondItem="XHx-S4-UuG" secondAttribute="centerX" id="2OJ-RQ-f9R"/>
                             <constraint firstItem="C0I-PC-IZF" firstAttribute="top" secondItem="XHx-S4-UuG" secondAttribute="topMargin" constant="20" id="MqW-XB-U5F"/>
@@ -175,6 +180,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="OF0-Rz-5cI">
                             <connections>
                                 <action selector="addExercise:" destination="B0a-eW-826" id="Jro-WV-QzG"/>
+                                <segue destination="O0H-rK-HjC" kind="show" id="oZ6-yj-CSJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -187,6 +193,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7y5-Tx-ZPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2331.8840579710145" y="162.72321428571428"/>
+        </scene>
+        <!--CalVC-->
+        <scene sceneID="XXh-IM-wlu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="1RMCalculator" referencedIdentifier="CalVC" id="O0H-rK-HjC" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="AWM-ib-R7c"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nrW-xe-heb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3215" y="138"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VjN-UP-6vK">
@@ -216,8 +232,8 @@
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="tertiarySystemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

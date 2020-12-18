@@ -10,9 +10,12 @@ import UIKit
 
 class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     
+    // View Model
+    var vm : ExerciseViewModel = ExerciseViewModel()
+    
     var exercises : [String] = ["Bench Press", "Squat", "Deadlift"]
     var numCells : Int {
-        return exercises.count
+        return vm.getExercises().count
     }
 
     override func viewDidLoad() {
@@ -32,8 +35,12 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
             // add exercise to tableview
             if let newExercise = alert.textFields![0].text {
-                self.exercises.append(newExercise)
-                self.tableView.reloadData()
+                //add exercise
+                if self.vm.addExercise(name: newExercise) {
+                    self.tableView.reloadData()
+                } else {
+                    print("DUPLICATE")
+                }
             }
         } ))
         
@@ -58,7 +65,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseTableViewCell
         
-        cell.label.text = exercises[indexPath.row]
+        cell.label.text = vm.getExercises()[indexPath.row].name
 
         return cell
     }
@@ -71,7 +78,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            exercises.remove(at: indexPath.row)
+            vm.removeExercise(index: indexPath.row)
             tableView.reloadData()
             
             //Erase from Core Data

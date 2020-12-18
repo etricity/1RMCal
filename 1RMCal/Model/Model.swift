@@ -10,32 +10,20 @@ import Foundation
 
 // Model Management
 
-// Managers all exercises
-class ExerciseManager {
-    var exercies : [Exercise]?
-}
-
-// A workout is a exercise manager with a set of exercises
-typealias Workout = ExerciseManager
-
-// Managers all workouts
-class WorkoutManager {
-    var workouts : [Workout]?
-}
-
-
 
 // Represents a Exercise (holds info for the exxercises name & all performences of the exxcercise)
 class Exercise {
+        
     // Name of exercise
     var name : String
     //Performences of Exercise
     var instances : [ExerciseInstance]?
     
+    // Constructor
     init(name : String) {
         self.name = name
+        
     }
-    
 }
 
 // Represents a single performence/instance of a exercise

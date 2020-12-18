@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Exercises-->
+        <!--Title-->
         <scene sceneID="utM-JI-A5v">
             <objects>
                 <tableViewController storyboardIdentifier="ExercisesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" interfaceStyle="dark" id="B0a-eW-826" customClass="ExercisesViewController" customModule="_RMCal" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,13 +16,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="exerciseCell" id="QTu-oi-q6F">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="exerciseCell" id="QTu-oi-q6F" customClass="ExerciseTableViewCell" customModule="_RMCal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QTu-oi-q6F" id="fLo-mu-gMe">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLg-YP-G26">
+                                            <rect key="frame" x="20" y="11.5" width="335" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="lLg-YP-G26" firstAttribute="centerY" secondItem="fLo-mu-gMe" secondAttribute="centerY" id="L6S-PZ-eZc"/>
+                                        <constraint firstItem="lLg-YP-G26" firstAttribute="leading" secondItem="fLo-mu-gMe" secondAttribute="leading" constant="20" id="NCq-xp-zbu"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="lLg-YP-G26" secondAttribute="trailing" constant="20" id="Tm3-D4-4zG"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="exercise" destination="lLg-YP-G26" id="fVt-ma-qBg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -31,7 +47,13 @@
                             <outlet property="delegate" destination="B0a-eW-826" id="87r-1U-anW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Exercises" id="lng-8u-NwE"/>
+                    <navigationItem key="navigationItem" title="Title" id="iXC-Ra-d9X">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="rXZ-ze-1In">
+                            <connections>
+                                <action selector="addExercise:" destination="B0a-eW-826" id="1li-SA-FbH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baM-C3-Ac6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -59,6 +81,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -23,6 +23,7 @@
 		CD087EAA2574AA1200C53C9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA82574AA1200C53C9E /* LaunchScreen.storyboard */; };
 		CD087EB52574AA1200C53C9E /* _RMCalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087EB42574AA1200C53C9E /* _RMCalTests.swift */; };
 		CD087EC02574AA1200C53C9E /* _RMCalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087EBF2574AA1200C53C9E /* _RMCalUITests.swift */; };
+		CD60F05D258B17B600B41BAD /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD60F05C258B17B600B41BAD /* ExerciseTableViewCell.swift */; };
 		CDAB5B4A2577803800AD822A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B492577803800AD822A /* Settings.swift */; };
 		CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4C257780DA00AD822A /* Enums.swift */; };
 		CDAB5B502577871A00AD822A /* Savable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4F2577871A00AD822A /* Savable.swift */; };
@@ -75,6 +76,7 @@
 		CD087EBB2574AA1200C53C9E /* 1RMCalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 1RMCalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD087EBF2574AA1200C53C9E /* _RMCalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _RMCalUITests.swift; sourceTree = "<group>"; };
 		CD087EC12574AA1200C53C9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD60F05C258B17B600B41BAD /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		CDAB5B492577803800AD822A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CDAB5B4C257780DA00AD822A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CDAB5B4F2577871A00AD822A /* Savable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savable.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				CDAB5B4E2577870C00AD822A /* Savable */,
 				CD0447DB2576E33C002035BF /* Extensions.swift */,
 				CDAB5B4C257780DA00AD822A /* Enums.swift */,
+				CD60F05C258B17B600B41BAD /* ExerciseTableViewCell.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				CD03A6872585979A000DA1EF /* ExercisesViewController.swift in Sources */,
 				CDAB5B4A2577803800AD822A /* Settings.swift in Sources */,
 				CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */,
+				CD60F05D258B17B600B41BAD /* ExerciseTableViewCell.swift in Sources */,
 				CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */,
 				CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */,
 			);

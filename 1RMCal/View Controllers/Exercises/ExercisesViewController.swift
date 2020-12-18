@@ -67,7 +67,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseTableViewCell
         
-        cell.exercise.text = exercises[indexPath.row]
+        cell.label.text = exercises[indexPath.row]
 
         return cell
     }
@@ -82,6 +82,8 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
             // handle delete (by removing the data from your array and updating the tableview)
             exercises.remove(at: indexPath.row)
             tableView.reloadData()
+            
+            //Erase from Core Data
         }
     }
     

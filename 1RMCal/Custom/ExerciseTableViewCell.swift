@@ -10,7 +10,7 @@ import UIKit
 
 class ExerciseTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var exercise: UILabel!
+    @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

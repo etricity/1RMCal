@@ -35,10 +35,7 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //testing title
-        navBar.title = "Bench Press"
-        
+                
         //Rep picker configuration
         self.repPicker.delegate = self
         self.repPicker.dataSource = self

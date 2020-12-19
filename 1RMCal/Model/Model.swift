@@ -17,12 +17,11 @@ class Exercise {
     // Name of exercise
     var name : String
     //Performences of Exercise
-    var instances : [ExerciseInstance]?
+    var instances : [ExerciseInstance] = []
     
     // Constructor
     init(name : String) {
         self.name = name
-        
     }
 }
 

@@ -85,6 +85,10 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("your row number: \(indexPath.row)")
+    }
+    
     //Segue Functions
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -94,7 +98,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
             if segue.destination is ExerciseViewController
             {
                 let vc = segue.destination as? ExerciseViewController
-                vc?.title = exercise.label.text
+                vc?.exercise = vm.getExercise(name: exercise.label.text!)
             }
         }
 

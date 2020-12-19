@@ -16,6 +16,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var next1RM: UILabel!
     @IBOutlet weak var history: UITableView!
     
+    // Model Data
+    var exercise : Exercise? 
+    
     //History Data
     var historyData : [String] = ["15/10    133kg     100kgx10", "15/10    133kg     100kgx10", "15/10    133kg     100kgx10"]
     var numCells : Int {
@@ -25,6 +28,8 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = exercise?.name
         
         //Delegation
         self.history.delegate = self

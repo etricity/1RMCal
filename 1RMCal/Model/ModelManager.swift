@@ -10,6 +10,7 @@ import Foundation
 
 // Managers all exercises
 class ExerciseManager {
+    
     var exercises : [Exercise] = []
     
     // test purposes only
@@ -23,6 +24,7 @@ class ExerciseManager {
         self.exercises.append(deadlift)
     }
     
+    // Add new exercise
     func addExercise(name : String) -> Bool {
         
         let exerciseExists = exercises.contains { exercise in
@@ -37,8 +39,16 @@ class ExerciseManager {
         }
     }
     
+    // Remove exercise
     func removeExercise(index : Int) {
         exercises.remove(at: index)
+    }
+    
+    // Get a single exercise by name
+    func getExercise(name : String) -> Exercise? {
+        
+        guard let exercise = exercises.filter({ $0.name.lowercased() == name.lowercased() }).first else {return nil}
+        return exercise
     }
     
 }

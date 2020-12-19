@@ -22,9 +22,12 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var repPicker: UIPickerView!
     @IBOutlet weak var navBar: UINavigationItem!
     
+    var exerciseVC : ExerciseInstanceViewController?
+    
     //Settings current & global
     let settings = Settings.shared
     var currentUnits : UnitMass = .kilograms
+    lazy var globalUnits = Weight.init(rawValue: settings.getSetting(key: "appWeightUnit") ?? "")
     
     //1RM Values
     let repRange : [Int] = Array(0...100)
@@ -56,6 +59,9 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     @IBAction func done(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+        let newSet = SetStat(weight: self.currentWeight.value, repCount: self.currentReps, units: globalUnits)
+        exerciseVC?.addSet(newSet: newSet)
+        
     }
     
     @IBAction func unitsChanged(_ sender: UISegmentedControl) {
@@ -104,7 +110,6 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         var value = calculate1RM(weight: self.currentWeight.value, reps: Double(self.currentReps))
     
         //convert value to global units
-        let globalUnits = Weight.init(rawValue: settings.getSetting(key: "appWeightUnit") ?? "")
         var new1RM = Measurement(value: value, unit: UnitMass.kilograms)
         
         switch globalUnits {

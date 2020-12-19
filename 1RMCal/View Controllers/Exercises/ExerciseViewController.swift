@@ -17,12 +17,11 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var history: UITableView!
     
     // Model Data
-    var exercise : Exercise? 
+    var exercise : Exercise!
     
     //History Data
-    var historyData : [String] = ["15/10    133kg     100kgx10", "15/10    133kg     100kgx10", "15/10    133kg     100kgx10"]
     var numCells : Int {
-        return historyData.count
+        return exercise.instances.count
     }
     
     
@@ -41,13 +40,14 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     // TableView functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyData.count
+        return exercise.instances.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseHistoryCell", for: indexPath) as! ExerciseTableViewCell
         
-        cell.label.text = historyData[indexPath.row]
+        // change later to best set stats
+        cell.label.text = exercise.instances[indexPath.row].sets.first?.toString()
 
         return cell
     }
@@ -60,23 +60,27 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            historyData.remove(at: indexPath.row)
+            exercise.instances.remove(at: indexPath.row)
             history.reloadData()
             
             //Erase from core data
         }
     }
-
+    
+    // Other functions
+    func addInstance(newInstance : ExerciseInstance) {
+        exercise?.instances.append(newInstance)
+        history.reloadData()
+    }
     
     //Segue Functions
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-            if segue.destination is CalViewController
-            {
-                let vc = segue.destination as? CalViewController
-                vc?.title = self.title
-            }
+        if segue.destination is ExerciseInstanceViewController {
+            let vc = segue.destination as? ExerciseInstanceViewController
+            vc?.title = self.title
+            vc?.exerciseVC = self
         }
+    }
 }

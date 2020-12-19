@@ -38,8 +38,7 @@ class ExerciseInstance {
     }
     
     // add new set
-    func performSet(weight : Double, repCount : Int, units : Weight) {
-        let newSet = SetStat(weight: weight, repCount: repCount, units: units)
+    func addSet(newSet : SetStat) {
         self.sets.append(newSet)
     }
     
@@ -64,6 +63,10 @@ class SetStat {
         self.repCount = repCount
         self.weight = weight
         self.units = units
+    }
+    
+    func toString() -> String {
+        return "\(self.weight) \(self.units) x \(self.repCount)     \(self.oneRM)"
     }
 }
 

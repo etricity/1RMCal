@@ -245,7 +245,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DOR-rX-vWp"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gm0-vW-i8P" firstAttribute="centerX" secondItem="tcQ-eN-jQK" secondAttribute="centerX" id="11Q-hD-ZP9"/>
                             <constraint firstItem="gm0-vW-i8P" firstAttribute="top" secondItem="DOR-rX-vWp" secondAttribute="top" id="33p-I4-4nr"/>
@@ -255,7 +255,13 @@
                             <constraint firstAttribute="trailing" secondItem="1I4-t8-GXH" secondAttribute="trailing" id="mmQ-fS-oRR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5vC-9N-dbi"/>
+                    <navigationItem key="navigationItem" id="5vC-9N-dbi">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="SHS-vc-cuQ">
+                            <connections>
+                                <action selector="finishExercise:" destination="tWm-F1-DoU" id="3Cb-sG-bwK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="setsTableView" destination="1I4-t8-GXH" id="Ul9-Tu-KY0"/>
                     </connections>

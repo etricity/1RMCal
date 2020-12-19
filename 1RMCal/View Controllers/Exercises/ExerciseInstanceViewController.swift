@@ -12,6 +12,8 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
 
     @IBOutlet weak var setsTableView: UITableView!
     
+    var exerciseVC : ExerciseViewController?
+    
     //History Data
     var exerciseInstance : ExerciseInstance = ExerciseInstance()
     
@@ -19,10 +21,23 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        // Do any additional setup after loading the view.
+        // Delegation
         self.setsTableView.delegate = self
         self.setsTableView.dataSource = self
+        
+        // Configure view on load
+        initView()
+    }
+    
+    func initView() {
+        self.navigationController!.navigationBar.topItem!.title = "Cancel"
         setsTableView.tableFooterView = UIView()
+    }
+    
+    // Button Actions
+    @IBAction func finishExercise(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        exerciseVC?.addInstance(newInstance: exerciseInstance)
     }
     
     
@@ -30,10 +45,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         var numSets = exerciseInstance.sets.count
-        
-        if (numSets == 0) {
-            numSets = 1
-        }
+        numSets += 1
         return numSets
     }
     
@@ -41,8 +53,29 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! ExerciseTableViewCell
         cell.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
-        cell.label.text = "Perform Set"
-
+        
+        if exerciseInstance.sets.indices.contains(indexPath.row) {
+            let setStat : SetStat = exerciseInstance.sets[indexPath.row]
+            cell.label.text = setStat.toString()
+            cell.label.textColor = .white
+        } else {
+            cell.label.text = "Perform Set"
+        }
         return cell
+    }
+    
+    
+    // Other functions
+    func addSet(newSet : SetStat) {
+        exerciseInstance.addSet(newSet: newSet)
+        setsTableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.destination is CalViewController {
+            let vc = segue.destination as? CalViewController
+            vc?.exerciseVC = self   
+        }
     }
 }

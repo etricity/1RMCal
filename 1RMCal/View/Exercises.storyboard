@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="exerciseCell" id="QTu-oi-q6F" customClass="ExerciseTableViewCell" customModule="_RMCal" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="exerciseCell" id="QTu-oi-q6F" customClass="ExerciseTableViewCell" customModule="_RMCal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QTu-oi-q6F" id="fLo-mu-gMe">
@@ -114,18 +114,18 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PO6-0H-Rnt">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="l1B-3w-jQw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wjb-bf-x6R">
                                         <rect key="frame" x="0.0" y="45" width="414" height="541"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="exerciseHistoryCell" id="xiH-Uv-dSP" customClass="ExerciseTableViewCell" customModule="_RMCal" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="exerciseHistoryCell" id="xiH-Uv-dSP" customClass="ExerciseTableViewCell" customModule="_RMCal" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xiH-Uv-dSP" id="tyV-pN-RO2">
@@ -180,7 +180,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="OF0-Rz-5cI">
                             <connections>
                                 <action selector="addExercise:" destination="B0a-eW-826" id="Jro-WV-QzG"/>
-                                <segue destination="O0H-rK-HjC" kind="show" id="oZ6-yj-CSJ"/>
+                                <segue destination="tWm-F1-DoU" kind="show" id="RMt-hQ-aup"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -194,15 +194,85 @@
             </objects>
             <point key="canvasLocation" x="2331.8840579710145" y="162.72321428571428"/>
         </scene>
-        <!--CalVC-->
-        <scene sceneID="XXh-IM-wlu">
+        <!--Exercise Instance View Controller-->
+        <scene sceneID="zLc-Ve-4OY">
             <objects>
-                <viewControllerPlaceholder storyboardName="1RMCalculator" referencedIdentifier="CalVC" id="O0H-rK-HjC" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="AWM-ib-R7c"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nrW-xe-heb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="tWm-F1-DoU" customClass="ExerciseInstanceViewController" customModule="_RMCal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tcQ-eN-jQK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm0-vW-i8P">
+                                <rect key="frame" x="168.5" y="88" width="77" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1I4-t8-GXH">
+                                <rect key="frame" x="0.0" y="136" width="414" height="760"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="setCell" id="3PI-e8-Jvq" customClass="ExerciseTableViewCell" customModule="_RMCal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3PI-e8-Jvq" id="Zgf-BJ-5Qx">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Perform Set" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RQ-gX-xhT">
+                                                    <rect key="frame" x="5" y="11.5" width="384" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemGray2Color"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6RQ-gX-xhT" firstAttribute="centerY" secondItem="Zgf-BJ-5Qx" secondAttribute="centerY" id="6Vl-gh-lvn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6RQ-gX-xhT" secondAttribute="trailing" constant="5" id="YkA-zf-yH5"/>
+                                                <constraint firstItem="6RQ-gX-xhT" firstAttribute="leading" secondItem="Zgf-BJ-5Qx" secondAttribute="leading" constant="5" id="hIl-27-sHh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="label" destination="6RQ-gX-xhT" id="nti-VP-cgs"/>
+                                            <segue destination="m0r-Kf-Lzh" kind="show" id="D9a-rR-R0I"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DOR-rX-vWp"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gm0-vW-i8P" firstAttribute="centerX" secondItem="tcQ-eN-jQK" secondAttribute="centerX" id="11Q-hD-ZP9"/>
+                            <constraint firstItem="gm0-vW-i8P" firstAttribute="top" secondItem="DOR-rX-vWp" secondAttribute="top" id="33p-I4-4nr"/>
+                            <constraint firstItem="1I4-t8-GXH" firstAttribute="leading" secondItem="tcQ-eN-jQK" secondAttribute="leading" id="Oe6-Gh-WLI"/>
+                            <constraint firstItem="1I4-t8-GXH" firstAttribute="top" secondItem="gm0-vW-i8P" secondAttribute="bottom" id="QFD-HJ-2I2"/>
+                            <constraint firstAttribute="bottom" secondItem="1I4-t8-GXH" secondAttribute="bottom" id="QGx-cz-Hok"/>
+                            <constraint firstAttribute="trailing" secondItem="1I4-t8-GXH" secondAttribute="trailing" id="mmQ-fS-oRR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5vC-9N-dbi"/>
+                    <connections>
+                        <outlet property="setsTableView" destination="1I4-t8-GXH" id="Ul9-Tu-KY0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iwK-5c-YqC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3215" y="138"/>
+            <point key="canvasLocation" x="3336" y="163"/>
+        </scene>
+        <!--CalVC-->
+        <scene sceneID="Xu7-ng-Q0B">
+            <objects>
+                <viewControllerPlaceholder storyboardName="1RMCalculator" referencedIdentifier="CalVC" id="m0r-Kf-Lzh" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="2g2-De-wWd"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fk0-xR-Dpt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4204" y="185"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VjN-UP-6vK">
@@ -229,11 +299,17 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -32,10 +32,17 @@ class ExerciseInstance {
     // Sets performed
     var sets : [SetStat]
     
-    init(sets : [SetStat]) {
-        self.sets = sets
+    init() {
+        self.sets = []
         self.date = Date()
     }
+    
+    // add new set
+    func performSet(weight : Double, repCount : Int, units : Weight) {
+        let newSet = SetStat(weight: weight, repCount: repCount, units: units)
+        self.sets.append(newSet)
+    }
+    
 }
 
 
@@ -53,7 +60,7 @@ class SetStat {
         return val
     }
     
-    init(repCount : Int, weight : Double, units : Weight) {
+    init(weight : Double, repCount : Int, units : Weight) {
         self.repCount = repCount
         self.weight = weight
         self.units = units

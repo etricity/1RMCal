@@ -13,7 +13,6 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     // View Model
     var vm : ExerciseViewModel = ExerciseViewModel()
     
-    var exercises : [String] = ["Bench Press", "Squat", "Deadlift"]
     var numCells : Int {
         return vm.getExercises().count
     }

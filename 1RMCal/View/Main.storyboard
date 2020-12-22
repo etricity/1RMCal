@@ -49,6 +49,7 @@
                                                     <constraint firstAttribute="height" constant="100" id="l5T-AI-Jc2"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal">
                                                     <imageReference key="image" image="workouts" symbolScale="default"/>
                                                 </state>
@@ -153,6 +154,7 @@
                                         <variation key="heightClass=regular-widthClass=compact" spacing="25"/>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" alignment="top" axis="vertical" spacing="50"/>
                             </stackView>
                         </subviews>

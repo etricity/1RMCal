@@ -16,12 +16,34 @@ class Exercise {
         
     // Name of exercise
     var name : String
-    //Performences of Exercise
+    // Performences of Exercise
     var instances : [ExerciseInstance] = []
+    // current 1RM
+    var bestSet : SetStat?
     
     // Constructor
-    init(name : String) {
+    init(name : String, current1RM : Double?) {
         self.name = name
+    }
+    
+    func addInstance(newInstance : ExerciseInstance) {
+        self.instances.insert(newInstance, at: 0)
+        
+        //update 1RM
+        updateBestSet(instance: newInstance)
+    }
+    
+    func updateBestSet(instance : ExerciseInstance) -> Bool {
+        var updated : Bool = false
+        
+        for set in instance.sets {
+            let val = set.oneRM
+            if val >= bestSet?.oneRM ?? 0 {
+                bestSet = set
+                updated = true
+            }
+        }
+        return updated
     }
 }
 
@@ -32,6 +54,19 @@ class ExerciseInstance {
     // Sets performed
     var sets : [SetStat]
     
+    // Best Set
+    var bestSet : SetStat?
+    
+    // Summary syntax: best set info + date performed
+    var bestSetSummary : String {
+        var summary : String = ""
+        if let bestSet = self.bestSet {
+            summary = "\(bestSet.summary)"
+        }
+        return summary
+    }
+
+    
     init() {
         self.sets = []
         self.date = Date()
@@ -40,8 +75,9 @@ class ExerciseInstance {
     // add new set
     func addSet(newSet : SetStat) {
         self.sets.append(newSet)
+        
+        self.bestSet = sets.max(by: { (a,b) in a.oneRM < b.oneRM })
     }
-    
 }
 
 
@@ -59,14 +95,14 @@ class SetStat {
         return val
     }
     
+    var summary : String {
+        return "\(self.oneRM) \(self.units) (\(self.weight) \(self.units) x \(self.repCount))"
+    }
+    
     init(weight : Double, repCount : Int, units : Weight) {
         self.repCount = repCount
         self.weight = weight
         self.units = units
-    }
-    
-    func toString() -> String {
-        return "\(self.weight) \(self.units) x \(self.repCount)     \(self.oneRM)"
     }
 }
 

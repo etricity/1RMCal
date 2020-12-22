@@ -12,7 +12,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
 
     @IBOutlet weak var setsTableView: UITableView!
     
-    var exerciseVC : ExerciseViewController?
+    var exerciseVC : ExerciseViewController!
     
     //History Data
     var exerciseInstance : ExerciseInstance = ExerciseInstance()
@@ -37,7 +37,10 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     // Button Actions
     @IBAction func finishExercise(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-        exerciseVC?.addInstance(newInstance: exerciseInstance)
+        // ensures instance is only added if a set if performed
+        if !exerciseInstance.sets.isEmpty {
+            exerciseVC.addInstance(newInstance: exerciseInstance)
+        }
     }
     
     
@@ -56,7 +59,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         
         if exerciseInstance.sets.indices.contains(indexPath.row) {
             let setStat : SetStat = exerciseInstance.sets[indexPath.row]
-            cell.label.text = setStat.toString()
+            cell.label.text = setStat.summary
             cell.label.textColor = .white
         } else {
             cell.label.text = "Perform Set"

@@ -15,13 +15,7 @@ class ExerciseManager {
     
     // test purposes only
     init() {
-        let benchPress = Exercise(name: "Bench Press")
-        let squat = Exercise(name: "Squat")
-        let deadlift = Exercise(name: "Deadlift")
-        
-        self.exercises.append(benchPress)
-        self.exercises.append(squat)
-        self.exercises.append(deadlift)
+        testData()
     }
     
     // Add new exercise
@@ -32,7 +26,7 @@ class ExerciseManager {
         }
         
         if !exerciseExists {
-            self.exercises.append(Exercise(name: name))
+            self.exercises.append(Exercise(name: name, current1RM: 0))
             return true
         } else {
             return false
@@ -49,6 +43,30 @@ class ExerciseManager {
         
         guard let exercise = exercises.filter({ $0.name.lowercased() == name.lowercased() }).first else {return nil}
         return exercise
+    }
+    
+    
+    
+    
+    func testData() {
+        let benchPress = Exercise(name: "Bench Press", current1RM: 0)
+        let squat = Exercise(name: "Squat", current1RM: 0)
+        let deadlift = Exercise(name: "Deadlift", current1RM: 0)
+        
+        let newInstance = ExerciseInstance()
+        let set1 = SetStat(weight: 100, repCount: 10, units: .kg)
+        let set2 = SetStat(weight: 120, repCount: 8, units: .kg)
+        let set3 = SetStat(weight: 135, repCount: 7, units: .kg)
+        newInstance.addSet(newSet: set1)
+        newInstance.addSet(newSet: set2)
+        newInstance.addSet(newSet: set3)
+        
+        benchPress.addInstance(newInstance: newInstance)
+        
+        // Test Data for pre-core data development
+        self.exercises.append(benchPress)
+        self.exercises.append(squat)
+        self.exercises.append(deadlift)
     }
     
 }

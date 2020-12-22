@@ -10,6 +10,7 @@ import UIKit
 
 class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     
+    @IBOutlet var exercisesTableView: UITableView!
     // View Model
     var vm : ExerciseViewModel = ExerciseViewModel()
     
@@ -19,6 +20,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        exercisesTableView.tableFooterView = UIView()
     }
     
     //Adding new exercise to table view
@@ -65,6 +67,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseTableViewCell
         
         cell.label.text = vm.getExercises()[indexPath.row].name
+        
 
         return cell
     }

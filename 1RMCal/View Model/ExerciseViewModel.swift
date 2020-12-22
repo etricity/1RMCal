@@ -8,6 +8,10 @@
 
 import Foundation
 
+
+// Eventually connection to core data
+
+
 class ExerciseViewModel {
     
     // Connection to Model

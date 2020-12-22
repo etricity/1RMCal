@@ -27,14 +27,26 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = exercise?.name
-        
         //Delegation
         self.history.delegate = self
         self.history.dataSource = self
+        
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        initView()
+    }
+    
+    func initView() {
+        self.title = exercise.name
+        history.tableFooterView = UIView()
+        
+        // current 1 rm
+        current1RM.text = exercise.bestSet?.summary ?? "N/A"
+        // next 1 rm
+        
     }
     
     
@@ -47,7 +59,12 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseHistoryCell", for: indexPath) as! ExerciseTableViewCell
         
         // change later to best set stats
-        cell.label.text = exercise.instances[indexPath.row].sets.first?.toString()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        let instance = exercise.instances[indexPath.row]
+        cell.label.text = "Max 1RM: " + instance.bestSetSummary + "   " + dateFormatter.string(from: instance.date)
 
         return cell
     }
@@ -69,7 +86,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Other functions
     func addInstance(newInstance : ExerciseInstance) {
-        exercise?.instances.append(newInstance)
+        exercise.addInstance(newInstance: newInstance)
         history.reloadData()
     }
     

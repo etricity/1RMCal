@@ -11,13 +11,13 @@ import UIKit
 class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 12
+        return workout.exercises.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutLayoutCell", for: indexPath) as! LabelCell
-        cell.label.text = "Cell \(indexPath.row)"
+        cell.label.text = workout.exercises[indexPath.row].name
         return cell
    }
     
@@ -51,10 +51,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         print("working")
         let index = notification.userInfo?["index"] as! Int
         workout.addExercise(exercise: dataSource.vm.getExercises()[index])
-        
-        for exercise in workout.exercises {
-            print(exercise.name)
-        }
+        workoutLayout.reloadData()
         
     }
     

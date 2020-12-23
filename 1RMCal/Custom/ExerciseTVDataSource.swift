@@ -61,9 +61,13 @@ class ExerciseTMVPlus : ExerciseTableViewManager {
         if selectedCell.selectionStyle != .none {
             selectedCell.label.textColor = .gray
             selectedCell.selectionStyle = .none
+            let data : [String : Int] = ["index" : indexPath.row]
+            NotificationCenter.default.post(name: .addExerciseToWorkout, object: nil, userInfo: data)
         }
-        let data : [String : Int] = ["index" : indexPath.row]
-        NotificationCenter.default.post(name: .addExerciseToWorkout, object: nil, userInfo: data)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 
 }

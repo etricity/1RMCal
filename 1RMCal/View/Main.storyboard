@@ -67,6 +67,7 @@
                                                 </variation>
                                                 <connections>
                                                     <action selector="goToWorkouts:" destination="PaW-dS-3mZ" eventType="touchUpInside" id="twK-E3-ISF"/>
+                                                    <segue destination="8vy-f5-ewZ" kind="show" id="Jyj-r4-0YN"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAq-ZA-1eU">
@@ -189,6 +190,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gh6-Xg-EsX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1369" y="-466"/>
+        </scene>
+        <!--WorkoutVC-->
+        <scene sceneID="TOz-G3-7C8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Workouts" referencedIdentifier="WorkoutVC" id="8vy-f5-ewZ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="vCt-59-JZt"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8lw-9b-BWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1496" y="-390"/>
         </scene>
         <!--CalVC-->
         <scene sceneID="9tc-zj-A7O">

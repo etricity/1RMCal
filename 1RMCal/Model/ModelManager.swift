@@ -11,10 +11,12 @@ import Foundation
 // Managers all exercises
 class ExerciseManager {
     
+    var name : String
     var exercises : [Exercise] = []
     
     // test purposes only
-    init() {
+    init(name : String = ""){
+        self.name = name
         testData()
     }
     
@@ -32,20 +34,21 @@ class ExerciseManager {
             return false
         }
     }
+    //test purposes only
+    func addExercise(exercise : Exercise) {
+        self.exercises.append(exercise)
+    }
     
     // Remove exercise
     func removeExercise(index : Int) {
-        exercises.remove(at: index)
+        self.exercises.remove(at: index)
     }
     
     // Get a single exercise by name
     func getExercise(name : String) -> Exercise? {
-        
         guard let exercise = exercises.filter({ $0.name.lowercased() == name.lowercased() }).first else {return nil}
         return exercise
     }
-    
-    
     
     
     func testData() {
@@ -76,5 +79,66 @@ typealias Workout = ExerciseManager
 
 // Managers all workouts
 class WorkoutManager {
+    
     var workouts : [Workout] = []
+    
+    
+    init() {
+        testData()
+    }
+    
+    func addWorkout(name : String) -> Bool {
+        let workoutExists = workouts.contains { workout in
+            return workout.name.lowercased() == name.lowercased()
+        }
+        
+        if !workoutExists {
+            self.workouts.append(Workout(name: name))
+            return true
+        } else {
+            return false
+        }
+    }
+    // test purposes only
+    func addWorkout(workout : Workout) {
+        self.workouts.append(workout)
+    }
+    
+    func removeWorkout(index : Int) {
+        self.workouts.remove(at: index)
+    }
+    
+    func getWorkout(name : String) -> Workout? {
+        guard let workout = workouts.filter({ $0.name.lowercased() == name.lowercased() }).first else {return nil}
+        return workout
+    }
+    
+    
+    func testData() {
+        
+        let exercises = ExerciseManager(name: "Compound Movements")
+        
+        let benchPress = Exercise(name: "Bench Press", current1RM: 0)
+        let squat = Exercise(name: "Squat", current1RM: 0)
+        let deadlift = Exercise(name: "Deadlift", current1RM: 0)
+        
+        let newInstance = ExerciseInstance()
+        let set1 = SetStat(weight: 100, repCount: 10, units: .kg)
+        let set2 = SetStat(weight: 120, repCount: 8, units: .kg)
+        let set3 = SetStat(weight: 135, repCount: 7, units: .kg)
+        newInstance.addSet(newSet: set1)
+        newInstance.addSet(newSet: set2)
+        newInstance.addSet(newSet: set3)
+        
+        benchPress.addInstance(newInstance: newInstance)
+        
+        // Test Data for pre-core data development
+        exercises.addExercise(exercise: benchPress)
+        exercises.addExercise(exercise: squat)
+        exercises.addExercise(exercise: deadlift)
+        
+        self.addWorkout(workout: exercises)
+    }
+
+    
 }

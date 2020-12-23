@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Workouts View Controller-->
+        <scene sceneID="Clb-l1-XAQ">
+            <objects>
+                <tableViewController storyboardIdentifier="WorkoutVC" useStoryboardIdentifierAsRestorationIdentifier="YES" interfaceStyle="dark" id="fNx-Bw-Dkg" customClass="WorkoutsViewController" customModule="_RMCal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1g8-F8-8zQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="workoutCell" id="eDB-nf-B2c" customClass="ExerciseTableViewCell" customModule="_RMCal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eDB-nf-B2c" id="JwE-BY-HIB">
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPL-Ya-1kj">
+                                            <rect key="frame" x="5" y="11.5" width="350" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="lPL-Ya-1kj" secondAttribute="trailing" constant="20" id="K2x-Eh-6kK"/>
+                                        <constraint firstItem="lPL-Ya-1kj" firstAttribute="leading" secondItem="JwE-BY-HIB" secondAttribute="leading" constant="5" id="NMq-DD-goL"/>
+                                        <constraint firstItem="lPL-Ya-1kj" firstAttribute="centerY" secondItem="JwE-BY-HIB" secondAttribute="centerY" id="jnV-Zj-fOl"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="lPL-Ya-1kj" id="cES-H4-Ejs"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fNx-Bw-Dkg" id="rGl-Kb-egm"/>
+                            <outlet property="delegate" destination="fNx-Bw-Dkg" id="bAc-Dt-ARa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="jvi-p5-qmk">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="ICP-ah-nKs">
+                            <connections>
+                                <segue destination="62a-Kn-iWw" kind="show" id="84L-dH-13A"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="workoutsTableView" destination="1g8-F8-8zQ" id="TOw-AQ-33Z"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="InR-vA-CCE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2175.36231884058" y="171.42857142857142"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="VMM-bn-Eya">
+            <objects>
+                <viewController storyboardIdentifier="NewWorkoutVC" id="62a-Kn-iWw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uxt-5P-JVe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="UKA-0L-PYW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7W4-gp-YfN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1sy-8s-CSh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3151" y="-179"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="f0T-Mw-MHb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8JE-jS-zOF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Zf-Oc-9lz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" systemColor="systemGreenColor"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fNx-Bw-Dkg" kind="relationship" relationship="rootViewController" id="gWL-eW-8fi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Im4-XN-4k6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1265.217391304348" y="171.42857142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

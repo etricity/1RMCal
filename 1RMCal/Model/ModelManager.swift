@@ -15,9 +15,13 @@ class ExerciseManager {
     var exercises : [Exercise] = []
     
     // test purposes only
-    init(name : String = ""){
+    init(name : String = "", test : Bool = false){
         self.name = name
-        testData()
+        
+        if test {
+            testData()
+        }
+        
     }
     
     // Add new exercise

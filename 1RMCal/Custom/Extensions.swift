@@ -86,3 +86,7 @@ enum ObjectSavableError: String, LocalizedError {
         return self.rawValue
     }
 }
+
+extension Notification.Name {
+    static let addExerciseToWorkout = Notification.Name("addExerciseToWorkout")
+}

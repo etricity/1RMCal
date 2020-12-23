@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ExerciseTVDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
+// The ExerciseTableViewManager acts as thhe delegate & data source for any table cell showing exercises in a table view
+
+class ExerciseTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var vm : ExerciseViewModel = ExerciseViewModel()
 
@@ -30,17 +32,13 @@ class ExerciseTVDataSource: NSObject, UITableViewDelegate, UITableViewDataSource
 
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
         cell.label.text = vm.getExercises()[indexPath.row].name
         return cell
     }
-    
-     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-
-    
+        
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             vm.removeExercise(index: indexPath.row)
@@ -49,4 +47,23 @@ class ExerciseTVDataSource: NSObject, UITableViewDelegate, UITableViewDataSource
             //Erase from Core Data
         }
      }
+}
+
+// The ExerciseTMVPlus acts as a ExerciseTableViewManager with additional functionality (eg. doing something on selection)
+
+class ExerciseTMVPlus : ExerciseTableViewManager {
+        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
+        
+        // add exercise to workout layout
+        if selectedCell.selectionStyle != .none {
+            selectedCell.label.textColor = .gray
+            selectedCell.selectionStyle = .none
+        }
+        let data : [String : Int] = ["index" : indexPath.row]
+        NotificationCenter.default.post(name: .addExerciseToWorkout, object: nil, userInfo: data)
+    }
+
 }

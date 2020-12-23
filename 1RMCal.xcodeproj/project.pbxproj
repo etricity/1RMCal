@@ -23,7 +23,7 @@
 		CD087EAA2574AA1200C53C9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA82574AA1200C53C9E /* LaunchScreen.storyboard */; };
 		CD087EB52574AA1200C53C9E /* _RMCalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087EB42574AA1200C53C9E /* _RMCalTests.swift */; };
 		CD087EC02574AA1200C53C9E /* _RMCalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087EBF2574AA1200C53C9E /* _RMCalUITests.swift */; };
-		CD60F05D258B17B600B41BAD /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD60F05C258B17B600B41BAD /* ExerciseTableViewCell.swift */; };
+		CD60F05D258B17B600B41BAD /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD60F05C258B17B600B41BAD /* LabelCell.swift */; };
 		CD98EDD5258DCD44009007F6 /* ExerciseInstanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98EDD4258DCD44009007F6 /* ExerciseInstanceViewController.swift */; };
 		CD9B1E9E2592FA0900AE14A5 /* Workouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD9B1E9D2592FA0900AE14A5 /* Workouts.storyboard */; };
 		CD9B1EA72592FD1C00AE14A5 /* WorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B1EA62592FD1C00AE14A5 /* WorkoutsViewController.swift */; };
@@ -86,7 +86,7 @@
 		CD087EBB2574AA1200C53C9E /* 1RMCalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 1RMCalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD087EBF2574AA1200C53C9E /* _RMCalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _RMCalUITests.swift; sourceTree = "<group>"; };
 		CD087EC12574AA1200C53C9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD60F05C258B17B600B41BAD /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
+		CD60F05C258B17B600B41BAD /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		CD98EDD4258DCD44009007F6 /* ExerciseInstanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseInstanceViewController.swift; sourceTree = "<group>"; };
 		CD9B1E9D2592FA0900AE14A5 /* Workouts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Workouts.storyboard; sourceTree = "<group>"; };
 		CD9B1EA62592FD1C00AE14A5 /* WorkoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewController.swift; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 				CDAB5B4E2577870C00AD822A /* Savable */,
 				CD0447DB2576E33C002035BF /* Extensions.swift */,
 				CDAB5B4C257780DA00AD822A /* Enums.swift */,
-				CD60F05C258B17B600B41BAD /* ExerciseTableViewCell.swift */,
+				CD60F05C258B17B600B41BAD /* LabelCell.swift */,
 				CDF4F7A12593163F008CBE14 /* ExerciseTVDataSource.swift */,
 			);
 			path = Custom;
@@ -525,7 +525,7 @@
 				CDBC70D5258CB50A00AC1DD8 /* ExerciseViewModel.swift in Sources */,
 				CD98EDD5258DCD44009007F6 /* ExerciseInstanceViewController.swift in Sources */,
 				CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */,
-				CD60F05D258B17B600B41BAD /* ExerciseTableViewCell.swift in Sources */,
+				CD60F05D258B17B600B41BAD /* LabelCell.swift in Sources */,
 				CD9B1EB82592FF5400AE14A5 /* WorkoutViewModel.swift in Sources */,
 				CDF4F7A22593163F008CBE14 /* ExerciseTVDataSource.swift in Sources */,
 				CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */,

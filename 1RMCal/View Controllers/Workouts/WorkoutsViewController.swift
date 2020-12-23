@@ -38,7 +38,7 @@ class WorkoutsViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath)  as! ExerciseTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath)  as! LabelCell
 
         cell.label.text = vm.getWorkouts()[indexPath.row].name
 

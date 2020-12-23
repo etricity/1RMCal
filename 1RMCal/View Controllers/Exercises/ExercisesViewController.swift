@@ -12,11 +12,14 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     
     @IBOutlet var exercisesTableView: UITableView!
     
-    var dataSource = ExerciseTVDataSource()
+    var dataSource = ExerciseTableViewManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        exercisesTableView.delegate = dataSource
         exercisesTableView.dataSource = dataSource
+        exercisesTableView.allowsSelectionDuringEditing = true
         exercisesTableView.tableFooterView = UIView()
     }
     
@@ -53,7 +56,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         
-        if let  exercise = sender as? ExerciseTableViewCell {
+        if let  exercise = sender as? LabelCell {
             if segue.destination is ExerciseViewController
             {
                 let vc = segue.destination as? ExerciseViewController

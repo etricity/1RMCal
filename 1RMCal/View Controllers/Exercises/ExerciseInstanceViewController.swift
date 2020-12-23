@@ -54,7 +54,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! ExerciseTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! LabelCell
         cell.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         
         if exerciseInstance.sets.indices.contains(indexPath.row) {

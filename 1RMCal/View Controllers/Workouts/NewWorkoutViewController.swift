@@ -16,7 +16,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutLayoutCell", for: indexPath) as! ExerciseTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutLayoutCell", for: indexPath) as! LabelCell
         cell.label.text = "Cell \(indexPath.row)"
         return cell
    }
@@ -26,12 +26,18 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var exercisesTableView: UITableView!
     @IBOutlet weak var workoutLayout: UITableView!
     
-    var dataSource = ExerciseTVDataSource()
+    var workout : Workout = Workout(test: false)
+    
+    var dataSource = ExerciseTMVPlus()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(addExerciseToWorkout(_:)), name: .addExerciseToWorkout, object: nil)
+        
+        exercisesTableView.delegate = dataSource
         exercisesTableView.dataSource = dataSource
+        exercisesTableView.allowsSelectionDuringEditing = true
         exercisesTableView.tableFooterView = UIView()
         
         workoutLayout.delegate = self
@@ -40,4 +46,16 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
 
         // Do any additional setup after loading the view.
     }
+    
+    @objc func addExerciseToWorkout(_ notification:Notification) {
+        print("working")
+        let index = notification.userInfo?["index"] as! Int
+        workout.addExercise(exercise: dataSource.vm.getExercises()[index])
+        
+        for exercise in workout.exercises {
+            print(exercise.name)
+        }
+        
+    }
+    
 }

@@ -11,15 +11,12 @@ import UIKit
 class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     
     @IBOutlet var exercisesTableView: UITableView!
-    // View Model
-    var vm : ExerciseViewModel = ExerciseViewModel()
     
-    var numCells : Int {
-        return vm.getExercises().count
-    }
+    var dataSource = ExerciseTVDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        exercisesTableView.dataSource = dataSource
         exercisesTableView.tableFooterView = UIView()
     }
     
@@ -37,7 +34,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
             // add exercise to tableview
             if let newExercise = alert.textFields![0].text {
                 //add exercise
-                if self.vm.addExercise(name: newExercise) {
+                if self.dataSource.vm.addExercise(name: newExercise) {
                     self.tableView.reloadData()
                 } else {
                     print("DUPLICATE")
@@ -51,43 +48,6 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return numCells
-    }
-
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseTableViewCell
-        cell.label.text = vm.getExercises()[indexPath.row].name
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
-            vm.removeExercise(index: indexPath.row)
-            exercisesTableView.reloadData()
-            
-            //Erase from Core Data
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("your row number: \(indexPath.row)")
-    }
-    
     //Segue Functions
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -97,7 +57,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
             if segue.destination is ExerciseViewController
             {
                 let vc = segue.destination as? ExerciseViewController
-                vc?.exercise = vm.getExercise(name: exercise.label.text!)
+                vc?.exercise = dataSource.vm.getExercise(name: exercise.label.text!)
             }
         }
 

@@ -12,8 +12,14 @@ class NewWorkoutViewController: UIViewController {
 
     @IBOutlet weak var exercisesTableView: UITableView!
     @IBOutlet weak var workoutLayout: UITableView!
+    
+    var dataSource = ExerciseTVDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        exercisesTableView.dataSource = dataSource
+        exercisesTableView.tableFooterView = UIView()
 
         // Do any additional setup after loading the view.
     }

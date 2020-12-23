@@ -62,17 +62,89 @@
             </objects>
             <point key="canvasLocation" x="2175.36231884058" y="171.42857142857142"/>
         </scene>
-        <!--View Controller-->
+        <!--New Workout View Controller-->
         <scene sceneID="VMM-bn-Eya">
             <objects>
-                <viewController storyboardIdentifier="NewWorkoutVC" id="62a-Kn-iWw" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewWorkoutVC" id="62a-Kn-iWw" customClass="NewWorkoutViewController" customModule="_RMCal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uxt-5P-JVe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pV1-kZ-uqP">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CN5-Mo-YJb" userLabel="exercises stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="382"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDY-Zo-nG7">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EPb-Il-q5c">
+                                                <rect key="frame" x="0.0" y="20.5" width="414" height="361.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </tableView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="EPb-Il-q5c" firstAttribute="top" secondItem="vDY-Zo-nG7" secondAttribute="bottom" id="7PV-0M-xQf"/>
+                                            <constraint firstItem="EPb-Il-q5c" firstAttribute="top" secondItem="vDY-Zo-nG7" secondAttribute="bottom" id="GLP-iW-Ead"/>
+                                            <constraint firstAttribute="trailing" secondItem="vDY-Zo-nG7" secondAttribute="trailing" id="GOT-DE-hsK"/>
+                                            <constraint firstItem="vDY-Zo-nG7" firstAttribute="leading" secondItem="CN5-Mo-YJb" secondAttribute="leading" id="WGB-Wy-adW"/>
+                                            <constraint firstItem="EPb-Il-q5c" firstAttribute="leading" secondItem="CN5-Mo-YJb" secondAttribute="leading" id="aFP-7g-Ar2"/>
+                                            <constraint firstAttribute="trailing" secondItem="EPb-Il-q5c" secondAttribute="trailing" id="gWS-xT-oVz"/>
+                                            <constraint firstAttribute="bottom" secondItem="EPb-Il-q5c" secondAttribute="bottom" id="gse-MA-azq"/>
+                                            <constraint firstItem="vDY-Zo-nG7" firstAttribute="top" secondItem="CN5-Mo-YJb" secondAttribute="top" id="og4-XM-Rdw"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="X5l-Ws-7RI" userLabel="exercises stack">
+                                        <rect key="frame" x="0.0" y="392" width="414" height="382"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwi-fm-gbb">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JC2-Pf-naj">
+                                                <rect key="frame" x="0.0" y="20.5" width="414" height="361.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </tableView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="lwi-fm-gbb" firstAttribute="top" secondItem="X5l-Ws-7RI" secondAttribute="top" id="AVs-fw-sOJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="lwi-fm-gbb" secondAttribute="trailing" id="E8m-0X-eRg"/>
+                                            <constraint firstItem="JC2-Pf-naj" firstAttribute="leading" secondItem="X5l-Ws-7RI" secondAttribute="leading" id="QNy-6u-P0v"/>
+                                            <constraint firstItem="JC2-Pf-naj" firstAttribute="top" secondItem="lwi-fm-gbb" secondAttribute="bottom" id="gcI-0K-9bV"/>
+                                            <constraint firstAttribute="trailing" secondItem="JC2-Pf-naj" secondAttribute="trailing" id="jZA-y6-PNB"/>
+                                            <constraint firstItem="lwi-fm-gbb" firstAttribute="leading" secondItem="X5l-Ws-7RI" secondAttribute="leading" id="kPB-S7-kgh"/>
+                                            <constraint firstAttribute="bottom" secondItem="JC2-Pf-naj" secondAttribute="bottom" id="qKX-zN-KNB"/>
+                                            <constraint firstItem="JC2-Pf-naj" firstAttribute="top" secondItem="lwi-fm-gbb" secondAttribute="bottom" id="s4K-yb-Z24"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="CN5-Mo-YJb" firstAttribute="leading" secondItem="pV1-kZ-uqP" secondAttribute="leading" id="OyT-aj-L4R"/>
+                                    <constraint firstItem="CN5-Mo-YJb" firstAttribute="top" secondItem="pV1-kZ-uqP" secondAttribute="top" id="e9s-zf-sOt"/>
+                                    <constraint firstAttribute="trailing" secondItem="CN5-Mo-YJb" secondAttribute="trailing" id="yCg-xX-iYr"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="UKA-0L-PYW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pV1-kZ-uqP" secondAttribute="trailing" id="1jK-pH-ujw"/>
+                            <constraint firstItem="pV1-kZ-uqP" firstAttribute="leading" secondItem="uxt-5P-JVe" secondAttribute="leading" id="Qqa-xG-4p0"/>
+                            <constraint firstItem="pV1-kZ-uqP" firstAttribute="top" secondItem="UKA-0L-PYW" secondAttribute="top" id="Y4s-7A-qrh"/>
+                            <constraint firstItem="UKA-0L-PYW" firstAttribute="bottom" secondItem="pV1-kZ-uqP" secondAttribute="bottom" id="lsu-zT-nLR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7W4-gp-YfN"/>
+                    <connections>
+                        <outlet property="exercisesTableView" destination="EPb-Il-q5c" id="gwD-xb-fIx"/>
+                        <outlet property="workoutLayout" destination="JC2-Pf-naj" id="12K-rx-eLr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sy-8s-CSh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

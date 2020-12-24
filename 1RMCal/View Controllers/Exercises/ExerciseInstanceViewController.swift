@@ -35,6 +35,8 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // Button Actions
+    
+    // Finised performing exercise
     @IBAction func finishExercise(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         // ensures instance is only added if a set if performed
@@ -68,12 +70,14 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     
-    // Other functions
+    // Perform a set
     func addSet(newSet : SetStat) {
         exerciseInstance.addSet(newSet: newSet)
         setsTableView.reloadData()
     }
     
+    
+    // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.destination is CalViewController {

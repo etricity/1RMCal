@@ -16,7 +16,6 @@
 		CD0447DC2576E33C002035BF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0447DB2576E33C002035BF /* Extensions.swift */; };
 		CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9A2574AA1100C53C9E /* AppDelegate.swift */; };
 		CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */; };
-		CD087E9F2574AA1100C53C9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9E2574AA1100C53C9E /* ViewController.swift */; };
 		CD087EA22574AA1100C53C9E /* 1RMCalculator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA02574AA1100C53C9E /* 1RMCalculator.storyboard */; };
 		CD087EA52574AA1100C53C9E /* _RMCal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD087EA32574AA1100C53C9E /* _RMCal.xcdatamodeld */; };
 		CD087EA72574AA1200C53C9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA62574AA1200C53C9E /* Assets.xcassets */; };
@@ -74,7 +73,6 @@
 		CD087E972574AA1100C53C9E /* 1RMCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1RMCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD087E9A2574AA1100C53C9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CD087E9E2574AA1100C53C9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD087EA12574AA1100C53C9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/1RMCalculator.storyboard; sourceTree = "<group>"; };
 		CD087EA42574AA1100C53C9E /* _RMCal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = _RMCal.xcdatamodel; sourceTree = "<group>"; };
 		CD087EA62574AA1200C53C9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -288,7 +286,6 @@
 				CD9B1EA52592FD0C00AE14A5 /* Workouts */,
 				CD03A68525859786000DA1EF /* Exercises */,
 				CD03A6842585977C000DA1EF /* Calculator */,
-				CD087E9E2574AA1100C53C9E /* ViewController.swift */,
 				CD03A65F25858A58000DA1EF /* HomeViewControlller.swift */,
 			);
 			path = "View Controllers";
@@ -510,7 +507,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDA3A6CF258C7CA7003FF776 /* ExerciseViewController.swift in Sources */,
-				CD087E9F2574AA1100C53C9E /* ViewController.swift in Sources */,
 				CD0447DC2576E33C002035BF /* Extensions.swift in Sources */,
 				CD03A66025858A58000DA1EF /* HomeViewControlller.swift in Sources */,
 				CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */,

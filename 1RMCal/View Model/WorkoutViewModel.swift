@@ -17,16 +17,16 @@ class WorkoutViewModel {
         return model.workouts
     }
     
-//    func addWorkout(name : String) -> Bool {
-//        return model.addWorkout(name : name)
-//    }
-//    
-//    func removeExercise(index : Int) {
-//        model.removeWorkout(index: index)
-//    }
-//    
-//    func getWorkout(name : String) -> Workout? {
-//        let workout = model.getWorkout(name: name)
-//        return workout
-//    }
+    func addWorkout(name : String) -> Bool {
+        return model.addWorkout(name : name)
+    }
+    
+    func removeWorkout(index : Int) {
+        model.removeWorkout(index: index)
+    }
+    
+    func getWorkout(name : String) -> Workout? {
+        let workout = model.getWorkout(name: name)
+        return workout
+    }
 }

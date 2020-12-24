@@ -18,8 +18,6 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Model Data
     var exercise : Exercise!
-    
-    //History Data
     var numCells : Int {
         return exercise.instances.count
     }
@@ -30,9 +28,6 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         //Delegation
         self.history.delegate = self
         self.history.dataSource = self
-        
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,11 +37,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     func initView() {
         self.title = exercise.name
         history.tableFooterView = UIView()
-        
-        // current 1 rm
         current1RM.text = exercise.bestSet?.summary ?? "N/A"
-        // next 1 rm
-        
     }
     
     
@@ -57,9 +48,6 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseHistoryCell", for: indexPath) as! LabelCell
-        
-        // change later to best set stats
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
@@ -69,12 +57,12 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
 
-    
-     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    // Delete table cell
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             exercise.instances.remove(at: indexPath.row)
@@ -84,14 +72,13 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    // Other functions
+    // Perform exercise
     func addInstance(newInstance : ExerciseInstance) {
         exercise.addInstance(newInstance: newInstance)
         history.reloadData()
     }
     
-    //Segue Functions
-    
+    // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.destination is ExerciseInstanceViewController {

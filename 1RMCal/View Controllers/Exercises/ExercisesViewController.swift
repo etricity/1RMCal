@@ -20,8 +20,10 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     
     @IBOutlet var exercisesTableView: UITableView!
     
+    // View Model
     var vm : ExerciseViewModel = ExerciseViewModel()
-
+    
+    // Number of cells for exercise table view
     var numCells : Int {
         return vm.getExercises().count
     }
@@ -29,11 +31,14 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Exercise Table View delegation & config
         exercisesTableView.delegate = self
         exercisesTableView.dataSource = self
+        
         exercisesTableView.allowsSelectionDuringEditing = true
         exercisesTableView.tableFooterView = UIView()
     }
+    
     
     //Adding new exercise to table view
     @IBAction func addExercise(_ sender: Any) {
@@ -43,29 +48,26 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
             textField.placeholder = "Enter Exercise Name"
         }
         
-        
         //confirm new exercise
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
             // add exercise to tableview
             if let newExercise = alert.textFields![0].text {
-                //add exercise
+                //add exercise if no duplicate name found
                 if self.vm.addExercise(name: newExercise) {
-                    self.tableView.reloadData()
-                } else {
-                    print("DUPLICATE")
+                    //reload able
+                    self.exercisesTableView.reloadData()
                 }
             }
         } ))
-        
         // cancel action
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        
+        // present alert
         self.present(alert, animated: true, completion: nil)
     }
     
     
     
-    // MARK: - Table view data source
+    // Tabke View Data Source & Delegate Functions
      override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -76,7 +78,6 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         return numCells
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
         cell.label.text = vm.getExercises()[indexPath.row].name
@@ -94,13 +95,9 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         }
      }
     
-    
-    
-    //Segue Functions
-    
+    // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        
         if let  exercise = sender as? LabelCell {
             if segue.destination is ExerciseViewController
             {
@@ -108,7 +105,5 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
                 vc?.exercise = vm.getExercise(name: exercise.label.text!)
             }
         }
-
     }
-
 }

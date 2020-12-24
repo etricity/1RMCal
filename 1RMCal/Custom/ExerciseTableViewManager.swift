@@ -8,15 +8,27 @@
 
 import UIKit
 
-// The ExerciseTableViewManager acts as thhe delegate & data source for any table cell showing exercises in a table view
+// The ExerciseTableViewManager acts as the delegate & data source for Exercise Table View on the workout creation page
+/*
+ Allows for:
+    - viewing exercises
+    - adding to exercises
+ NOT ALLOWED:
+    - deleting exercises
+ */
 
 class ExerciseTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    var vm : ExerciseViewModel = ExerciseViewModel()
-
+    var data : [String] = []
+    
+    init(data : [Exercise]) {
+        for exercise in data {
+            self.data.append(exercise.name)
+        }
+    }
     
     var numCells : Int {
-        return vm.getExercises().count
+        return data.count
     }
     
     // MARK: - Table view data source
@@ -33,26 +45,10 @@ class ExerciseTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSo
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-        cell.label.text = vm.getExercises()[indexPath.row].name
+        cell.label.text = data[indexPath.row]
         return cell
     }
-        
-     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-       
-        if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
-            vm.removeExercise(index: indexPath.row)
-            tableView.reloadData()
-            
-            //Erase from Core Data
-        }
-     }
-}
-
-// The ExerciseTMVPlus acts as a ExerciseTableViewManager with additional functionality (eg. doing something on selection)
-
-class ExerciseTMVPlus : ExerciseTableViewManager {
-        
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
@@ -69,5 +65,8 @@ class ExerciseTMVPlus : ExerciseTableViewManager {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-
+    
+    func addNewData(data : String) {
+        self.data.append(data)
+    }
 }

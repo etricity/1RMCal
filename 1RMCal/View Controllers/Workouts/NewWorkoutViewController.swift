@@ -28,7 +28,8 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var workout : Workout = Workout(test: false)
     
-    var dataSource = ExerciseTMVPlus()
+    var vm : ExerciseViewModel = ExerciseViewModel()
+    lazy var dataSource = ExerciseTableViewManager(data: vm.getExercises())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +48,42 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func newExercise(_ sender: Any) {
+        
+        //confirm new exercise
+        let alert = UIAlertController(title: "New Exercise", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter Exercise Name"
+        }
+        
+        
+        //confirm new exercise
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+            // add exercise to tableview
+            if let newExercise = alert.textFields![0].text {
+                //add exercise
+                if self.vm.addExercise(name: newExercise) {
+                    // update exercise table
+                    self.dataSource.addNewData(data: newExercise)
+                    self.exercisesTableView.reloadData()
+                } else {
+                    print("DUPLICATE")
+                }
+            }
+        } ))
+        // cancel action
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
     @objc func addExerciseToWorkout(_ notification:Notification) {
         print("working")
         let index = notification.userInfo?["index"] as! Int
-        workout.addExercise(exercise: dataSource.vm.getExercises()[index])
+        workout.addExercise(exercise: vm.getExercises()[index])
         workoutLayout.reloadData()
-        
     }
     
 }

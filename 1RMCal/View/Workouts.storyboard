@@ -164,7 +164,13 @@
                             <constraint firstAttribute="trailing" secondItem="JNR-vd-Zeb" secondAttribute="trailing" id="xXW-zS-VsI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="XbN-hG-PKT"/>
+                    <navigationItem key="navigationItem" id="XbN-hG-PKT">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="zuF-By-eLk">
+                            <connections>
+                                <action selector="newExercise:" destination="SQR-OL-s3U" id="ldl-c8-pIE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="exercisesTableView" destination="Rnm-Ty-l6u" id="TiS-OW-9qE"/>
                         <outlet property="workoutLayout" destination="eFX-Ec-ScT" id="PTx-6c-YqZ"/>

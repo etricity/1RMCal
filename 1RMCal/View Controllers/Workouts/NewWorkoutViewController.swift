@@ -10,7 +10,6 @@ import UIKit
 
 class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
     @IBOutlet weak var exercisesTableView: UITableView!
     @IBOutlet weak var workoutLayout: UITableView!
     
@@ -33,6 +32,8 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         
         workoutLayout.delegate = self
         workoutLayout.dataSource = self
+        workoutLayout.dragInteractionEnabled = true
+        workoutLayout.allowsSelectionDuringEditing = true
         workoutLayout.tableFooterView = UIView()
 
     }
@@ -89,4 +90,35 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         workoutLayout.reloadData()
     }
     
+    
+    @IBOutlet weak var sortButton: UIButton!
+    @IBAction func sortExercises(_ sender: Any) {
+        if workoutLayout.isEditing {
+            workoutLayout.isEditing = false
+            sortButton.setTitle("Sort", for: .normal)
+            
+        } else {
+            workoutLayout.isEditing = true
+            sortButton.setTitle("Done", for: .normal)
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        workout.exercises.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       
+        if (editingStyle == .delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            workout.exercises.remove(at: indexPath.row)
+            tableView.reloadData()
+            
+            //Erase from Core Data
+        }
+     }
 }

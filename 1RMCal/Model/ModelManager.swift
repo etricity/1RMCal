@@ -91,21 +91,17 @@ class WorkoutManager {
         testData()
     }
     
-    func addWorkout(name : String) -> Bool {
+    func addWorkout(newWorkout : Workout) -> Bool {
         let workoutExists = workouts.contains { workout in
-            return workout.name.lowercased() == name.lowercased()
+            return workout.name.lowercased() == newWorkout.name.lowercased()
         }
         
         if !workoutExists {
-            self.workouts.append(Workout(name: name))
+            self.workouts.append(newWorkout)
             return true
         } else {
             return false
         }
-    }
-    // test purposes only
-    func addWorkout(workout : Workout) {
-        self.workouts.append(workout)
     }
     
     func removeWorkout(index : Int) {
@@ -141,7 +137,7 @@ class WorkoutManager {
         exercises.addExercise(exercise: squat)
         exercises.addExercise(exercise: deadlift)
         
-        self.addWorkout(workout: exercises)
+        self.addWorkout(newWorkout: exercises)
     }
 
     

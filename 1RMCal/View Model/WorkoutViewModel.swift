@@ -17,8 +17,8 @@ class WorkoutViewModel {
         return model.workouts
     }
     
-    func addWorkout(name : String) -> Bool {
-        return model.addWorkout(name : name)
+    func addWorkout(workout : Workout) -> Bool {
+        return model.addWorkout(newWorkout: workout)
     }
     
     func removeWorkout(index : Int) {

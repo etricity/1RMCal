@@ -13,14 +13,15 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var exercisesTableView: UITableView!
     @IBOutlet weak var workoutLayout: UITableView!
     
-    var workout : Workout = Workout(test: false)
+    var workoutsVC : WorkoutsViewController!
+    var workout : Workout!
     
     var vm : ExerciseViewModel = ExerciseViewModel()
     lazy var dataSource = ExerciseTableViewManager(data: vm.getExercises())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         // Add notification observer
         NotificationCenter.default.addObserver(self, selector: #selector(addExerciseToWorkout(_:)), name: .addExerciseToWorkout, object: nil)
         
@@ -38,9 +39,14 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
 
     }
     
+    @IBAction func confirmNewWorkout(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        workoutsVC.addNewWorkout(newWorkout: workout)
+    }
+    
+    
     // Add new exercise to exercises model
     @IBAction func newExercise(_ sender: Any) {
-        
         //confirm new exercise
         let alert = UIAlertController(title: "New Exercise", message: "", preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -66,7 +72,6 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         // present alert
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     // Workout Layout Table View Functions

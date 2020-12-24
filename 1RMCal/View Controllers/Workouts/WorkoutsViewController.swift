@@ -19,6 +19,7 @@ class WorkoutsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Workouts"
         workoutsTableView.tableFooterView = UIView()
     }
 
@@ -56,5 +57,47 @@ class WorkoutsViewController: UITableViewController {
             
             //Erase from Core Data
         }
+    }
+    
+    @IBAction func newWorkout(_ sender: Any) {
+        //confirm new exercise
+        let alert = UIAlertController(title: "New Workout", message: "", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter Workout Name"
+        }
+
+
+        //confirm new exercise
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
+            // add exercise to tableview
+            if let newWorkout = alert.textFields![0].text {
+                //perform segue
+                self.performSegue(withIdentifier: "newWorkout", sender: newWorkout) //executing the segue on cancel
+            }
+        } ))
+        // cancel action
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        // present alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func addNewWorkout(newWorkout : Workout) {
+        if self.vm.addWorkout(workout: newWorkout) {
+            //reload able
+            self.workoutsTableView.reloadData()
+        }
+    }
+    
+    // Segue Functions
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let workoutName = sender as! String
+            if segue.destination is NewWorkoutViewController
+            {
+                let vc = segue.destination as? NewWorkoutViewController
+                vc?.workout = Workout(name: workoutName)
+                vc?.title = workoutName
+                vc?.workoutsVC = self
+            }
     }
 }

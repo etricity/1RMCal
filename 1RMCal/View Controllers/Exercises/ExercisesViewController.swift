@@ -96,7 +96,7 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
         }
      }
     
-    // Segue Functions
+    // Segue Function to go from Exercises -> Exercise
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let  exercise = sender as? LabelCell {

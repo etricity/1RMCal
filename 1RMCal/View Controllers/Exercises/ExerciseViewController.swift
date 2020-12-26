@@ -85,14 +85,20 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         history.reloadData()
     }
     
-    // Segue Functions
+    /* Segue Function to go from
+        Exercise -> New ExerciseInstance
+        Exercise -> ExerciseInstance History
+        
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
+        // Create new Instance and go to ExerciseInstanceViewController
         case "newInstance":
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
             vc?.exerciseVC = self
+        // Get Exercise Instance & go to SetHistoryViewController
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? SetHistoryViewController

@@ -25,6 +25,7 @@ class ExerciseTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSo
     
     var data : [String] = []
     
+    // This will be either a NewWorkoutController or a ExercisesController
     var parentVC : UIViewController & ExercisesView
     
     init(data : [Exercise], parentVC : UIViewController & ExercisesView) {
@@ -55,36 +56,34 @@ class ExerciseTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSo
 
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        
-        // IF on Exercises View Controller, allow editing
-        
+           
+        // IF on ExercisesViewController, allow editing
         if ((parentVC as? ExercisesViewController) != nil) {
             return true
-        } else if ((parentVC as? NewWorkoutViewController) != nil) {
+        } else {
             return false
         }
-        return false
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // For Exercise View Controler only
+       
+        // Editing enabled for Exercise View Controler only
         if (editingStyle == .delete) && ((parentVC as? ExercisesViewController) != nil) {
             // handle delete (by removing the data from your array and updating the tableview)
             parentVC.vm.removeExercise(index: indexPath.row)
             tableView.reloadData()
-            
-            //Erase from Core Data
         }
     }
 
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // For NewWorkoutController only 
+        
+        // Disabling cells for NewWorkoutController only
         if ((parentVC as? NewWorkoutViewController) != nil) {
             let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
             
-            // add exercise to workout layout
+            // add exercise to workout layout & disable cell
             if selectedCell.selectionStyle != .none {
                 selectedCell.label.textColor = .gray
                 selectedCell.selectionStyle = .none

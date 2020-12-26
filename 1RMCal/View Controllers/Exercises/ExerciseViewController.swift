@@ -72,6 +72,13 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        
+        performSegue(withIdentifier: "viewHistory", sender: index)
+        
+    }
+    
     // Perform exercise
     func addInstance(newInstance : ExerciseInstance) {
         exercise.addInstance(newInstance: newInstance)
@@ -81,10 +88,18 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.destination is ExerciseInstanceViewController {
+        switch segue.identifier {
+        case "newInstance":
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
             vc?.exerciseVC = self
+        case "viewHistory":
+            let index = sender as! Int
+            let vc = segue.destination as? SetHistoryViewController
+            vc?.title = self.title
+            vc?.exerciseInstance = exercise.instances[index]
+        default:
+            break
         }
     }
 }

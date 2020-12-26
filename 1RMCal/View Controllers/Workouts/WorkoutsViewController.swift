@@ -11,6 +11,7 @@ import UIKit
 class WorkoutsViewController: UITableViewController {
     
     @IBOutlet var workoutsTableView: UITableView!
+    
     // View Model
     var vm : WorkoutViewModel = WorkoutViewModel()
     var numCells : Int {
@@ -38,9 +39,7 @@ class WorkoutsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath)  as! LabelCell
-
         cell.label.text = vm.getWorkouts()[indexPath.row].name
-
         return cell
     }
     
@@ -48,17 +47,21 @@ class WorkoutsViewController: UITableViewController {
         return .delete
     }
 
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             vm.removeWorkout(index: indexPath.row)
             workoutsTableView.reloadData()
-            
             //Erase from Core Data
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let index = indexPath.row
+        self.performSegue(withIdentifier: "workoutSummary", sender: index)
+        }
+    
+    // Add new workout button action
     @IBAction func newWorkout(_ sender: Any) {
         //confirm new exercise
         let alert = UIAlertController(title: "New Workout", message: "", preferredStyle: .alert)
@@ -81,6 +84,7 @@ class WorkoutsViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Add new workout to model
     func addNewWorkout(newWorkout : Workout) {
         if self.vm.addWorkout(workout: newWorkout) {
             //reload able
@@ -88,16 +92,26 @@ class WorkoutsViewController: UITableViewController {
         }
     }
     
-    // Segue Functions
+    /* Segue Function
+        Workouts --> New Workout View Controller
+        Workouts --> Workout
+    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        let workoutName = sender as! String
-            if segue.destination is NewWorkoutViewController
-            {
-                let vc = segue.destination as? NewWorkoutViewController
-                vc?.workout = Workout(name: workoutName)
-                vc?.title = workoutName
-                vc?.workoutsVC = self
-            }
+        
+        switch segue.identifier {
+        case "newWorkout":
+            let workoutName = sender as! String
+            let vc = segue.destination as? NewWorkoutViewController
+            vc?.workout = Workout(name: workoutName)
+            vc?.title = workoutName
+            vc?.workoutsVC = self
+        case "workoutSummary":
+            let index = sender as! Int
+            let vc = segue.destination as? WorkoutViewController
+            vc?.workout = vm.getWorkouts()[index]
+        default:
+            break
+        }
     }
 }

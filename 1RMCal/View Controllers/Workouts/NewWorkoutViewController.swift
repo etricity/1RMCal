@@ -39,6 +39,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
 
     }
     
+    // Confirming addition of new workout
     @IBAction func confirmNewWorkout(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         workoutsVC.addNewWorkout(newWorkout: workout)
@@ -52,8 +53,6 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Exercise Name"
         }
-        
-        
         //confirm new exercise
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
             // add exercise to tableview
@@ -78,7 +77,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         return workout.exercises.count
     }
     
-    
+    // Cell configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutLayoutCell", for: indexPath) as! LabelCell
         cell.label.text = workout.exercises[indexPath.row].name
@@ -96,6 +95,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     @IBOutlet weak var sortButton: UIButton!
+    // sort & delete exercies
     @IBAction func sortExercises(_ sender: Any) {
         if workoutLayout.isEditing {
             workoutLayout.isEditing = false
@@ -107,7 +107,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    
+    // Sorting Cells
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -115,6 +115,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         workout.exercises.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
     
+    // Deleting cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        
         if (editingStyle == .delete) {

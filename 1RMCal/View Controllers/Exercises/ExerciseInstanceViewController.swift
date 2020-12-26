@@ -33,9 +33,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         self.navigationController!.navigationBar.topItem!.title = "Cancel"
         setsTableView.tableFooterView = UIView()
     }
-    
-    // Button Actions
-    
+        
     // Finised performing exercise
     @IBAction func finishExercise(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -48,12 +46,13 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     // TableView functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         var numSets = exerciseInstance.sets.count
+        // +1 for perform set cell
         numSets += 1
         return numSets
     }
     
+    // Cell Configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! LabelCell

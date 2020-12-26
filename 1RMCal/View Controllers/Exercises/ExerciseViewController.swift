@@ -46,6 +46,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         return exercise.instances.count
     }
     
+    // Cell configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseHistoryCell", for: indexPath) as! LabelCell
         let dateFormatter = DateFormatter()
@@ -57,11 +58,12 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    // Set editing style
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
 
-    // Delete table cell
+    // Deleting Cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
@@ -72,11 +74,10 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    // Selecting Cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
-        
         performSegue(withIdentifier: "viewHistory", sender: index)
-        
     }
     
     // Perform exercise

@@ -68,7 +68,7 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
     
     
     
-    // Tabke View Data Source & Delegate Functions
+    // Table View Data Source & Delegate Functions
      override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -84,14 +84,14 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
         cell.label.text = vm.getExercises()[indexPath.row].name
         return cell
     }
-        
+    
+    // Delete cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             vm.removeExercise(index: indexPath.row)
             tableView.reloadData()
-            
             //Erase from Core Data
         }
      }

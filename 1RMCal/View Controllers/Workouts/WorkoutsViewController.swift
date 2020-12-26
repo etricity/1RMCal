@@ -36,17 +36,19 @@ class WorkoutsViewController: UITableViewController {
         return numCells
     }
 
-    
+    // Cell configuration
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath)  as! LabelCell
         cell.label.text = vm.getWorkouts()[indexPath.row].name
         return cell
     }
     
+    // Edit style
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
 
+    // Delete cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
@@ -56,6 +58,7 @@ class WorkoutsViewController: UITableViewController {
         }
     }
     
+    // Selecting cell (perform segue)
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             let index = indexPath.row
         self.performSegue(withIdentifier: "workoutSummary", sender: index)

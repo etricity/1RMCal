@@ -16,12 +16,13 @@ import UIKit
     - deleting exercises
  */
 
-class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
+class ExercisesViewController: UITableViewController, ExercisesView, UIActionSheetDelegate {
     
     @IBOutlet var exercisesTableView: UITableView!
     
     // View Model
     var vm : ExerciseViewModel = ExerciseViewModel()
+    lazy var dataSource = ExerciseTableViewManager(data: vm.getExercises(), parentVC: self)
     
     // Number of cells for exercise table view
     var numCells : Int {
@@ -32,8 +33,8 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         super.viewDidLoad()
         
         // Exercise Table View delegation & config
-        exercisesTableView.delegate = self
-        exercisesTableView.dataSource = self
+        exercisesTableView.delegate = dataSource
+        exercisesTableView.dataSource = dataSource
         
         exercisesTableView.allowsSelectionDuringEditing = true
         exercisesTableView.tableFooterView = UIView()

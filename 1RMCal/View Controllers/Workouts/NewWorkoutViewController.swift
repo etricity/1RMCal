@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExercisesView {
     
     @IBOutlet weak var exercisesTableView: UITableView!
     @IBOutlet weak var workoutLayout: UITableView!
@@ -17,7 +17,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     var workout : Workout!
     
     var vm : ExerciseViewModel = ExerciseViewModel()
-    lazy var dataSource = ExerciseTableViewManager(data: vm.getExercises())
+    lazy var dataSource = ExerciseTableViewManager(data: vm.getExercises(), parentVC: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,6 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
                 //add exercise
                 if self.vm.addExercise(name: newExercise) {
                     // update exercise table
-                    self.dataSource.addNewData(data: newExercise)
                     self.exercisesTableView.reloadData()
                 } else {
                     print("DUPLICATE")

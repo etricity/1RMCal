@@ -13,22 +13,26 @@ import UIKit
  Allows for:
     - viewing exercises
     - adding to exercises
- NOT ALLOWED:
     - deleting exercises
+ 
+ Functionality coded for 2 classes using if statements for small vairations in functionality:
+    - New Workout View Controller
+    - Exercise View Controller
+ 
  */
 
 class ExerciseTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var data : [String] = []
     
-    init(data : [Exercise]) {
-        for exercise in data {
-            self.data.append(exercise.name)
-        }
+    var parentVC : UIViewController & ExercisesView
+    
+    init(data : [Exercise], parentVC : UIViewController & ExercisesView) {
+        self.parentVC = parentVC
     }
     
     var numCells : Int {
-        return data.count
+        return parentVC.vm.getExercises().count
     }
     
     // MARK: - Table view data source
@@ -45,28 +49,49 @@ class ExerciseTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSo
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-        cell.label.text = data[indexPath.row]
+        cell.label.text = parentVC.vm.getExercises()[indexPath.row].name
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
-        
-        // add exercise to workout layout
-        if selectedCell.selectionStyle != .none {
-            selectedCell.label.textColor = .gray
-            selectedCell.selectionStyle = .none
-            let data : [String : Int] = ["index" : indexPath.row]
-            NotificationCenter.default.post(name: .addExerciseToWorkout, object: nil, userInfo: data)
-        }
-    }
+
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        // IF on Exercises View Controller, allow editing
+        
+        if ((parentVC as? ExercisesViewController) != nil) {
+            return true
+        } else if ((parentVC as? NewWorkoutViewController) != nil) {
+            return false
+        }
         return false
     }
-    
-    func addNewData(data : String) {
-        self.data.append(data)
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // For Exercise View Controler only
+        if (editingStyle == .delete) && ((parentVC as? ExercisesViewController) != nil) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            parentVC.vm.removeExercise(index: indexPath.row)
+            tableView.reloadData()
+            
+            //Erase from Core Data
+        }
     }
+
+
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // For NewWorkoutController only 
+        if ((parentVC as? NewWorkoutViewController) != nil) {
+            let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
+            
+            // add exercise to workout layout
+            if selectedCell.selectionStyle != .none {
+                selectedCell.label.textColor = .gray
+                selectedCell.selectionStyle = .none
+                let data : [String : Int] = ["index" : indexPath.row]
+                NotificationCenter.default.post(name: .addExerciseToWorkout, object: nil, userInfo: data)
+            }
+        }
+    }
+
 }

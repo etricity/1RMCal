@@ -15,9 +15,9 @@ import Foundation
 class Exercise {
         
     // Name of exercise
-    var name : String
+    private (set) var name : String
     // Performences of Exercise
-    var instances : [ExerciseInstance] = []
+    private (set) var instances : [ExerciseInstance] = []
     // current 1RM
     var bestSet : SetStat?
     
@@ -26,13 +26,21 @@ class Exercise {
         self.name = name
     }
     
+    // Add new instance
     func addInstance(newInstance : ExerciseInstance) {
         self.instances.insert(newInstance, at: 0)
-        
         //update 1RM
         updateBestSet(instance: newInstance)
     }
     
+    // Remove instance
+    func removeInstance(index : Int) {
+        if instances.indices.contains(index) {
+            self.instances.remove(at: index)
+        }
+    }
+    
+    // Update best set
     func updateBestSet(instance : ExerciseInstance) -> Bool {
         var updated : Bool = false
         
@@ -50,12 +58,12 @@ class Exercise {
 // Represents a single performence/instance of a exercise
 class ExerciseInstance {
     // time exercise was performed
-    var date : Date
+    private (set) var date : Date
     // Sets performed
-    var sets : [SetStat]
+    private (set) var sets : [SetStat]
     
     // Best Set
-    var bestSet : SetStat?
+    private (set) var bestSet : SetStat?
     
     // Summary syntax: best set info + date performed
     var bestSetSummary : String {
@@ -66,7 +74,6 @@ class ExerciseInstance {
         return summary
     }
 
-    
     init() {
         self.sets = []
         self.date = Date()
@@ -85,9 +92,9 @@ class ExerciseInstance {
 // Represents a single set in a exercise instance
 class SetStat {
     
-    var repCount : Int
-    var weight : Double
-    var units : Weight
+    private (set) var repCount : Int
+    private (set) var weight : Double
+    private (set) var units : Weight
     
     var oneRM : Double {
         var val = self.weight * (1 + (Double(self.repCount)/30))

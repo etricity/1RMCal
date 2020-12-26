@@ -112,14 +112,14 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         return true
     }
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        workout.exercises.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        workout.swapExercises(x: sourceIndexPath.row, y: destinationIndexPath.row)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            workout.exercises.remove(at: indexPath.row)
+            workout.removeExercise(index: indexPath.row)
             tableView.reloadData()
             
             //Erase from Core Data

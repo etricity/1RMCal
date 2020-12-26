@@ -11,8 +11,8 @@ import Foundation
 // Managers all exercises
 class ExerciseManager {
     
-    var name : String
-    var exercises : [Exercise] = []
+    private (set) var name : String
+    private (set) var exercises : [Exercise] = []
     
     // test purposes only
     init(name : String = "", test : Bool = false){
@@ -45,7 +45,18 @@ class ExerciseManager {
     
     // Remove exercise
     func removeExercise(index : Int) {
-        self.exercises.remove(at: index)
+        
+        if self.exercises.indices.contains(index) {
+            self.exercises.remove(at: index)
+        }
+    }
+    
+    // swap exercises
+    func swapExercises(x : Int, y : Int) {
+        let validIndices = exercises.indices
+        if validIndices.contains(x) && validIndices.contains(y) {
+            self.exercises.swapAt(x, y)
+        }
     }
     
     // Get a single exercise by name
@@ -84,8 +95,7 @@ typealias Workout = ExerciseManager
 // Managers all workouts
 class WorkoutManager {
     
-    var workouts : [Workout] = []
-    
+    private (set) var workouts : [Workout] = []
     
     init() {
         testData()

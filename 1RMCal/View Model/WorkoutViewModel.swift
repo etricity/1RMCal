@@ -11,7 +11,7 @@ import Foundation
 class WorkoutViewModel {
     
     // Connection to Model
-    var model : WorkoutManager = WorkoutManager()
+    private (set) var model : WorkoutManager = WorkoutManager()
     
     func getWorkouts() -> [Workout] {
         return model.workouts

@@ -39,7 +39,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="label" destination="lLg-YP-G26" id="bdf-ez-ZWd"/>
-                                    <segue destination="bSt-t8-nua" kind="show" id="LTW-Sb-PyW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -59,6 +58,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="exercisesTableView" destination="kro-7H-4k6" id="0o4-oB-IGk"/>
+                        <segue destination="bSt-t8-nua" kind="show" identifier="goToExercise" id="gjK-fY-U9U"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="baM-C3-Ac6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

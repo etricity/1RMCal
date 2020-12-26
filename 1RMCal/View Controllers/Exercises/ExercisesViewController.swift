@@ -22,7 +22,6 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
     
     // View Model
     var vm : ExerciseViewModel = ExerciseViewModel()
-    lazy var dataSource = ExerciseTableViewManager(data: vm.getExercises(), parentVC: self)
     
     // Number of cells for exercise table view
     var numCells : Int {
@@ -33,8 +32,8 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
         super.viewDidLoad()
         
         // Exercise Table View delegation & config
-        exercisesTableView.delegate = dataSource
-        exercisesTableView.dataSource = dataSource
+        exercisesTableView.delegate = self
+        exercisesTableView.dataSource = self
         
         exercisesTableView.allowsSelectionDuringEditing = true
         exercisesTableView.tableFooterView = UIView()
@@ -79,6 +78,7 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
         return numCells
     }
 
+    // Cell configration
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
         cell.label.text = vm.getExercises()[indexPath.row].name
@@ -96,15 +96,23 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
         }
      }
     
+    // Selecting Cell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        performSegue(withIdentifier: "goToExercise", sender: index)
+    }
+
+    
     // Segue Function to go from Exercises -> Exercise
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if let  exercise = sender as? LabelCell {
-            if segue.destination is ExerciseViewController
-            {
-                let vc = segue.destination as? ExerciseViewController
-                vc?.exercise = vm.getExercise(name: exercise.label.text!)
-            }
+        
+        if segue.identifier == "goToExercise" {
+            let index = sender as! Int
+            let vc = segue.destination as? ExerciseViewController
+            vc?.exercise = vm.getExercise(index: index)
         }
+        
     }
 }

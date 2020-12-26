@@ -49,9 +49,12 @@ class ExerciseManager {
     }
     
     // Get a single exercise by name
-    func getExercise(name : String) -> Exercise? {
-        guard let exercise = exercises.filter({ $0.name.lowercased() == name.lowercased() }).first else {return nil}
-        return exercise
+    func getExercise(index : Int) -> Exercise? {
+        if exercises.indices.contains(index) {
+            return exercises[index]
+        } else {
+            return nil
+        }
     }
     
     

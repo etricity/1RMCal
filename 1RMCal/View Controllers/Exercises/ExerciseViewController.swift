@@ -91,6 +91,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         Exercise -> ExerciseInstance History
         
      */
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {

@@ -38,6 +38,7 @@
 		CDBC70DD258CB6C300AC1DD8 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC70DC258CB6C300AC1DD8 /* ModelManager.swift */; };
 		CDD4D8EF2579F66200305382 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD4D8EE2579F66200305382 /* Main.storyboard */; };
 		CDD7D8F72599931A002D7755 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */; };
+		CDD7D90D25999906002D7755 /* CustomTableViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */; };
 		CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF44DD2574B08D000D3649 /* CalViewController.swift */; };
 		CDF4F79725931554008CBE14 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		CDBC70DC258CB6C300AC1DD8 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 		CDD4D8EE2579F66200305382 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewDelegates.swift; sourceTree = "<group>"; };
 		CDDF44DD2574B08D000D3649 /* CalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalViewController.swift; sourceTree = "<group>"; };
 		CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		D363315B2B0BABF706BED086 /* Pods-1RMCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1RMCal.debug.xcconfig"; path = "Target Support Files/Pods-1RMCal/Pods-1RMCal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 		CDAB5B4B257780B000AD822A /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */,
 				CDAB5B4E2577870C00AD822A /* Savable */,
 				CD0447DB2576E33C002035BF /* Extensions.swift */,
 				CDAB5B4C257780DA00AD822A /* Enums.swift */,
@@ -531,6 +534,7 @@
 				CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */,
 				CDD7D8F72599931A002D7755 /* WorkoutViewController.swift in Sources */,
 				CD60F05D258B17B600B41BAD /* LabelCell.swift in Sources */,
+				CDD7D90D25999906002D7755 /* CustomTableViewDelegates.swift in Sources */,
 				CD9B1EB82592FF5400AE14A5 /* WorkoutViewModel.swift in Sources */,
 				CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */,
 				CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */,

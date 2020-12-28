@@ -13,7 +13,6 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     //View connections
     @IBOutlet weak var current1RM: UILabel!
-    @IBOutlet weak var next1RM: UILabel!
     @IBOutlet weak var history: UITableView!
     
     // Model Data
@@ -92,6 +91,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         case "newInstance":
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
+            vc?.exerciseInstance = ExerciseInstance(exerciseBestSet: exercise.bestSet)
             vc?.exerciseVC = self
         case "viewHistory":
             let index = sender as! Int

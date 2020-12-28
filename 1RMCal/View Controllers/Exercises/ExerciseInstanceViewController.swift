@@ -13,9 +13,10 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var setsTableView: UITableView!
     
     var exerciseVC : ExerciseViewController!
+    @IBOutlet weak var current1RM: UILabel!
     
     //History Data
-    var exerciseInstance : ExerciseInstance = ExerciseInstance()
+    var exerciseInstance : ExerciseInstance!
     
     
     override func viewDidLoad() {
@@ -31,6 +32,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     func initView() {
         self.navigationController!.navigationBar.topItem!.title = "Cancel"
+        self.current1RM.text = exerciseInstance.exerciseBestSet?.summary ?? "N/A"
         setsTableView.tableFooterView = UIView()
     }
     

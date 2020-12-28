@@ -58,6 +58,7 @@
                     <connections>
                         <outlet property="workoutsTableView" destination="1g8-F8-8zQ" id="TOw-AQ-33Z"/>
                         <segue destination="SQR-OL-s3U" kind="show" identifier="newWorkout" id="Kr6-MW-ABA"/>
+                        <segue destination="DJj-Rf-iu7" kind="show" identifier="goToWorkout" id="2VY-rJ-J59"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="InR-vA-CCE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -73,10 +74,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rnm-Ty-l6u">
-                                <rect key="frame" x="0.0" y="154" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="154" width="414" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="50Z-dE-vF7"/>
+                                    <constraint firstAttribute="height" constant="300" id="50Z-dE-vF7"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="exerciseCell" id="Nqd-f0-Oz8" userLabel="exerciseCell" customClass="LabelCell" customModule="_RMCal" customModuleProvider="target">
@@ -108,13 +109,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Layout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hH-w5-GDB">
-                                <rect key="frame" x="122" y="354" width="170" height="30"/>
+                                <rect key="frame" x="122" y="454" width="170" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zod-7K-QSv">
-                                <rect key="frame" x="364" y="348" width="45" height="42"/>
+                                <rect key="frame" x="364" y="448" width="45" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Sort"/>
                                 <connections>
@@ -136,7 +137,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eFX-Ec-ScT">
-                                <rect key="frame" x="0.0" y="384" width="414" height="512"/>
+                                <rect key="frame" x="0.0" y="484" width="414" height="412"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="workoutLayoutCell" id="FUh-Yw-6nY" userLabel="exerciseCell" customClass="LabelCell" customModule="_RMCal" customModuleProvider="target">
@@ -199,7 +200,109 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="522-9s-28h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3128.985507246377" y="168.75"/>
+            <point key="canvasLocation" x="3074" y="-318"/>
+        </scene>
+        <!--Workout View Controller-->
+        <scene sceneID="lKG-ed-SXR">
+            <objects>
+                <viewController id="DJj-Rf-iu7" customClass="WorkoutViewController" customModule="_RMCal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IYn-XP-XXa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Layout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uro-eB-dAT">
+                                <rect key="frame" x="122" y="88" width="170" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout History" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdU-iD-yoD">
+                                <rect key="frame" x="120.5" y="418" width="173" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rfh-Bh-kdT">
+                                <rect key="frame" x="0.0" y="118" width="414" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="0Ec-Hh-qOf"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="exerciseCell" id="k8v-1u-PQC" userLabel="exerciseCell" customClass="LabelCell" customModule="_RMCal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k8v-1u-PQC" id="Qmo-8I-tSN">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjG-W3-2NI">
+                                                    <rect key="frame" x="5" y="11.5" width="350" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="bjG-W3-2NI" id="PTP-Pk-xVN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tck-wB-VEO">
+                                <rect key="frame" x="0.0" y="448" width="414" height="448"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="0.0" reuseIdentifier="workoutHistoryCell" id="hBQ-1W-g69" userLabel="exerciseCell" customClass="LabelCell" customModule="_RMCal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hBQ-1W-g69" id="YTI-h9-Lq7">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zb3-op-1RR">
+                                                    <rect key="frame" x="5" y="11.5" width="350" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="Zb3-op-1RR" id="TRB-c2-zbS"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fl4-GU-cvE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rfh-Bh-kdT" firstAttribute="leading" secondItem="fl4-GU-cvE" secondAttribute="leading" id="2S5-ay-Gzu"/>
+                            <constraint firstItem="tck-wB-VEO" firstAttribute="leading" secondItem="IYn-XP-XXa" secondAttribute="leading" id="8L8-Mc-bia"/>
+                            <constraint firstItem="HdU-iD-yoD" firstAttribute="centerX" secondItem="IYn-XP-XXa" secondAttribute="centerX" id="D6m-Tb-zNK"/>
+                            <constraint firstAttribute="bottom" secondItem="tck-wB-VEO" secondAttribute="bottom" id="GCR-Pu-fnB"/>
+                            <constraint firstItem="uro-eB-dAT" firstAttribute="top" secondItem="fl4-GU-cvE" secondAttribute="top" id="JVB-zK-V5m"/>
+                            <constraint firstAttribute="trailing" secondItem="tck-wB-VEO" secondAttribute="trailing" id="Psw-LI-YG2"/>
+                            <constraint firstItem="uro-eB-dAT" firstAttribute="centerX" secondItem="IYn-XP-XXa" secondAttribute="centerX" id="VvV-nt-bAf"/>
+                            <constraint firstAttribute="trailing" secondItem="Rfh-Bh-kdT" secondAttribute="trailing" id="WFd-Cu-SQe"/>
+                            <constraint firstItem="HdU-iD-yoD" firstAttribute="top" secondItem="Rfh-Bh-kdT" secondAttribute="bottom" id="bhn-zH-CvF"/>
+                            <constraint firstItem="tck-wB-VEO" firstAttribute="top" secondItem="HdU-iD-yoD" secondAttribute="bottom" id="dSj-79-X8Z"/>
+                            <constraint firstItem="Rfh-Bh-kdT" firstAttribute="top" secondItem="uro-eB-dAT" secondAttribute="bottom" id="xVr-Rk-SfN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Dgf-cD-BVl"/>
+                    <connections>
+                        <outlet property="history" destination="tck-wB-VEO" id="GHq-1P-KZf"/>
+                        <outlet property="workoutLayout" destination="Rfh-Bh-kdT" id="DT1-1Z-BUa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GhS-A1-sYt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3074" y="434"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f0T-Mw-MHb">

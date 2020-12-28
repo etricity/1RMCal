@@ -59,6 +59,12 @@ class WorkoutsViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        performSegue(withIdentifier: "goToWorkout", sender: index)
+        
+    }
+    
     @IBAction func newWorkout(_ sender: Any) {
         //confirm new exercise
         let alert = UIAlertController(title: "New Workout", message: "", preferredStyle: .alert)
@@ -91,13 +97,18 @@ class WorkoutsViewController: UITableViewController {
     // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        let workoutName = sender as! String
-            if segue.destination is NewWorkoutViewController
-            {
+        
+        switch segue.identifier {
+            case "newWorkout":
+                let workoutName = sender as! String
                 let vc = segue.destination as? NewWorkoutViewController
                 vc?.workout = Workout(name: workoutName)
                 vc?.title = workoutName
                 vc?.workoutsVC = self
-            }
+            case "goToWorkout":
+                let vc = segue.destination as? WorkoutViewController
+            default:
+                break
+        }
     }
 }

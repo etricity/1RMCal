@@ -15,12 +15,18 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var history: UITableView!
     
     var workout : Workout!
+    lazy var dataSource = WorkoutTableViewDelegate(parentVC: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        workoutLayout.delegate = dataSource
+        workoutLayout.dataSource = dataSource
+        
         workoutLayout.tableFooterView = UIView()
         history.tableFooterView = UIView()
+        
+        workoutLayout.allowsSelection = false
     }
     
 

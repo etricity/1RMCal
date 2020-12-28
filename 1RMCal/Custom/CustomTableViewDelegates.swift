@@ -21,10 +21,9 @@ import UIKit
  
  */
 
+
 class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
-    
-    var data : [String] = []
-    
+        
     // This will be either a NewWorkoutController or a ExercisesController
     var parentVC : UIViewController & ExercisesView
     
@@ -56,13 +55,7 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
 
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-           
-        // IF on ExercisesViewController, allow editing
-        if ((parentVC as? ExercisesViewController) != nil) {
-            return true
-        } else {
             return false
-        }
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -80,7 +73,7 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Disabling cells for NewWorkoutController only
-        if ((parentVC as? NewWorkoutViewController) != nil) {
+    
             let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
             
             // add exercise to workout layout & disable cell
@@ -90,7 +83,32 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
                 let data : [String : Int] = ["index" : indexPath.row]
                 NotificationCenter.default.post(name: .addExerciseToWorkout, object: nil, userInfo: data)
             }
-        }
     }
 
+}
+
+class WorkoutTableViewDelegate : NSObject, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    var parentVC : WorkoutViewController
+    var numCells : Int {
+        return parentVC.workout.exercises.count
+    }
+    
+
+    
+    init(parentVC : WorkoutViewController) {
+        self.parentVC = parentVC
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        numCells
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
+        cell.label.text = parentVC.workout.getExercise(index: indexPath.row)?.name
+        return cell
+    }
+    
+    
 }

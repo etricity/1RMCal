@@ -29,8 +29,8 @@ class ExerciseViewModel {
         model.removeExercise(index: index)
     }
     
-    func getExercise(name : String) -> Exercise? {
-        let exercise = model.getExercise(name: name)
+    func getExercise(index : Int) -> Exercise? {
+        let exercise = model.getExercise(index: index)
         return exercise
     }
         

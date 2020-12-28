@@ -106,7 +106,9 @@ class WorkoutsViewController: UITableViewController {
                 vc?.title = workoutName
                 vc?.workoutsVC = self
             case "goToWorkout":
+                let index = sender as! Int
                 let vc = segue.destination as? WorkoutViewController
+                vc?.workout = vm.getWorkout(index: index)
             default:
                 break
         }

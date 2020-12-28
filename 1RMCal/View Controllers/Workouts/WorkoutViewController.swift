@@ -10,8 +10,11 @@ import UIKit
 
 class WorkoutViewController: UIViewController {
 
+    // View Connections
     @IBOutlet weak var workoutLayout: UITableView!
     @IBOutlet weak var history: UITableView!
+    
+    var workout : Workout!
     
     override func viewDidLoad() {
         super.viewDidLoad()

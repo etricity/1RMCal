@@ -40,7 +40,6 @@
 		CDD7D8F72599931A002D7755 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */; };
 		CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF44DD2574B08D000D3649 /* CalViewController.swift */; };
 		CDF4F79725931554008CBE14 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */; };
-		CDF4F7A22593163F008CBE14 /* ExerciseTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F7A12593163F008CBE14 /* ExerciseTableViewManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +104,6 @@
 		CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		CDDF44DD2574B08D000D3649 /* CalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalViewController.swift; sourceTree = "<group>"; };
 		CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
-		CDF4F7A12593163F008CBE14 /* ExerciseTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewManager.swift; sourceTree = "<group>"; };
 		D363315B2B0BABF706BED086 /* Pods-1RMCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1RMCal.debug.xcconfig"; path = "Target Support Files/Pods-1RMCal/Pods-1RMCal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -253,7 +251,6 @@
 				CD0447DB2576E33C002035BF /* Extensions.swift */,
 				CDAB5B4C257780DA00AD822A /* Enums.swift */,
 				CD60F05C258B17B600B41BAD /* LabelCell.swift */,
-				CDF4F7A12593163F008CBE14 /* ExerciseTableViewManager.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -535,7 +532,6 @@
 				CDD7D8F72599931A002D7755 /* WorkoutViewController.swift in Sources */,
 				CD60F05D258B17B600B41BAD /* LabelCell.swift in Sources */,
 				CD9B1EB82592FF5400AE14A5 /* WorkoutViewModel.swift in Sources */,
-				CDF4F7A22593163F008CBE14 /* ExerciseTableViewManager.swift in Sources */,
 				CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */,
 				CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */,
 			);

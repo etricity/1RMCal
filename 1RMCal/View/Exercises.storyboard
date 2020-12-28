@@ -183,7 +183,7 @@
         <!--Exercise Instance View Controller-->
         <scene sceneID="zLc-Ve-4OY">
             <objects>
-                <viewController id="tWm-F1-DoU" customClass="ExerciseInstanceViewController" customModule="_RMCal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExerciseInstanceVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tWm-F1-DoU" customClass="ExerciseInstanceViewController" customModule="_RMCal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tcQ-eN-jQK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -11,3 +11,7 @@ import UIKit
 protocol ExercisesView {
     var vm : ExerciseViewModel { get set }
 }
+
+protocol ExerciseInstanceCreator {
+    func addInstance(newInstance : ExerciseInstance)
+}

@@ -294,7 +294,15 @@
                             <constraint firstItem="Rfh-Bh-kdT" firstAttribute="top" secondItem="uro-eB-dAT" secondAttribute="bottom" id="xVr-Rk-SfN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Dgf-cD-BVl"/>
+                    <navigationItem key="navigationItem" id="Dgf-cD-BVl">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="gW9-EY-Jht">
+                            <imageReference key="image" image="plus" catalog="system" symbolScale="default"/>
+                            <connections>
+                                <action selector="performWorkout:" destination="DJj-Rf-iu7" id="8gq-uY-rwv"/>
+                                <segue destination="nel-ax-bid" kind="show" identifier="performWorkout" id="qvo-CO-RTq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="history" destination="tck-wB-VEO" id="GHq-1P-KZf"/>
                         <outlet property="workoutLayout" destination="Rfh-Bh-kdT" id="DT1-1Z-BUa"/>
@@ -303,6 +311,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GhS-A1-sYt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3074" y="434"/>
+        </scene>
+        <!--Workout Instance View Controller-->
+        <scene sceneID="bap-1h-5Pd">
+            <objects>
+                <tableViewController id="nel-ax-bid" customClass="WorkoutInstanceViewController" customModule="_RMCal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="y2A-1D-Iyy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="exerciseCell" id="pST-y6-GFF" userLabel="exerciseCell" customClass="LabelCell" customModule="_RMCal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pST-y6-GFF" id="G4a-cQ-mop">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="run-Pt-O7T">
+                                            <rect key="frame" x="5" y="11.5" width="350" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="run-Pt-O7T" id="eaB-22-Zxu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nel-ax-bid" id="bws-qF-WM8"/>
+                            <outlet property="delegate" destination="nel-ax-bid" id="4lS-ZK-cnf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ADe-iz-le9">
+                        <barButtonItem key="rightBarButtonItem" title="Finish Workout" id="mEd-Jv-MFJ">
+                            <connections>
+                                <action selector="finishWorkout:" destination="nel-ax-bid" id="H4u-KK-JiJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="bkE-QX-da4" kind="show" identifier="performExercise" id="QQR-7v-Ryc"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eKX-bf-3fF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4142" y="434"/>
+        </scene>
+        <!--ExerciseInstanceVC-->
+        <scene sceneID="uzt-Zp-nPw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Exercises" referencedIdentifier="ExerciseInstanceVC" id="bkE-QX-da4" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="q3g-Vf-F8J"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9t9-c5-jdy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5091" y="302"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f0T-Mw-MHb">

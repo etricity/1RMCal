@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExerciseInstanceCreator {
 
     
     //View connections
@@ -92,7 +92,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
             vc?.exerciseInstance = ExerciseInstance(exerciseBestSet: exercise.bestSet)
-            vc?.exerciseVC = self
+            vc?.parentVC = self
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? SetHistoryViewController

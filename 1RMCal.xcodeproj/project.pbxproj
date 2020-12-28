@@ -28,7 +28,7 @@
 		CD9B1EA72592FD1C00AE14A5 /* WorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B1EA62592FD1C00AE14A5 /* WorkoutsViewController.swift */; };
 		CD9B1EB82592FF5400AE14A5 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B1EB72592FF5400AE14A5 /* WorkoutViewModel.swift */; };
 		CDA3A6CF258C7CA7003FF776 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA3A6CE258C7CA7003FF776 /* ExerciseViewController.swift */; };
-		CDA9030C2596BE2600D23867 /* ExercisesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9030B2596BE2600D23867 /* ExercisesVC.swift */; };
+		CDA9030C2596BE2600D23867 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9030B2596BE2600D23867 /* Protocols.swift */; };
 		CDA9031D2596D76900D23867 /* SetHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9031C2596D76900D23867 /* SetHistoryViewController.swift */; };
 		CDAB5B4A2577803800AD822A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B492577803800AD822A /* Settings.swift */; };
 		CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4C257780DA00AD822A /* Enums.swift */; };
@@ -39,6 +39,7 @@
 		CDD4D8EF2579F66200305382 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD4D8EE2579F66200305382 /* Main.storyboard */; };
 		CDD7D8F72599931A002D7755 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */; };
 		CDD7D90D25999906002D7755 /* CustomTableViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */; };
+		CDD7D91B259A921A002D7755 /* WorkoutInstanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D91A259A921A002D7755 /* WorkoutInstanceViewController.swift */; };
 		CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF44DD2574B08D000D3649 /* CalViewController.swift */; };
 		CDF4F79725931554008CBE14 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */; };
 /* End PBXBuildFile section */
@@ -93,7 +94,7 @@
 		CD9B1EA62592FD1C00AE14A5 /* WorkoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewController.swift; sourceTree = "<group>"; };
 		CD9B1EB72592FF5400AE14A5 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		CDA3A6CE258C7CA7003FF776 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
-		CDA9030B2596BE2600D23867 /* ExercisesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesVC.swift; sourceTree = "<group>"; };
+		CDA9030B2596BE2600D23867 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		CDA9031C2596D76900D23867 /* SetHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetHistoryViewController.swift; sourceTree = "<group>"; };
 		CDAB5B492577803800AD822A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CDAB5B4C257780DA00AD822A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		CDD4D8EE2579F66200305382 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewDelegates.swift; sourceTree = "<group>"; };
+		CDD7D91A259A921A002D7755 /* WorkoutInstanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutInstanceViewController.swift; sourceTree = "<group>"; };
 		CDDF44DD2574B08D000D3649 /* CalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalViewController.swift; sourceTree = "<group>"; };
 		CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		D363315B2B0BABF706BED086 /* Pods-1RMCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1RMCal.debug.xcconfig"; path = "Target Support Files/Pods-1RMCal/Pods-1RMCal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				CD9B1EA62592FD1C00AE14A5 /* WorkoutsViewController.swift */,
 				CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */,
 				CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */,
+				CDD7D91A259A921A002D7755 /* WorkoutInstanceViewController.swift */,
 			);
 			path = Workouts;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 		CDAB5B4B257780B000AD822A /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				CDA9030B2596BE2600D23867 /* Protocols.swift */,
 				CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */,
 				CDAB5B4E2577870C00AD822A /* Savable */,
 				CD0447DB2576E33C002035BF /* Extensions.swift */,
@@ -295,7 +299,6 @@
 				CD03A68525859786000DA1EF /* Exercises */,
 				CD03A6842585977C000DA1EF /* Calculator */,
 				CD03A65F25858A58000DA1EF /* HomeViewControlller.swift */,
-				CDA9030B2596BE2600D23867 /* ExercisesVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -520,11 +523,12 @@
 				CD03A66025858A58000DA1EF /* HomeViewControlller.swift in Sources */,
 				CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */,
 				CDBC70AF258CAC8D00AC1DD8 /* Model.swift in Sources */,
+				CDD7D91B259A921A002D7755 /* WorkoutInstanceViewController.swift in Sources */,
 				CD087EA52574AA1100C53C9E /* _RMCal.xcdatamodeld in Sources */,
 				CDAB5B502577871A00AD822A /* Savable.swift in Sources */,
 				CD9B1EA72592FD1C00AE14A5 /* WorkoutsViewController.swift in Sources */,
 				CDF4F79725931554008CBE14 /* NewWorkoutViewController.swift in Sources */,
-				CDA9030C2596BE2600D23867 /* ExercisesVC.swift in Sources */,
+				CDA9030C2596BE2600D23867 /* Protocols.swift in Sources */,
 				CDA9031D2596D76900D23867 /* SetHistoryViewController.swift in Sources */,
 				CD03A6872585979A000DA1EF /* ExercisesViewController.swift in Sources */,
 				CDBC70DD258CB6C300AC1DD8 /* ModelManager.swift in Sources */,

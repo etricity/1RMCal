@@ -12,7 +12,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
 
     @IBOutlet weak var setsTableView: UITableView!
     
-    var exerciseVC : ExerciseViewController!
+    var parentVC : (UIViewController & ExerciseInstanceCreator)!
     @IBOutlet weak var current1RM: UILabel!
     
     //History Data
@@ -43,7 +43,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         navigationController?.popViewController(animated: true)
         // ensures instance is only added if a set if performed
         if !exerciseInstance.sets.isEmpty {
-            exerciseVC.addInstance(newInstance: exerciseInstance)
+            parentVC.addInstance(newInstance: exerciseInstance)
         }
     }
     

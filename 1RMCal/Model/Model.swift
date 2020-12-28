@@ -55,6 +55,22 @@ class Exercise {
     }
 }
 
+class WorkoutInstance {
+    
+    private (set) var date : Date
+    private (set) var exerciseInstances : [ExerciseInstance]
+    
+    init() {
+        self.date = Date()
+        self.exerciseInstances = []
+    }
+    
+    func addInstance(newInstance : ExerciseInstance) {
+        exerciseInstances.insert(newInstance, at: 0)
+    }
+    
+}
+
 // Represents a single performence/instance of a exercise
 class ExerciseInstance {
     // time exercise was performed

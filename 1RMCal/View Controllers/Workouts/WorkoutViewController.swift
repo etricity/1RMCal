@@ -8,7 +8,8 @@
 
 import UIKit
 
-class WorkoutViewController: UIViewController {
+class WorkoutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
 
     // View Connections
     @IBOutlet weak var workoutLayout: UITableView!
@@ -20,24 +21,78 @@ class WorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = workout.name
+        
         workoutLayout.delegate = dataSource
         workoutLayout.dataSource = dataSource
-        
         workoutLayout.tableFooterView = UIView()
+        
+        history.dataSource = self
+        history.delegate = self
         history.tableFooterView = UIView()
         
         workoutLayout.allowsSelection = false
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    // History Table View Functions
+    // TableView functions
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return workout.instances.count
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutHistoryCell", for: indexPath) as! LabelCell
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        let instance = workout.instances[indexPath.row]
+        cell.label.text = dateFormatter.string(from: instance.date)
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
+    // Delete table cell
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            workout.removeInstance(index: indexPath.row)
+            history.reloadData()
+            
+            //Erase from core data
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        
+//        performSegue(withIdentifier: "viewHistory", sender: index)
+        
+    }
+    
+    
+    @IBAction func performWorkout(_ sender: Any) {
+        performSegue(withIdentifier: "performWorkout", sender: nil)
+    }
+    
+    func addWorkoutInstance(newInstance: WorkoutInstance) {
+        self.workout.addWorkoutInstance(newWorkout: newInstance)
+        history.reloadData()
+    }
+    
+    
+    // Segue Functions
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let vc = segue.destination as? WorkoutInstanceViewController
+        vc?.parentVC = self
+        vc?.title = self.workout.name
+    }
 
 }

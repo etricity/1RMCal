@@ -27,10 +27,11 @@ class Exercise {
     }
     
     // Add new instance
-    func addInstance(newInstance : ExerciseInstance) {
+    func addInstance(newInstance : ExerciseInstance) -> Bool {
         self.instances.insert(newInstance, at: 0)
         //update 1RM
-        updateBestSet(instance: newInstance)
+        
+        return updateBestSet(instance: newInstance)
     }
     
     // Remove instance

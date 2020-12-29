@@ -39,6 +39,38 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
 
     }
     
+    // Workout Layout Table View Functions
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return workout.exercises.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutLayoutCell", for: indexPath) as! LabelCell
+        cell.label.text = workout.exercises[indexPath.row].name
+        return cell
+   }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        workout.swapExercises(x: sourceIndexPath.row, y: destinationIndexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       
+        if (editingStyle == .delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            workout.removeExercise(index: indexPath.row)
+            tableView.reloadData()
+            
+            //Erase from Core Data
+        }
+     }
+    
+    // Button Actions
+    
+    // Finished creating workout (confirm creation)
     @IBAction func confirmNewWorkout(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         workoutsVC.addNewWorkout(newWorkout: workout)
@@ -52,7 +84,6 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         alert.addTextField { (textField) in
             textField.placeholder = "Enter Exercise Name"
         }
-        
         
         //confirm new exercise
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
@@ -73,19 +104,6 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         self.present(alert, animated: true, completion: nil)
     }
     
-    // Workout Layout Table View Functions
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workout.exercises.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutLayoutCell", for: indexPath) as! LabelCell
-        cell.label.text = workout.exercises[indexPath.row].name
-        return cell
-   }
-    
-    
     // Add exercise to Workout
     @objc func addExerciseToWorkout(_ notification:Notification) {
         print("working")
@@ -94,7 +112,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         workoutLayout.reloadData()
     }
     
-    
+    // Toggle sorting / viewing mode for workout layout
     @IBOutlet weak var sortButton: UIButton!
     @IBAction func sortExercises(_ sender: Any) {
         if workoutLayout.isEditing {
@@ -106,23 +124,4 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
             sortButton.setTitle("Done", for: .normal)
         }
     }
-    
-    
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        workout.swapExercises(x: sourceIndexPath.row, y: destinationIndexPath.row)
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-       
-        if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
-            workout.removeExercise(index: indexPath.row)
-            tableView.reloadData()
-            
-            //Erase from Core Data
-        }
-     }
 }

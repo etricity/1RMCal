@@ -16,12 +16,10 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.tableFooterView = UIView()
     }
     
-    
-    
+    // Table View Functions
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -68,9 +66,6 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
         navigationController?.popViewController(animated: true)
         parentVC.addWorkoutInstance(newInstance: workoutInstance)
     }
-    
-    
-    
     
     
     // Segue Functions

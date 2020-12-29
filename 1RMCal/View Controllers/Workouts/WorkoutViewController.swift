@@ -47,7 +47,6 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutHistoryCell", for: indexPath) as! LabelCell
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
-        let myCalendar = Calendar(identifier: .gregorian)
         
         let date = workout.instances[indexPath.row].date
         cell.label.text = "\(dateFormatter.string(from: date))"
@@ -106,7 +105,6 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? WorkoutHistoryViewController
-            vc?.workout = self.workout
             vc?.workoutInstance = self.workout.instances[index]
             break
         default:

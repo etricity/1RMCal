@@ -10,7 +10,7 @@ import UIKit
 
 class WorkoutHistoryViewController: UITableViewController {
     
-    var workout : Workout!
+    // Workout Instance the history data comes from
     var workoutInstance : WorkoutInstance!
     
     override func viewDidLoad() {
@@ -21,29 +21,23 @@ class WorkoutHistoryViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
+    // Table View Functions
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return workout.exercises.count
+        return workoutInstance.exerciseInstances.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return workout.exercises[section].name
+        return workoutInstance.exerciseInstances[section].name
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        var val : Int = 0
-        if workoutInstance.exerciseInstances.indices.contains(section) {
-            val = workoutInstance.exerciseInstances[section].sets.count
-        }
-        return val
-        
+        return workoutInstance.exerciseInstances[section].sets.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell") as! LabelCell
-        
-        cell.label.text = "\(workoutInstance.exerciseInstances[indexPath.section].sets[indexPath.row].summary)"
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell") as! LabelCell  
+        let exerciseInstance = workoutInstance.exerciseInstances[indexPath.section]
+        cell.label.text = "\(exerciseInstance.sets[indexPath.row].summary)"
         return cell
     }
 }

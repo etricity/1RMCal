@@ -35,12 +35,9 @@ class WorkoutsViewController: UITableViewController {
         return numCells
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath)  as! LabelCell
-
         cell.label.text = vm.getWorkouts()[indexPath.row].name
-
         return cell
     }
     
@@ -48,7 +45,6 @@ class WorkoutsViewController: UITableViewController {
         return .delete
     }
 
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
@@ -61,10 +57,12 @@ class WorkoutsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
+        // Go to clicked workout
         performSegue(withIdentifier: "goToWorkout", sender: index)
         
     }
     
+    // Create new Exercise
     @IBAction func newWorkout(_ sender: Any) {
         //confirm new exercise
         let alert = UIAlertController(title: "New Workout", message: "", preferredStyle: .alert)
@@ -87,6 +85,7 @@ class WorkoutsViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    // confirming new exercise in "New Exercise Alert"
     func addNewWorkout(newWorkout : Workout) {
         if self.vm.addWorkout(workout: newWorkout) {
             //reload able
@@ -99,12 +98,14 @@ class WorkoutsViewController: UITableViewController {
     {
         
         switch segue.identifier {
+            // Creating new workout
             case "newWorkout":
                 let workoutName = sender as! String
                 let vc = segue.destination as? NewWorkoutViewController
                 vc?.workout = Workout(name: workoutName)
                 vc?.title = workoutName
                 vc?.workoutsVC = self
+            // Going to existing workout
             case "goToWorkout":
                 let index = sender as! Int
                 let vc = segue.destination as? WorkoutViewController

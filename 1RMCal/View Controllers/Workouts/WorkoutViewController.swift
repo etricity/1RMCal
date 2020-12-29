@@ -72,7 +72,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
         
-//        performSegue(withIdentifier: "viewHistory", sender: index)
+        performSegue(withIdentifier: "viewHistory", sender: index)
         
     }
     

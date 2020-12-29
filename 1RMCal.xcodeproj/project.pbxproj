@@ -41,6 +41,7 @@
 		CDD7D90D25999906002D7755 /* CustomTableViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */; };
 		CDD7D91B259A921A002D7755 /* WorkoutInstanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D91A259A921A002D7755 /* WorkoutInstanceViewController.swift */; };
 		CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF44DD2574B08D000D3649 /* CalViewController.swift */; };
+		CDF00BFD259AA83C00F60DAB /* WorkoutHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF00BFC259AA83C00F60DAB /* WorkoutHistoryViewController.swift */; };
 		CDF4F79725931554008CBE14 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewDelegates.swift; sourceTree = "<group>"; };
 		CDD7D91A259A921A002D7755 /* WorkoutInstanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutInstanceViewController.swift; sourceTree = "<group>"; };
 		CDDF44DD2574B08D000D3649 /* CalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalViewController.swift; sourceTree = "<group>"; };
+		CDF00BFC259AA83C00F60DAB /* WorkoutHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryViewController.swift; sourceTree = "<group>"; };
 		CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		D363315B2B0BABF706BED086 /* Pods-1RMCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1RMCal.debug.xcconfig"; path = "Target Support Files/Pods-1RMCal/Pods-1RMCal.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -245,6 +247,7 @@
 				CDF4F79625931554008CBE14 /* NewWorkoutViewController.swift */,
 				CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */,
 				CDD7D91A259A921A002D7755 /* WorkoutInstanceViewController.swift */,
+				CDF00BFC259AA83C00F60DAB /* WorkoutHistoryViewController.swift */,
 			);
 			path = Workouts;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				CD087EA52574AA1100C53C9E /* _RMCal.xcdatamodeld in Sources */,
 				CDAB5B502577871A00AD822A /* Savable.swift in Sources */,
 				CD9B1EA72592FD1C00AE14A5 /* WorkoutsViewController.swift in Sources */,
+				CDF00BFD259AA83C00F60DAB /* WorkoutHistoryViewController.swift in Sources */,
 				CDF4F79725931554008CBE14 /* NewWorkoutViewController.swift in Sources */,
 				CDA9030C2596BE2600D23867 /* Protocols.swift in Sources */,
 				CDA9031D2596D76900D23867 /* SetHistoryViewController.swift in Sources */,

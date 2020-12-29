@@ -306,11 +306,53 @@
                     <connections>
                         <outlet property="history" destination="tck-wB-VEO" id="GHq-1P-KZf"/>
                         <outlet property="workoutLayout" destination="Rfh-Bh-kdT" id="DT1-1Z-BUa"/>
+                        <segue destination="0IL-od-wiY" kind="show" identifier="viewHistory" id="5fJ-h9-yza"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GhS-A1-sYt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3074" y="434"/>
+        </scene>
+        <!--Workout History View Controller-->
+        <scene sceneID="tz9-Wi-eFf">
+            <objects>
+                <tableViewController storyboardIdentifier="workoutHistoryVC" id="0IL-od-wiY" customClass="WorkoutHistoryViewController" customModule="_RMCal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aU2-UX-lJJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="setHistoryCell" id="Nh1-16-eyO" userLabel="exerciseCell" customClass="LabelCell" customModule="_RMCal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nh1-16-eyO" id="xSW-Bk-60Q">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-jk-X1k">
+                                            <rect key="frame" x="5" y="11.5" width="350" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="gaJ-jk-X1k" id="dgJ-wE-aVu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0IL-od-wiY" id="2Gb-BZ-O5d"/>
+                            <outlet property="delegate" destination="0IL-od-wiY" id="92P-xC-Ttf"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="nvA-UL-akr"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fog-Av-Nc3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4106" y="869"/>
         </scene>
         <!--Workout Instance View Controller-->
         <scene sceneID="bap-1h-5Pd">
@@ -360,7 +402,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKX-bf-3fF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4142" y="434"/>
+            <point key="canvasLocation" x="4101" y="171"/>
         </scene>
         <!--ExerciseInstanceVC-->
         <scene sceneID="uzt-Zp-nPw">

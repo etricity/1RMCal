@@ -165,6 +165,10 @@ class WorkoutManager {
         exercises.addExercise(exercise: squat)
         exercises.addExercise(exercise: deadlift)
         
+        let workoutInstance = WorkoutInstance()
+        workoutInstance.addInstance(newInstance: newInstance)
+        exercises.addWorkoutInstance(newWorkout:  workoutInstance)
+        
         self.addWorkout(newWorkout: exercises)
     }
 

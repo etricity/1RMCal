@@ -86,7 +86,7 @@ class ExerciseManager {
         let squat = Exercise(name: "Squat", current1RM: 0)
         let deadlift = Exercise(name: "Deadlift", current1RM: 0)
         
-        let newInstance = ExerciseInstance()
+        let newInstance = ExerciseInstance(name: "Bench Press")
         let set1 = SetStat(weight: 100, repCount: 10, units: .kg)
         let set2 = SetStat(weight: 120, repCount: 8, units: .kg)
         let set3 = SetStat(weight: 135, repCount: 7, units: .kg)
@@ -150,7 +150,7 @@ class WorkoutManager {
         let squat = Exercise(name: "Squat", current1RM: 0)
         let deadlift = Exercise(name: "Deadlift", current1RM: 0)
         
-        let newInstance = ExerciseInstance()
+        let newInstance = ExerciseInstance(name: "Bench Press")
         let set1 = SetStat(weight: 100, repCount: 10, units: .kg)
         let set2 = SetStat(weight: 120, repCount: 8, units: .kg)
         let set3 = SetStat(weight: 135, repCount: 7, units: .kg)

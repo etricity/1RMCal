@@ -91,7 +91,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         case "newInstance":
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
-            vc?.exerciseInstance = ExerciseInstance(exerciseBestSet: exercise.bestSet)
+            vc?.exerciseInstance = ExerciseInstance(name: exercise.name ,exerciseBestSet: exercise.bestSet)
             vc?.parentVC = self
         case "viewHistory":
             let index = sender as! Int

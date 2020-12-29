@@ -90,3 +90,12 @@ enum ObjectSavableError: String, LocalizedError {
 extension Notification.Name {
     static let addExerciseToWorkout = Notification.Name("addExerciseToWorkout")
 }
+
+extension Date {
+    func dayOfWeek() -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter.string(from: self).capitalized
+    }
+}
+

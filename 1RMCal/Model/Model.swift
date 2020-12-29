@@ -73,6 +73,8 @@ class WorkoutInstance {
 
 // Represents a single performence/instance of a exercise
 class ExerciseInstance {
+    // name of exercise
+    private (set) var name : String
     // time exercise was performed
     private (set) var date : Date
     // Sets performed
@@ -91,7 +93,8 @@ class ExerciseInstance {
         return summary
     }
 
-    init(exerciseBestSet : SetStat? = nil) {
+    init(name : String, exerciseBestSet : SetStat? = nil) {
+        self.name = name
         self.sets = []
         self.date = Date()
         self.exerciseBestSet = exerciseBestSet

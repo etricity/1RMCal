@@ -47,9 +47,16 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutHistoryCell", for: indexPath) as! LabelCell
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
+        let myCalendar = Calendar(identifier: .gregorian)
         
-        let instance = workout.instances[indexPath.row]
-        cell.label.text = dateFormatter.string(from: instance.date)
+        let date = workout.instances[indexPath.row].date
+        cell.label.text = "\(dateFormatter.string(from: date))"
+        
+        if let day = date.dayOfWeek() {
+            cell.label.text?.append(" (\(day))")
+        }
+        
+        
 
         return cell
     }
@@ -90,9 +97,21 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        let vc = segue.destination as? WorkoutInstanceViewController
-        vc?.parentVC = self
-        vc?.title = self.workout.name
+        
+        switch segue.identifier {
+        case "performWorkout":
+            let vc = segue.destination as? WorkoutInstanceViewController
+            vc?.parentVC = self
+            vc?.title = self.workout.name
+        case "viewHistory":
+            let index = sender as! Int
+            let vc = segue.destination as? WorkoutHistoryViewController
+            vc?.workout = self.workout
+            vc?.workoutInstance = self.workout.instances[index]
+            break
+        default:
+            break
+        }
     }
 
 }

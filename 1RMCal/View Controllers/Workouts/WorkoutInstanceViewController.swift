@@ -78,8 +78,9 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     {
         let vc = segue.destination as? ExerciseInstanceViewController
         let index = sender as! Int
-        vc?.title = parentVC.workout.exercises[index].name
-        vc?.exerciseInstance = ExerciseInstance(exerciseBestSet: parentVC.workout.exercises[index].bestSet)
+        let exerciseName = parentVC.workout.exercises[index].name
+        vc?.title = exerciseName
+        vc?.exerciseInstance = ExerciseInstance(name: exerciseName, exerciseBestSet: parentVC.workout.exercises[index].bestSet)
         vc?.parentVC = self
     }
 }

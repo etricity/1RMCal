@@ -288,9 +288,10 @@
 		CDDF44D72574ABA2000D3649 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CDEA25AA259C18F700B32225 /* CoreData */,
 				CDBC70AE258CAC8D00AC1DD8 /* Model.swift */,
-				CDAB5B492577803800AD822A /* Settings.swift */,
 				CDBC70DC258CB6C300AC1DD8 /* ModelManager.swift */,
+				CDAB5B492577803800AD822A /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -313,6 +314,13 @@
 				CD9B1EB72592FF5400AE14A5 /* WorkoutViewModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		CDEA25AA259C18F700B32225 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

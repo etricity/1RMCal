@@ -82,23 +82,12 @@ class ExerciseInstance {
     private (set) var sets : [SetStat]
     // Best Set of instance
     private (set) var bestSet : SetStat?
-    // Best Set of exercise
-    private (set) var exerciseBestSet : SetStat?
-    
-    // Summary syntax: best set info + date performed
-    var bestSetSummary : String {
-        var summary : String = ""
-        if let bestSet = self.bestSet {
-            summary = "\(bestSet.summary)"
-        }
-        return summary
-    }
+
 
     init(name : String, exerciseBestSet : SetStat? = nil) {
         self.name = name
         self.sets = []
         self.date = Date()
-        self.exerciseBestSet = exerciseBestSet
     }
     
     // add new set

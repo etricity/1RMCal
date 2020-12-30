@@ -14,6 +14,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     var parentVC : (UIViewController & ExerciseInstanceCreator)!
     @IBOutlet weak var current1RM: UILabel!
+    var bestSetText : String = ""
     
     //History Data
     var exerciseInstance : ExerciseInstance!
@@ -32,7 +33,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     func initView() {
         self.navigationController!.navigationBar.topItem!.title = "Cancel"
-        self.current1RM.text = exerciseInstance.exerciseBestSet?.summary ?? "N/A"
+        self.current1RM.text = bestSetText
         setsTableView.tableFooterView = UIView()
     }
     

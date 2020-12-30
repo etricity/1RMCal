@@ -51,7 +51,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
         let instance = exercise.instances[indexPath.row]
-        cell.label.text = "Max 1RM: " + instance.bestSetSummary + "   " + dateFormatter.string(from: instance.date)
+        cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
 
         return cell
     }
@@ -91,6 +91,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         case "newInstance":
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
+            vc?.bestSetText = self.current1RM.text ?? "N/A"
             vc?.exerciseInstance = ExerciseInstance(name: exercise.name ,exerciseBestSet: exercise.bestSet)
             vc?.parentVC = self
         case "viewHistory":

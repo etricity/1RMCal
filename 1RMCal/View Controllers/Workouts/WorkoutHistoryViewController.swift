@@ -27,7 +27,8 @@ class WorkoutHistoryViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return workoutInstance.exerciseInstances[section].name
+        let numInstances = workoutInstance.exerciseInstances.count
+        return workoutInstance.exerciseInstances[numInstances - section - 1].name
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,8 +36,9 @@ class WorkoutHistoryViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell") as! LabelCell  
-        let exerciseInstance = workoutInstance.exerciseInstances[indexPath.section]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell") as! LabelCell
+        let numInstances = workoutInstance.exerciseInstances.count
+        let exerciseInstance = workoutInstance.exerciseInstances[numInstances - indexPath.section - 1]
         cell.label.text = "\(exerciseInstance.sets[indexPath.row].summary)"
         return cell
     }

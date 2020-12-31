@@ -2,6 +2,48 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:1RMCal/CoreData/ExerciseManagerCD+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/ExerciseManagerCD+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/WorkoutInstanceCD+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/WorkoutInstanceCD+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/ExerciseCD+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/ExerciseCD+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/SetStatCD+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/SetStatCD+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/ExerciseInstanceCD+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/ExerciseInstanceCD+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/WorkoutManagerCD+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/WorkoutManagerCD+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/WorkoutCD+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:1RMCal/CoreData/WorkoutCD+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:1RMCal.xcodeproj">
    </FileRef>
    <FileRef

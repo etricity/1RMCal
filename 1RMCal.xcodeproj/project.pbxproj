@@ -217,7 +217,7 @@
 				CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */,
 				CD087EA62574AA1200C53C9E /* Assets.xcassets */,
 				CD087EAB2574AA1200C53C9E /* Info.plist */,
-				CD087EA32574AA1100C53C9E /* _RMCal.xcdatamodeld */,
+				CD38AF22259D78E800CC5F21 /* CoreData */,
 			);
 			path = 1RMCal;
 			sourceTree = "<group>";
@@ -238,6 +238,14 @@
 				CD087EC12574AA1200C53C9E /* Info.plist */,
 			);
 			path = 1RMCalUITests;
+			sourceTree = "<group>";
+		};
+		CD38AF22259D78E800CC5F21 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CD087EA32574AA1100C53C9E /* _RMCal.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		CD9B1EA52592FD0C00AE14A5 /* Workouts */ = {

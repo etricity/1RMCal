@@ -16,7 +16,7 @@ extension SetStatCD {
         return NSFetchRequest<SetStatCD>(entityName: "SetStatCD")
     }
 
-    @NSManaged public var repCount: Int
+    @NSManaged public var repCount: Double
     @NSManaged public var unitString: String
     @NSManaged public var weight: Double
 

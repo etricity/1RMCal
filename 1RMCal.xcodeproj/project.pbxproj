@@ -20,7 +20,7 @@
 		CD087E9B2574AA1100C53C9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9A2574AA1100C53C9E /* AppDelegate.swift */; };
 		CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087E9C2574AA1100C53C9E /* SceneDelegate.swift */; };
 		CD087EA22574AA1100C53C9E /* 1RMCalculator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA02574AA1100C53C9E /* 1RMCalculator.storyboard */; };
-		CD087EA52574AA1100C53C9E /* _RMCal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD087EA32574AA1100C53C9E /* _RMCal.xcdatamodeld */; };
+		CD087EA52574AA1100C53C9E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD087EA32574AA1100C53C9E /* Model.xcdatamodeld */; };
 		CD087EA72574AA1200C53C9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA62574AA1200C53C9E /* Assets.xcassets */; };
 		CD087EAA2574AA1200C53C9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD087EA82574AA1200C53C9E /* LaunchScreen.storyboard */; };
 		CD087EB52574AA1200C53C9E /* _RMCalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087EB42574AA1200C53C9E /* _RMCalTests.swift */; };
@@ -251,7 +251,7 @@
 			children = (
 				CD02FBA7259D90F300995FC4 /* SetStatCD+CoreDataClass.swift */,
 				CD02FBA8259D90F300995FC4 /* SetStatCD+CoreDataProperties.swift */,
-				CD087EA32574AA1100C53C9E /* _RMCal.xcdatamodeld */,
+				CD087EA32574AA1100C53C9E /* Model.xcdatamodeld */,
 				CD02FA9C259D85B300995FC4 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
@@ -544,7 +544,7 @@
 				CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */,
 				CDBC70AF258CAC8D00AC1DD8 /* Model.swift in Sources */,
 				CDD7D91B259A921A002D7755 /* WorkoutInstanceViewController.swift in Sources */,
-				CD087EA52574AA1100C53C9E /* _RMCal.xcdatamodeld in Sources */,
+				CD087EA52574AA1100C53C9E /* Model.xcdatamodeld in Sources */,
 				CDAB5B502577871A00AD822A /* Savable.swift in Sources */,
 				CD9B1EA72592FD1C00AE14A5 /* WorkoutsViewController.swift in Sources */,
 				CDF00BFD259AA83C00F60DAB /* WorkoutHistoryViewController.swift in Sources */,
@@ -900,13 +900,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CD087EA32574AA1100C53C9E /* _RMCal.xcdatamodeld */ = {
+		CD087EA32574AA1100C53C9E /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				CD087EA42574AA1100C53C9E /* _RMCal.xcdatamodel */,
 			);
 			currentVersion = CD087EA42574AA1100C53C9E /* _RMCal.xcdatamodel */;
-			path = _RMCal.xcdatamodeld;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

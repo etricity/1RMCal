@@ -16,18 +16,18 @@ import CoreData
  
  */
 
-class ModelManager{
-    static let shared = ModelManager()
+class CoreDataManager{
+    static let shared = CoreDataManager()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let managedContext : NSManagedObjectContext
-    
+        
     private init(){
         managedContext = appDelegate.persistentContainer.viewContext
     }
     
-    //Create NSCity object for CurrentWeather
-    private func createSetStat(weight : Double, repCount : Int, unitString : String) -> SetStatCD {
-        let setStatEntity = NSEntityDescription.entity(forEntityName: "SetStat", in: managedContext)!
+    //Create SetStat
+    private func createSetStat(weight : Double, repCount : Double, unitString : String) -> SetStatCD {
+        let setStatEntity = NSEntityDescription.entity(forEntityName: "SetStatCD", in: managedContext)!
         let setStat = NSManagedObject(entity: setStatEntity, insertInto: managedContext) as! SetStatCD
 
         setStat.weight = weight
@@ -39,9 +39,10 @@ class ModelManager{
     
     //Load, Save & Delete functionality
     
-        //Save Weather after API call is made
-    func saveWeather() {
-
+    func saveData() {
+        
+        let setStat = createSetStat(weight: 70, repCount: 12, unitString: Weight.kg.rawValue)
+        
         //Save to CoreData
         do {
             try managedContext.save()
@@ -50,13 +51,15 @@ class ModelManager{
         }
     }
 
-    func loadWeather() {
+    func loadData() {
         
         //Requests for CurrentWeather, DailyWeather, WeeklyWeather
         do {
-            let fectchRequestCW = NSFetchRequest<NSFetchRequestResult>(entityName: "NSCurrentWeather")
-            let fectchRequestDW = NSFetchRequest<NSFetchRequestResult>(entityName: "NSDailyWeather")
-            let fectchRequestWW = NSFetchRequest<NSFetchRequestResult>(entityName: "NSWeeklyWeather")
+            
+            let fectchRequestSS = NSFetchRequest<NSFetchRequestResult>(entityName: "SetStatCD")
+            
+            let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStatCD]
+            print(setStat.first?.summary)
             
         } catch let error as NSError {
             print("Could not load \(error), \(error.userInfo)")

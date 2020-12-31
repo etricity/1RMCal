@@ -30,6 +30,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let modelManager = CoreDataManager.shared
+        modelManager.saveData()
+        modelManager.loadData()
+        
                 
     }
     

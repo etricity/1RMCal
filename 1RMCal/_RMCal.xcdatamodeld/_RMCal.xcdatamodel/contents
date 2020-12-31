@@ -2,12 +2,18 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ExerciseCD" representedClassName="ExerciseCD" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="bestSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SetStatCD"/>
+        <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseInstanceCD"/>
     </entity>
     <entity name="ExerciseInstanceCD" representedClassName="ExerciseInstanceCD" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="bestSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SetStatCD"/>
         <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SetStatCD"/>
+    </entity>
+    <entity name="ExerciseManagerCD" representedClassName="ExerciseManagerCD" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseCD"/>
     </entity>
     <entity name="SetStatCD" representedClassName="SetStatCD" syncable="YES" codeGenerationType="class">
         <attribute name="oneRM" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -16,11 +22,24 @@
         <attribute name="units" optional="YES" attributeType="String"/>
         <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="WorkoutInstanceCD" representedClassName="WorkoutInstanceCD" syncable="YES" codeGenerationType="class"/>
+    <entity name="WorkoutCD" representedClassName="WorkoutCD" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="exerciseInstances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseInstanceCD"/>
+    </entity>
+    <entity name="WorkoutInstanceCD" representedClassName="WorkoutInstanceCD" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="exerciseInstances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseInstanceCD"/>
+    </entity>
+    <entity name="WorkoutManagerCD" representedClassName="WorkoutManagerCD" syncable="YES" codeGenerationType="class">
+        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WorkoutCD"/>
+    </entity>
     <elements>
-        <element name="ExerciseCD" positionX="-28516.76940917968" positionY="-13882.59608459473" width="128" height="58"/>
+        <element name="ExerciseCD" positionX="-28204.83862304687" positionY="-14244.48957824707" width="128" height="88"/>
         <element name="SetStatCD" positionX="-28128.12097167969" positionY="-13873.33982849121" width="128" height="104"/>
-        <element name="WorkoutInstanceCD" positionX="-28364.19305419922" positionY="-13674.04867553711" width="128" height="29"/>
-        <element name="ExerciseInstanceCD" positionX="-28305" positionY="-13752" width="128" height="14"/>
+        <element name="WorkoutInstanceCD" positionX="-28451.82366943359" positionY="-13673.31683349609" width="128" height="73"/>
+        <element name="ExerciseInstanceCD" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="89"/>
+        <element name="WorkoutCD" positionX="-28445.64788818359" positionY="-14160.0079498291" width="128" height="73"/>
+        <element name="ExerciseManagerCD" positionX="-28269" positionY="-14067" width="128" height="59"/>
+        <element name="WorkoutManagerCD" positionX="-28260" positionY="-14058" width="128" height="44"/>
     </elements>
 </model>

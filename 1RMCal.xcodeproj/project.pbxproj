@@ -48,6 +48,7 @@
 		CDAB5B4A2577803800AD822A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B492577803800AD822A /* Settings.swift */; };
 		CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4C257780DA00AD822A /* Enums.swift */; };
 		CDAB5B502577871A00AD822A /* Savable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4F2577871A00AD822A /* Savable.swift */; };
+		CDADFFBB259FD3D400211235 /* ModelManagerCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDADFFBA259FD3D400211235 /* ModelManagerCD.swift */; };
 		CDBC70AF258CAC8D00AC1DD8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC70AE258CAC8D00AC1DD8 /* Model.swift */; };
 		CDBC70D5258CB50A00AC1DD8 /* ExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC70D4258CB50A00AC1DD8 /* ExerciseViewModel.swift */; };
 		CDBC70DD258CB6C300AC1DD8 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC70DC258CB6C300AC1DD8 /* ModelManager.swift */; };
@@ -130,6 +131,7 @@
 		CDAB5B492577803800AD822A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CDAB5B4C257780DA00AD822A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CDAB5B4F2577871A00AD822A /* Savable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savable.swift; sourceTree = "<group>"; };
+		CDADFFBA259FD3D400211235 /* ModelManagerCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManagerCD.swift; sourceTree = "<group>"; };
 		CDBC70AE258CAC8D00AC1DD8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CDBC70D4258CB50A00AC1DD8 /* ExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
 		CDBC70DC258CB6C300AC1DD8 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			children = (
 				CDBC70AE258CAC8D00AC1DD8 /* Model.swift */,
 				CDBC70DC258CB6C300AC1DD8 /* ModelManager.swift */,
+				CDADFFBA259FD3D400211235 /* ModelManagerCD.swift */,
 				CDAB5B492577803800AD822A /* Settings.swift */,
 			);
 			path = Model;
@@ -591,6 +594,7 @@
 				CDA9030C2596BE2600D23867 /* Protocols.swift in Sources */,
 				CDA9031D2596D76900D23867 /* SetHistoryViewController.swift in Sources */,
 				CD048EBA259EC73000394FE6 /* WorkoutInstanceCD+CoreDataClass.swift in Sources */,
+				CDADFFBB259FD3D400211235 /* ModelManagerCD.swift in Sources */,
 				CD03A6872585979A000DA1EF /* ExercisesViewController.swift in Sources */,
 				CD048EB6259EC73000394FE6 /* ExerciseManagerCD+CoreDataProperties.swift in Sources */,
 				CDBC70DD258CB6C300AC1DD8 /* ModelManager.swift in Sources */,

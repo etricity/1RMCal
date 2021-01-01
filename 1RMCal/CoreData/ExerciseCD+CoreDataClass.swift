@@ -31,5 +31,4 @@ public class ExerciseCD: NSManagedObject {
         }
            return updated
        }
-
 }

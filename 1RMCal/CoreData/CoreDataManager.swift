@@ -92,9 +92,9 @@ class CoreDataManager{
         //Requests for CurrentWeather, DailyWeather, WeeklyWeather
         do {
             
-            let fectchRequestSS = NSFetchRequest<NSFetchRequestResult>(entityName: "SetStatCD")
-            let fectchRequestExIn = NSFetchRequest<NSFetchRequestResult>(entityName: "ExerciseInstanceCD")
-            let fectchRequestEx = NSFetchRequest<NSFetchRequestResult>(entityName: "ExerciseCD")
+            let fectchRequestSS : NSFetchRequest<SetStatCD> = SetStatCD.fetchRequest()
+            let fectchRequestExIn : NSFetchRequest<ExerciseInstanceCD> = ExerciseInstanceCD.fetchRequest()
+            let fectchRequestEx : NSFetchRequest<ExerciseCD> = ExerciseCD.fetchRequest()
             
             let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStatCD]
             let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstanceCD]

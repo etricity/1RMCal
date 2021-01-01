@@ -60,19 +60,33 @@ class CoreDataManager{
         return exercise
     }
     
+    //Create Exercise
+    private func createExerciseManager(name : String = "") -> ExerciseManagerCD {
+        let exerciseManagerEntity = NSEntityDescription.entity(forEntityName: "ExerciseManagerCD", in: managedContext)!
+        let exerciseManager = NSManagedObject(entity: exerciseManagerEntity, insertInto: managedContext) as! ExerciseManagerCD
+
+        exerciseManager.name = name
+        return exerciseManager
+    }
+    
     //Load, Save & Delete functionality
     
     func saveData() {
         deleteAllData("SetStatCD")
         deleteAllData("ExerciseInstanceCD")
         deleteAllData("ExerciseCD")
+        deleteAllData("ExerciseManagerCD")
         
+        let exerciseManager = createExerciseManager(name: "Compound Exercises")
         let exercise = createExercise(name: "Bench Press")
+        let exercise2 = createExercise(name: "Deadlift")
         let exerciseInstance = createExerciseInstance(name: exercise.name)
         let setStat = createSetStat(weight: 70, repCount: 12, unitString: Weight.kg.rawValue)
         
         exerciseInstance.addToSets(set: setStat)
         exercise.addNewInstance(instance: exerciseInstance)
+        exerciseManager.addToExercises(exercise)
+        exerciseManager.addToExercises(exercise2)
         
         
         print(exerciseInstance.sets.count)
@@ -95,16 +109,27 @@ class CoreDataManager{
             let fectchRequestSS : NSFetchRequest<SetStatCD> = SetStatCD.fetchRequest()
             let fectchRequestExIn : NSFetchRequest<ExerciseInstanceCD> = ExerciseInstanceCD.fetchRequest()
             let fectchRequestEx : NSFetchRequest<ExerciseCD> = ExerciseCD.fetchRequest()
+            let fectchRequestExMan : NSFetchRequest<ExerciseManagerCD> = ExerciseManagerCD.fetchRequest()
             
             let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStatCD]
             let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstanceCD]
             let exercises = try managedContext.fetch(fectchRequestEx) as! [ExerciseCD]
+            let  exerciseManagers = try managedContext.fetch(fectchRequestExMan) as! [ExerciseManagerCD]
             
+            let exerciseManager = exerciseManagers.first
             let exercise = exercises.first
             print(exercise?.instances.count)
             
             print(exerciseInstances.first?.sets.count)
             print(exercises.first?.current1RM)
+            
+            print(exerciseManager?.exercises.count)
+            print(exerciseManager?.getExercise(index: 0)?.name)
+            exerciseManager?.swapExercises(x: 0, y: 1)
+            print(exerciseManager?.getExercise(index: 0)?.name)
+            
+            
+            print()
             
             
         } catch let error as NSError {

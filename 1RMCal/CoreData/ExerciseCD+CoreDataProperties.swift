@@ -16,9 +16,9 @@ extension ExerciseCD {
         return NSFetchRequest<ExerciseCD>(entityName: "ExerciseCD")
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var bestSet: SetStatCD?
-    @NSManaged public var instances: NSOrderedSet?
+    @NSManaged public var instances: NSOrderedSet
 
 }
 

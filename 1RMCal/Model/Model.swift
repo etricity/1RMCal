@@ -22,7 +22,7 @@ class Exercise {
     var bestSet : SetStat?
     
     // Constructor
-    init(name : String, current1RM : Double?) {
+    init(name : String, current1RM : Double = 0) {
         self.name = name
     }
     

@@ -12,6 +12,13 @@ import CoreData
 @objc(ExerciseManagerCD)
 public class ExerciseManagerCD: NSManagedObject {
     
+    func canAddExercise(name : String) -> Bool {
+        let exercises = self.exercises.array as! [ExerciseCD]
+        return  exercises.contains { exercise in
+            return exercise.name.lowercased() == name.lowercased()
+        }
+    }
+    
     func swapExercises(x : Int, y : Int) {
         let validIndices = 0...exercises.count - 1
         if validIndices.contains(x) && validIndices.contains(y) {

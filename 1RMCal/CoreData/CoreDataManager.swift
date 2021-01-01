@@ -71,11 +71,11 @@ class CoreDataManager{
         let exerciseInstance = createExerciseInstance(name: exercise.name)
         let setStat = createSetStat(weight: 70, repCount: 12, unitString: Weight.kg.rawValue)
         
-        exerciseInstance.addToSets(setStat)
+        exerciseInstance.addToSets(set: setStat)
         exercise.addNewInstance(instance: exerciseInstance)
         
         
-        print(exerciseInstance.sets?.count)
+        print(exerciseInstance.sets.count)
         print(exercise.current1RM)
         
         
@@ -99,6 +99,12 @@ class CoreDataManager{
             let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStatCD]
             let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstanceCD]
             let exercises = try managedContext.fetch(fectchRequestEx) as! [ExerciseCD]
+            
+            let exercise = exercises.first
+            print(exercise?.instances.count)
+            
+            print(exerciseInstances.first?.sets.count)
+            print(exercises.first?.current1RM)
             
             
         } catch let error as NSError {

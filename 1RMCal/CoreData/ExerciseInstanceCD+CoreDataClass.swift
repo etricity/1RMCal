@@ -13,7 +13,12 @@ import CoreData
 public class ExerciseInstanceCD: NSManagedObject {
 
     var bestSet : SetStatCD? {
-        return self.sets?.max(by: { (a,b) in (a ).oneRM < (b).oneRM }) ?? nil
+        let sets = self.sets.array as! Array<SetStatCD>
+        return sets.max(by: { (a,b) in (a ).oneRM < (b).oneRM }) ?? nil
+    }
+    
+    func addToSets(set : SetStatCD) {
+        self.sets.add(set)
     }
     
 }

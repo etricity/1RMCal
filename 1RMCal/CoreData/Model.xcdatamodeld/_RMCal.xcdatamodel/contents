@@ -8,8 +8,7 @@
     <entity name="ExerciseInstanceCD" representedClassName="ExerciseInstanceCD" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="bestSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SetStatCD"/>
-        <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SetStatCD"/>
+        <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SetStatCD"/>
     </entity>
     <entity name="ExerciseManagerCD" representedClassName="ExerciseManagerCD" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -33,11 +32,11 @@
     </entity>
     <elements>
         <element name="ExerciseCD" positionX="-28204.83862304687" positionY="-14244.48957824707" width="128" height="74"/>
-        <element name="ExerciseInstanceCD" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="89"/>
-        <element name="ExerciseManagerCD" positionX="-28269" positionY="-14067" width="128" height="59"/>
+        <element name="ExerciseInstanceCD" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="88"/>
+        <element name="ExerciseManagerCD" positionX="-28219.07971191406" positionY="-14323.22621154785" width="128" height="59"/>
         <element name="SetStatCD" positionX="-28014.72387695313" positionY="-13873.33982849121" width="128" height="74"/>
         <element name="WorkoutCD" positionX="-28445.64788818359" positionY="-14160.0079498291" width="128" height="59"/>
-        <element name="WorkoutInstanceCD" positionX="-28451.82366943359" positionY="-13673.31683349609" width="128" height="59"/>
-        <element name="WorkoutManagerCD" positionX="-28260" positionY="-14058" width="128" height="44"/>
+        <element name="WorkoutInstanceCD" positionX="-28300.72052001953" positionY="-13843.29461669922" width="128" height="59"/>
+        <element name="WorkoutManagerCD" positionX="-28446.98571777344" positionY="-14233.89706420898" width="128" height="44"/>
     </elements>
 </model>

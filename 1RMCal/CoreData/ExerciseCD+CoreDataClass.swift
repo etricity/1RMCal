@@ -17,7 +17,7 @@ public class ExerciseCD: NSManagedObject {
     }
     
     func addNewInstance(instance : ExerciseInstanceCD) {
-        self.addToInstances(instance)
+        self.instances.add(instance)
         self.updateBestSet(instance: instance)
     }
     
@@ -29,7 +29,6 @@ public class ExerciseCD: NSManagedObject {
         if current1RM > setBest1RM {
             self.bestSet = instance.bestSet
         }
-        
            return updated
        }
 

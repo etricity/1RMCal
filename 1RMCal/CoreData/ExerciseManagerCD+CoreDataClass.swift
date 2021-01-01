@@ -11,5 +11,5 @@ import CoreData
 
 @objc(ExerciseManagerCD)
 public class ExerciseManagerCD: NSManagedObject {
-
+    
 }

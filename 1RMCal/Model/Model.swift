@@ -84,7 +84,7 @@ class ExerciseInstance {
     private (set) var bestSet : SetStat?
 
 
-    init(name : String, exerciseBestSet : SetStat? = nil) {
+    init(name : String) {
         self.name = name
         self.sets = []
         self.date = Date()

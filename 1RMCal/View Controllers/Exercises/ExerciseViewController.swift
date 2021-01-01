@@ -92,7 +92,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
             vc?.bestSetText = self.current1RM.text ?? "N/A"
-            vc?.exerciseInstance = ExerciseInstance(name: exercise.name ,exerciseBestSet: exercise.bestSet)
+            vc?.exerciseInstance = ExerciseInstance(name: exercise.name)
             vc?.parentVC = self
         case "viewHistory":
             let index = sender as! Int

@@ -2,7 +2,7 @@
 //  ExerciseInstanceCD+CoreDataProperties.swift
 //  
 //
-//  Created by Isaiah Cuzzupe on 31/12/20.
+//  Created by Isaiah Cuzzupe on 1/1/21.
 //
 //
 
@@ -18,8 +18,7 @@ extension ExerciseInstanceCD {
 
     @NSManaged public var date: Date?
     @NSManaged public var name: String?
-    @NSManaged public var sets: NSSet?
-    @NSManaged public var bestSet: SetStatCD?
+    @NSManaged var sets : Set<SetStatCD>?
 
 }
 

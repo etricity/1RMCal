@@ -2,7 +2,7 @@
 //  WorkoutInstanceCD+CoreDataProperties.swift
 //  
 //
-//  Created by Isaiah Cuzzupe on 31/12/20.
+//  Created by Isaiah Cuzzupe on 1/1/21.
 //
 //
 

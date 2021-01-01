@@ -60,13 +60,36 @@ class CoreDataManager{
         return exercise
     }
     
-    //Create Exercise
-    private func createExerciseManager(name : String = "") -> ExerciseManagerCD {
+    //Create ExerciseManager
+    private func createExerciseManager() -> ExerciseManagerCD {
         let exerciseManagerEntity = NSEntityDescription.entity(forEntityName: "ExerciseManagerCD", in: managedContext)!
         let exerciseManager = NSManagedObject(entity: exerciseManagerEntity, insertInto: managedContext) as! ExerciseManagerCD
 
-        exerciseManager.name = name
         return exerciseManager
+    }
+    
+    //Create WorkoutInstance
+    private func createWorkoutInstance(name : String) -> WorkoutInstanceCD {
+        let workoutInstanceEntity = NSEntityDescription.entity(forEntityName: "WorkoutInstanceCD", in: managedContext)!
+        let workoutInstance = NSManagedObject(entity: workoutInstanceEntity, insertInto: managedContext) as! WorkoutInstanceCD
+
+        workoutInstance.name = name
+        workoutInstance.exerciseInstances = []
+        workoutInstance.date = Date()
+        
+        return workoutInstance
+    }
+    
+    //Create Workout
+    private func createWorkout(name : String) -> WorkoutCD {
+        let workoutEntity = NSEntityDescription.entity(forEntityName: "WorkoutCD", in: managedContext)!
+        let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! WorkoutCD
+
+        workout.name = name
+        workout.workoutInstances = []
+        workout.date = Date()
+        
+        return workout
     }
     
     //Load, Save & Delete functionality
@@ -76,17 +99,23 @@ class CoreDataManager{
         deleteAllData("ExerciseInstanceCD")
         deleteAllData("ExerciseCD")
         deleteAllData("ExerciseManagerCD")
+        deleteAllData("WorkoutInstanceCD")
+        deleteAllData("WorkoutCD")
         
-        let exerciseManager = createExerciseManager(name: "Compound Exercises")
+        let workout = createWorkout(name: "Compound Exercises")
+//        let exerciseManager = createExerciseManager()
         let exercise = createExercise(name: "Bench Press")
         let exercise2 = createExercise(name: "Deadlift")
         let exerciseInstance = createExerciseInstance(name: exercise.name)
+        let workoutInstance = createWorkoutInstance(name: workout.name)
         let setStat = createSetStat(weight: 70, repCount: 12, unitString: Weight.kg.rawValue)
         
         exerciseInstance.addToSets(set: setStat)
         exercise.addNewInstance(instance: exerciseInstance)
-        exerciseManager.addToExercises(exercise)
-        exerciseManager.addToExercises(exercise2)
+        workoutInstance.addToExerciseInstances(exerciseInstance)
+//        exerciseManager.addToExercises(exercise)
+//        exerciseManager.addToExercises(exercise2)
+        workout.addToWorkoutInstances(workoutInstance)
         
         
         print(exerciseInstance.sets.count)
@@ -110,14 +139,23 @@ class CoreDataManager{
             let fectchRequestExIn : NSFetchRequest<ExerciseInstanceCD> = ExerciseInstanceCD.fetchRequest()
             let fectchRequestEx : NSFetchRequest<ExerciseCD> = ExerciseCD.fetchRequest()
             let fectchRequestExMan : NSFetchRequest<ExerciseManagerCD> = ExerciseManagerCD.fetchRequest()
+            let fectchRequestWorkIn : NSFetchRequest<WorkoutInstanceCD> = WorkoutInstanceCD.fetchRequest()
+            let fectchRequestWork : NSFetchRequest<WorkoutCD> = WorkoutCD.fetchRequest()
             
             let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStatCD]
             let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstanceCD]
             let exercises = try managedContext.fetch(fectchRequestEx) as! [ExerciseCD]
-            let  exerciseManagers = try managedContext.fetch(fectchRequestExMan) as! [ExerciseManagerCD]
+            let exerciseManagers = try managedContext.fetch(fectchRequestExMan) as! [ExerciseManagerCD]
+            let workoutInstances = try managedContext.fetch(fectchRequestWorkIn) as! [WorkoutInstanceCD]
+            let workouts = try managedContext.fetch(fectchRequestWork) as! [WorkoutCD]
             
+            let workout = workouts.first
+            let workoutInstance = workoutInstances.first
             let exerciseManager = exerciseManagers.first
             let exercise = exercises.first
+            
+            print(workout?.name)
+            print((workoutInstance?.exerciseInstances.firstObject as? ExerciseInstanceCD)?.name)
             print(exercise?.instances.count)
             
             print(exerciseInstances.first?.sets.count)

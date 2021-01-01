@@ -2,7 +2,7 @@
 //  WorkoutCD+CoreDataProperties.swift
 //  
 //
-//  Created by Isaiah Cuzzupe on 1/1/21.
+//  Created by Isaiah Cuzzupe on 2/1/21.
 //
 //
 
@@ -16,42 +16,43 @@ extension WorkoutCD {
         return NSFetchRequest<WorkoutCD>(entityName: "WorkoutCD")
     }
 
-    @NSManaged public var date: Date?
-    @NSManaged public var exerciseInstances: NSOrderedSet?
+    @NSManaged public var date: Date
+    @NSManaged public var name: String
+    @NSManaged public var workoutInstances: NSMutableOrderedSet?
 
 }
 
-// MARK: Generated accessors for exerciseInstances
+// MARK: Generated accessors for workoutInstances
 extension WorkoutCD {
 
-    @objc(insertObject:inExerciseInstancesAtIndex:)
-    @NSManaged public func insertIntoExerciseInstances(_ value: ExerciseInstanceCD, at idx: Int)
+    @objc(insertObject:inWorkoutInstancesAtIndex:)
+    @NSManaged public func insertIntoWorkoutInstances(_ value: WorkoutInstanceCD, at idx: Int)
 
-    @objc(removeObjectFromExerciseInstancesAtIndex:)
-    @NSManaged public func removeFromExerciseInstances(at idx: Int)
+    @objc(removeObjectFromWorkoutInstancesAtIndex:)
+    @NSManaged public func removeFromWorkoutInstances(at idx: Int)
 
-    @objc(insertExerciseInstances:atIndexes:)
-    @NSManaged public func insertIntoExerciseInstances(_ values: [ExerciseInstanceCD], at indexes: NSIndexSet)
+    @objc(insertWorkoutInstances:atIndexes:)
+    @NSManaged public func insertIntoWorkoutInstances(_ values: [WorkoutInstanceCD], at indexes: NSIndexSet)
 
-    @objc(removeExerciseInstancesAtIndexes:)
-    @NSManaged public func removeFromExerciseInstances(at indexes: NSIndexSet)
+    @objc(removeWorkoutInstancesAtIndexes:)
+    @NSManaged public func removeFromWorkoutInstances(at indexes: NSIndexSet)
 
-    @objc(replaceObjectInExerciseInstancesAtIndex:withObject:)
-    @NSManaged public func replaceExerciseInstances(at idx: Int, with value: ExerciseInstanceCD)
+    @objc(replaceObjectInWorkoutInstancesAtIndex:withObject:)
+    @NSManaged public func replaceWorkoutInstances(at idx: Int, with value: WorkoutInstanceCD)
 
-    @objc(replaceExerciseInstancesAtIndexes:withExerciseInstances:)
-    @NSManaged public func replaceExerciseInstances(at indexes: NSIndexSet, with values: [ExerciseInstanceCD])
+    @objc(replaceWorkoutInstancesAtIndexes:withWorkoutInstances:)
+    @NSManaged public func replaceWorkoutInstances(at indexes: NSIndexSet, with values: [WorkoutInstanceCD])
 
-    @objc(addExerciseInstancesObject:)
-    @NSManaged public func addToExerciseInstances(_ value: ExerciseInstanceCD)
+    @objc(addWorkoutInstancesObject:)
+    @NSManaged public func addToWorkoutInstances(_ value: WorkoutInstanceCD)
 
-    @objc(removeExerciseInstancesObject:)
-    @NSManaged public func removeFromExerciseInstances(_ value: ExerciseInstanceCD)
+    @objc(removeWorkoutInstancesObject:)
+    @NSManaged public func removeFromWorkoutInstances(_ value: WorkoutInstanceCD)
 
-    @objc(addExerciseInstances:)
-    @NSManaged public func addToExerciseInstances(_ values: NSOrderedSet)
+    @objc(addWorkoutInstances:)
+    @NSManaged public func addToWorkoutInstances(_ values: NSOrderedSet)
 
-    @objc(removeExerciseInstances:)
-    @NSManaged public func removeFromExerciseInstances(_ values: NSOrderedSet)
+    @objc(removeWorkoutInstances:)
+    @NSManaged public func removeFromWorkoutInstances(_ values: NSOrderedSet)
 
 }

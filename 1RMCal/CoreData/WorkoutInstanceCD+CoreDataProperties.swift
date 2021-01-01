@@ -2,7 +2,7 @@
 //  WorkoutInstanceCD+CoreDataProperties.swift
 //  
 //
-//  Created by Isaiah Cuzzupe on 1/1/21.
+//  Created by Isaiah Cuzzupe on 2/1/21.
 //
 //
 
@@ -16,8 +16,9 @@ extension WorkoutInstanceCD {
         return NSFetchRequest<WorkoutInstanceCD>(entityName: "WorkoutInstanceCD")
     }
 
-    @NSManaged public var date: Date?
-    @NSManaged public var exerciseInstances: NSOrderedSet?
+    @NSManaged public var date: Date
+    @NSManaged public var name: String
+    @NSManaged public var exerciseInstances: NSMutableOrderedSet
 
 }
 

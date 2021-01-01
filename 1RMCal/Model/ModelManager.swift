@@ -8,20 +8,51 @@
 
 import Foundation
 
-// Managers all exercises
-class ExerciseManager {
-    
+class Workout : ExerciseManager {
     private (set) var name : String
-    private (set) var exercises : [Exercise] = []
     
-    // test purposes only
-    init(name : String = "", test : Bool = false){
+    init(name : String,test : Bool = false){
         self.name = name
+        super.init()
         
         if test {
             testData()
         }
         
+    }
+    
+    // Only used when used as a Workout
+    private (set) var instances : [WorkoutInstance] = []
+    
+    func addWorkoutInstance(newWorkout : WorkoutInstance) {
+        instances.insert(newWorkout, at: 0)
+    }
+    func removeInstance(index : Int) {
+        if self.instances.indices.contains(index) {
+            self.instances.remove(at: index)
+        }
+    }
+
+}
+
+// Managers all exercises
+class ExerciseManager {
+    private (set) var exercises : [Exercise] = []
+    
+    // test purposes only
+    init(test : Bool = false){
+        
+        if test {
+            testData()
+        }
+    }
+    
+    // swap exercises
+    func swapExercises(x : Int, y : Int) {
+        let validIndices = exercises.indices
+        if validIndices.contains(x) && validIndices.contains(y) {
+            self.exercises.swapAt(x, y)
+        }
     }
     
     // Add new exercise
@@ -50,15 +81,7 @@ class ExerciseManager {
             self.exercises.remove(at: index)
         }
     }
-    
-    // swap exercises
-    func swapExercises(x : Int, y : Int) {
-        let validIndices = exercises.indices
-        if validIndices.contains(x) && validIndices.contains(y) {
-            self.exercises.swapAt(x, y)
-        }
-    }
-    
+        
     func getExercise(index : Int) -> Exercise? {
         if exercises.indices.contains(index) {
             return exercises[index]
@@ -67,18 +90,6 @@ class ExerciseManager {
         }
     }
     
-    
-    // Only used when used as a Workout
-    private (set) var instances : [WorkoutInstance] = []
-    
-    func addWorkoutInstance(newWorkout : WorkoutInstance) {
-        instances.insert(newWorkout, at: 0)
-    }
-    func removeInstance(index : Int) {
-        if self.instances.indices.contains(index) {
-            self.instances.remove(at: index)
-        }
-    }
     
     
     func testData() {
@@ -103,9 +114,6 @@ class ExerciseManager {
     }
     
 }
-
-// A workout is a exercise manager with a set of exercises
-typealias Workout = ExerciseManager
 
 // Managers all workouts
 class WorkoutManager {
@@ -144,7 +152,7 @@ class WorkoutManager {
     
     func testData() {
         
-        let exercises = ExerciseManager(name: "Compound Movements")
+        let exercises = Workout(name: "Compound Movements")
         
         let benchPress = Exercise(name: "Bench Press", current1RM: 0)
         let squat = Exercise(name: "Squat", current1RM: 0)

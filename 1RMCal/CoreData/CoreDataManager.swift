@@ -95,12 +95,7 @@ class CoreDataManager{
     //Load, Save & Delete functionality
     
     func saveData() {
-        deleteAllData("SetStatCD")
-        deleteAllData("ExerciseInstanceCD")
-        deleteAllData("ExerciseCD")
-        deleteAllData("ExerciseManagerCD")
-        deleteAllData("WorkoutInstanceCD")
-        deleteAllData("WorkoutCD")
+        deleteCoreData()
         
         let workout = createWorkout(name: "Compound Exercises")
 //        let exerciseManager = createExerciseManager()
@@ -135,48 +130,45 @@ class CoreDataManager{
         //Requests for CurrentWeather, DailyWeather, WeeklyWeather
         do {
             
+            // Fetch Requests
             let fectchRequestSS : NSFetchRequest<SetStatCD> = SetStatCD.fetchRequest()
             let fectchRequestExIn : NSFetchRequest<ExerciseInstanceCD> = ExerciseInstanceCD.fetchRequest()
             let fectchRequestEx : NSFetchRequest<ExerciseCD> = ExerciseCD.fetchRequest()
-            let fectchRequestExMan : NSFetchRequest<ExerciseManagerCD> = ExerciseManagerCD.fetchRequest()
             let fectchRequestWorkIn : NSFetchRequest<WorkoutInstanceCD> = WorkoutInstanceCD.fetchRequest()
             let fectchRequestWork : NSFetchRequest<WorkoutCD> = WorkoutCD.fetchRequest()
             
+            // Core Data Models
             let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStatCD]
             let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstanceCD]
             let exercises = try managedContext.fetch(fectchRequestEx) as! [ExerciseCD]
-            let exerciseManagers = try managedContext.fetch(fectchRequestExMan) as! [ExerciseManagerCD]
+//            let exerciseManagers = try managedContext.fetch(fectchRequestExMan) as! [ExerciseManagerCD]
             let workoutInstances = try managedContext.fetch(fectchRequestWorkIn) as! [WorkoutInstanceCD]
             let workouts = try managedContext.fetch(fectchRequestWork) as! [WorkoutCD]
             
+            // Extract neccessary elements
             let workout = workouts.first
             let workoutInstance = workoutInstances.first
-            let exerciseManager = exerciseManagers.first
+//            let exerciseManager = exerciseManagers.first
             let exercise = exercises.first
-            
-            print(workout?.name)
-            print((workoutInstance?.exerciseInstances.firstObject as? ExerciseInstanceCD)?.name)
-            print(exercise?.instances.count)
-            
-            print(exerciseInstances.first?.sets.count)
-            print(exercises.first?.current1RM)
-            
-            print(exerciseManager?.exercises.count)
-            print(exerciseManager?.getExercise(index: 0)?.name)
-            exerciseManager?.swapExercises(x: 0, y: 1)
-            print(exerciseManager?.getExercise(index: 0)?.name)
-            
-            
-            print()
-            
+
+        
             
         } catch let error as NSError {
             print("Could not load \(error), \(error.userInfo)")
         }
     }
     
+    func deleteCoreData() {
+        deleteData("SetStatCD")
+        deleteData("ExerciseInstanceCD")
+        deleteData("ExerciseCD")
+        deleteData("ExerciseManagerCD")
+        deleteData("WorkoutInstanceCD")
+        deleteData("WorkoutCD")
+    }
+    
     //Erase all entities in CoreData
-    private func deleteAllData(_ entity:String) {
+    private func deleteData(_ entity:String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         fetchRequest.returnsObjectsAsFaults = false
         do {
@@ -189,6 +181,4 @@ class CoreDataManager{
             print("Detele all data in \(entity) error :", error)
         }
     }
-
-        
 }

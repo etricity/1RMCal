@@ -8,10 +8,10 @@
 
 import Foundation
 
-class ExerciseManagerCD {
+class ExerciseManager2 {
     
 }
 
-class WorkoutManagerCD {
+class WorkoutManager2 {
     
 }

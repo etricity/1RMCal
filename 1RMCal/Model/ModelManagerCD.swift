@@ -84,7 +84,8 @@ class ModelManager {
     // Workout Management Functions
     
     // add new workout
-    func addWorkout(name : String) {
+    func addWorkout(name : String) -> Bool {
+        var workoutAdded : Bool = false
         if let workouts = self.workouts {
             
             let workoutExists = workouts.contains { workout in
@@ -95,7 +96,9 @@ class ModelManager {
                 let newWorkout = model.createWorkout(name: name)
                 self.workouts!.append(newWorkout)
             }
+            workoutAdded = !workoutExists
         }
+        return workoutAdded
     }
     
     // Remove workout

@@ -73,7 +73,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     // Finished creating workout (confirm creation)
     @IBAction func confirmNewWorkout(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-        workoutsVC.addNewWorkout(newWorkout: workout)
+//        workoutsVC.addNewWorkout(newWorkout: workout)
     }
     
     

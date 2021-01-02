@@ -16,6 +16,11 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var history: UITableView!
     
     var workout : Workout!
+    var workoutCD : WorkoutCD!
+    var numCells : Int {
+        guard let instances = workoutCD.instances else {return 0}
+        return instances.count
+    }
     lazy var dataSource = WorkoutTableViewDelegate(parentVC: self)
     
     override func viewDidLoad() {
@@ -40,7 +45,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     // TableView functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workout.instances.count
+        return numCells
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,15 +53,15 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        let date = workout.instances[indexPath.row].date
-        cell.label.text = "\(dateFormatter.string(from: date))"
-        
-        if let day = date.dayOfWeek() {
-            cell.label.text?.append(" (\(day))")
+        if let instances = workoutCD.instances?.array as? [WorkoutInstanceCD] {
+            let date = instances[indexPath.row].date
+            cell.label.text = "\(dateFormatter.string(from: date))"
+            
+            if let day = date.dayOfWeek() {
+                cell.label.text?.append(" (\(day))")
+            }
         }
-        
-        
-
+    
         return cell
     }
     
@@ -105,7 +110,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? WorkoutHistoryViewController
-            vc?.workoutInstance = self.workout.instances[index]
+//            vc?.workoutInstance = self.workout.instances[index]
             break
         default:
             break

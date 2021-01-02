@@ -116,7 +116,8 @@ class CoreDataManager{
         let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! WorkoutCD
 
         workout.name = name
-        workout.workoutInstances = []
+        workout.instances = []
+        workout.exercises = []
         
         return workout
     }
@@ -134,12 +135,14 @@ class CoreDataManager{
         let workoutInstance = createWorkoutInstance(name: workout.name)
         let setStat = createSetStat(weight: 70, repCount: 12, unitString: Weight.kg.rawValue)
         
+        workout.addToExercises(exercise)
+        workout.addToExercises(exercise2)
         exerciseInstance.addToSets(set: setStat)
         exercise.addNewInstance(instance: exerciseInstance)
         workoutInstance.addToExerciseInstances(exerciseInstance)
 //        exerciseManager.addToExercises(exercise)
 //        exerciseManager.addToExercises(exercise2)
-        workout.addToWorkoutInstances(workoutInstance)
+        workout.addToInstances(workoutInstance)
         
         
         print(exerciseInstance.sets.count)
@@ -154,37 +157,36 @@ class CoreDataManager{
         }
     }
 
-    func loadData() {
+    func addTestData() {
         
-        //Requests for CurrentWeather, DailyWeather, WeeklyWeather
-        do {
-            
-            // Fetch Requests
-            let fectchRequestSS : NSFetchRequest<SetStatCD> = SetStatCD.fetchRequest()
-            let fectchRequestExIn : NSFetchRequest<ExerciseInstanceCD> = ExerciseInstanceCD.fetchRequest()
-            let fectchRequestEx : NSFetchRequest<ExerciseCD> = ExerciseCD.fetchRequest()
-            let fectchRequestWorkIn : NSFetchRequest<WorkoutInstanceCD> = WorkoutInstanceCD.fetchRequest()
-            let fectchRequestWork : NSFetchRequest<WorkoutCD> = WorkoutCD.fetchRequest()
-            
-            // Core Data Models
-            let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStatCD]
-            let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstanceCD]
-            let exercises = try managedContext.fetch(fectchRequestEx) as! [ExerciseCD]
-//            let exerciseManagers = try managedContext.fetch(fectchRequestExMan) as! [ExerciseManagerCD]
-            let workoutInstances = try managedContext.fetch(fectchRequestWorkIn) as! [WorkoutInstanceCD]
-            let workouts = try managedContext.fetch(fectchRequestWork) as! [WorkoutCD]
-            
-            // Extract neccessary elements
-            let workout = workouts.first
-            let workoutInstance = workoutInstances.first
-//            let exerciseManager = exerciseManagers.first
-            let exercise = exercises.first
-
+        deleteCoreData()
         
-            
-        } catch let error as NSError {
-            print("Could not load \(error), \(error.userInfo)")
-        }
+        let exercises = createWorkout(name: "Compound Movements")
+        
+        let benchPress = createExercise(name: "Bench Press")
+        let squat = createExercise(name: "Squat")
+        let deadlift = createExercise(name: "Deadlift")
+        
+        // create exercise instance
+        let benchInstance = createExerciseInstance(name: benchPress.name)
+        let set1 = createSetStat(weight: 100, repCount: 10, unitString: Weight.kg.rawValue)
+        let set2 = createSetStat(weight: 120, repCount: 8, unitString: Weight.kg.rawValue)
+        let set3 = createSetStat(weight: 135, repCount: 7, unitString: Weight.kg.rawValue)
+        
+        benchInstance.addToSets(set: set1)
+        benchInstance.addToSets(set: set2)
+        benchInstance.addToSets(set: set3)
+        
+        // create workoutInstance
+        let workoutInstance = createWorkoutInstance(name: exercises.name)
+        
+        //perform exercise instance
+        workoutInstance.addToExerciseInstances(benchInstance)
+        benchPress.addNewInstance(instance: benchInstance)
+        
+        exercises.addToInstances(workoutInstance)
+        
+        saveData()
     }
     
     func deleteCoreData() {

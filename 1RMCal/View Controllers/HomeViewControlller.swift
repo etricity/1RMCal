@@ -32,8 +32,7 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let modelManager = CoreDataManager.shared
-        modelManager.saveData()
-        modelManager.loadData()
+        modelManager.addTestData()
         
                 
     }

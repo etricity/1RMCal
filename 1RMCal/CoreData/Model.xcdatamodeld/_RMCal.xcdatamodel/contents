@@ -20,7 +20,8 @@
     </entity>
     <entity name="WorkoutCD" representedClassName="WorkoutCD" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="workoutInstances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WorkoutInstanceCD"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseCD"/>
+        <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WorkoutInstanceCD"/>
     </entity>
     <entity name="WorkoutInstanceCD" representedClassName="WorkoutInstanceCD" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -35,7 +36,7 @@
         <element name="ExerciseInstanceCD" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="88"/>
         <element name="ExerciseManagerCD" positionX="-28218.33166503906" positionY="-14359.13264465332" width="128" height="58"/>
         <element name="SetStatCD" positionX="-28014.72387695313" positionY="-13873.33982849121" width="128" height="74"/>
-        <element name="WorkoutCD" positionX="-28445.64788818359" positionY="-14160.0079498291" width="128" height="59"/>
+        <element name="WorkoutCD" positionX="-28445.64788818359" positionY="-14160.0079498291" width="128" height="74"/>
         <element name="WorkoutInstanceCD" positionX="-28458.23443603516" positionY="-14014.4794921875" width="128" height="88"/>
         <element name="WorkoutManagerCD" positionX="-28446.98571777344" positionY="-14233.89706420898" width="128" height="44"/>
     </elements>

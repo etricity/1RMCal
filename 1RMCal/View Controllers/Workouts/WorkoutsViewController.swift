@@ -11,11 +11,13 @@ import UIKit
 class WorkoutsViewController: UITableViewController {
     
     @IBOutlet var workoutsTableView: UITableView!
-    // View Model
-    var vm : WorkoutViewModel = WorkoutViewModel()
     var numCells : Int {
-        return vm.getWorkouts().count
+        guard let workouts = modelManager.workouts else { return 0 }
+        return workouts.count
     }
+    
+    let modelManager = ModelManager()
+    lazy var data : [WorkoutCD]? = modelManager.workouts
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,10 @@ class WorkoutsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath)  as! LabelCell
-        cell.label.text = vm.getWorkouts()[indexPath.row].name
+        
+        if let workout = modelManager.getWorkout(index: indexPath.row) {
+            cell.label.text = workout.name
+        }
         return cell
     }
     
@@ -48,10 +53,8 @@ class WorkoutsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            vm.removeWorkout(index: indexPath.row)
+            modelManager.removeWorkout(index: indexPath.row)
             workoutsTableView.reloadData()
-            
-            //Erase from Core Data
         }
     }
     
@@ -86,9 +89,9 @@ class WorkoutsViewController: UITableViewController {
     }
     
     // confirming new exercise in "New Exercise Alert"
-    func addNewWorkout(newWorkout : Workout) {
-        if self.vm.addWorkout(workout: newWorkout) {
-            //reload able
+    func addNewWorkout(name : String) {
+        if modelManager.addWorkout(name: name) {
+            //reload table
             self.workoutsTableView.reloadData()
         }
     }
@@ -109,7 +112,8 @@ class WorkoutsViewController: UITableViewController {
             case "goToWorkout":
                 let index = sender as! Int
                 let vc = segue.destination as? WorkoutViewController
-                vc?.workout = vm.getWorkout(index: index)
+                vc?.workout = Workout(name: "test")
+                vc?.workoutCD = modelManager.getWorkout(index: index)
             default:
                 break
         }

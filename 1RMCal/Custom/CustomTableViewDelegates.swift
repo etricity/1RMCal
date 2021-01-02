@@ -27,7 +27,7 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
     // This will be either a NewWorkoutController or a ExercisesController
     var parentVC : UIViewController & ExercisesView
     
-    init(data : [Exercise], parentVC : UIViewController & ExercisesView) {
+    init(parentVC : UIViewController & ExercisesView) {
         self.parentVC = parentVC
     }
     

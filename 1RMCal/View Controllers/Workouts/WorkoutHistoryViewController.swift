@@ -47,11 +47,10 @@ class WorkoutHistoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell") as! LabelCell
         let numInstances = instance.exerciseInstances.count
-        let exerciseInstance = instance.getExerciseInstance(index: numInstances - indexPath.section - 1)
         
-        if let set = exerciseInstance?.getSet(index: indexPath.row) {
-            cell.label.text = set.summary
-        }
+        guard let exerciseInstance = instance.getExerciseInstance(index: numInstances - indexPath.section - 1) else {return cell}
+        guard let set = exerciseInstance.getSet(index: indexPath.row) else {return cell}
+        cell.label.text = set.summary
         return cell
     }
 }

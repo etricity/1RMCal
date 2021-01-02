@@ -17,7 +17,6 @@ class WorkoutsViewController: UITableViewController {
     }
     
     let modelManager = ModelManager()
-    lazy var data : [WorkoutCD]? = modelManager.workouts
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +104,6 @@ class WorkoutsViewController: UITableViewController {
             case "newWorkout":
                 let workoutName = sender as! String
                 let vc = segue.destination as? NewWorkoutViewController
-                vc?.workout = Workout(name: workoutName)
                 vc?.title = workoutName
                 vc?.workoutsVC = self
             // Going to existing workout

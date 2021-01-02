@@ -52,17 +52,6 @@ class ModelManager {
         }
     }
     
-    // swap exercises
-    func swapExercises(x : Int, y : Int) {
-        
-        if let exercises = self.exercises {
-            let validIndices = 0...exercises.count - 1
-            if validIndices.contains(x) && validIndices.contains(y) {
-                self.exercises!.swapAt(x, y)
-            }
-        }
-    }
-    
     // get exercise by index
     func getExercise(index : Int) -> ExerciseCD? {
         

@@ -22,6 +22,7 @@ public class WorkoutCD: NSManagedObject {
         return exercise
     }
     
+    
     func getInstance(index : Int) -> WorkoutInstanceCD? {
         var instance : WorkoutInstanceCD? = nil
         let instances = self.instances.array as! [WorkoutInstanceCD]

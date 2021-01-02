@@ -17,7 +17,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     var workout : Workout!
     
     var vm : ExerciseViewModel = ExerciseViewModel()
-    lazy var dataSource = ExerciseTableViewDelegate(data: vm.getExercises(), parentVC: self)
+    lazy var dataSource = ExerciseTableViewDelegate(parentVC: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()

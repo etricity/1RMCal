@@ -12,7 +12,6 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     
 
     // View Connections
-    var workout = Workout(name: "test")
     @IBOutlet weak var workoutLayout: UITableView!
     @IBOutlet weak var history: UITableView!
     var workoutCD : WorkoutCD!
@@ -89,6 +88,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         performSegue(withIdentifier: "performWorkout", sender: nil)
     }
     
+    //TODO
     func addWorkoutInstance(newInstance: WorkoutInstance) {
 //        self.workout.addWorkoutInstance(newWorkout: newInstance)
         history.reloadData()

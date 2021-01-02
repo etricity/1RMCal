@@ -18,7 +18,7 @@ extension WorkoutInstanceCD {
 
     @NSManaged public var date: Date
     @NSManaged public var name: String
-    @NSManaged public var exerciseInstances: NSMutableOrderedSet
+    @NSManaged public var exerciseInstances: NSOrderedSet
 
 }
 

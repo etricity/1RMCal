@@ -72,8 +72,6 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            
-            let instanceToDelete = workoutCD.getInstance(index: indexPath.row)
             workoutCD.removeInstance(index: indexPath.row)
             history.reloadData()
         }
@@ -109,7 +107,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? WorkoutHistoryViewController
-//            vc?.workoutInstance = self.workout.instances[index]
+            vc?.instance = workoutCD.getInstance(index: index)
             break
         default:
             break

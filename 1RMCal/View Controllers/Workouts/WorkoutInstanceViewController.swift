@@ -11,7 +11,7 @@ import UIKit
 class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCreator {
 
     var parentVC : WorkoutViewController!
-    var workoutInstance : WorkoutInstance = WorkoutInstance()
+    lazy var instance : WorkoutInstanceCD = CoreDataManager.shared.createWorkoutInstance(name: parentVC.workoutCD.name)
     var currentExerciseIndex : Int = 0
     
     override func viewDidLoad() {
@@ -27,15 +27,16 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return parentVC.workout.exercises.count
+        return parentVC.workoutCD.exercises.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath)  as! LabelCell
 
-        cell.label.text = parentVC.workout.exercises[indexPath.row].name
-
+        if let exercise = parentVC.workoutCD.getExercise(index: indexPath.row) {
+            cell.label.text = exercise.name
+        }
         return cell
     }
     
@@ -58,13 +59,13 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     
     // called from ExerciseInstanceController
     func addInstance(newInstance: ExerciseInstance) {
-        parentVC.workout.exercises[currentExerciseIndex].addInstance(newInstance: newInstance)
-        workoutInstance.addInstance(newInstance: newInstance)
+//        parentVC.workout.exercises[currentExerciseIndex].addInstance(newInstance: newInstance)
+//        workoutInstance.addInstance(newInstance: newInstance)
     }
     
     @IBAction func finishWorkout(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-        parentVC.addWorkoutInstance(newInstance: workoutInstance)
+        parentVC.workoutCD.addInstance(instance: instance)
     }
     
     
@@ -73,10 +74,12 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     {
         let vc = segue.destination as? ExerciseInstanceViewController
         let index = sender as! Int
-        let exerciseName = parentVC.workout.exercises[index].name
-        vc?.title = exerciseName
-        vc?.bestSetText = self.parentVC.workout.exercises[index].bestSet?.summary ?? "N/A"
-        vc?.exerciseInstance = ExerciseInstance(name: exerciseName)
-        vc?.parentVC = self
+        
+        if let exercise = parentVC.workoutCD.getExercise(index: index) {
+            vc?.title = exercise.name
+            vc?.bestSetText = exercise.bestSet?.summary ?? "N/A"
+//            vc?.exerciseInstance = ExerciseInstance(name: exercise.name)
+            vc?.parentVC = self
+        }
     }
 }

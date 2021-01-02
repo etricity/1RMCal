@@ -21,4 +21,13 @@ public class ExerciseInstanceCD: NSManagedObject {
         self.sets.add(set)
     }
     
+    func getSet(index : Int) -> SetStatCD? {
+        var set : SetStatCD? = nil
+        let sets = self.sets.array as! [SetStatCD]
+        if sets.indices.contains(index) {
+            set = sets[index]
+        }
+        return set
+    }
+    
 }

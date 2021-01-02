@@ -11,7 +11,7 @@ import UIKit
 class WorkoutHistoryViewController: UITableViewController {
     
     // Workout Instance the history data comes from
-    var workoutInstance : WorkoutInstance!
+    var instance : WorkoutInstanceCD!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,23 +23,35 @@ class WorkoutHistoryViewController: UITableViewController {
     
     // Table View Functions
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return workoutInstance.exerciseInstances.count
+        return instance.exerciseInstances.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let numInstances = workoutInstance.exerciseInstances.count
-        return workoutInstance.exerciseInstances[numInstances - section - 1].name
+        var exerciseName : String? = nil
+        
+        let numInstances = instance.exerciseInstances.count
+        if let exerciseInstance = instance.getExerciseInstance(index: numInstances - section - 1) {
+            exerciseName = exerciseInstance.name
+        }
+        return exerciseName
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workoutInstance.exerciseInstances[section].sets.count
+        var numSets : Int = 0
+        if let exerciseInstance = instance.getExerciseInstance(index: section) {
+            numSets = exerciseInstance.sets.count
+        }
+        return numSets
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell") as! LabelCell
-        let numInstances = workoutInstance.exerciseInstances.count
-        let exerciseInstance = workoutInstance.exerciseInstances[numInstances - indexPath.section - 1]
-        cell.label.text = "\(exerciseInstance.sets[indexPath.row].summary)"
+        let numInstances = instance.exerciseInstances.count
+        let exerciseInstance = instance.getExerciseInstance(index: numInstances - indexPath.section - 1)
+        
+        if let set = exerciseInstance?.getSet(index: indexPath.row) {
+            cell.label.text = set.summary
+        }
         return cell
     }
 }

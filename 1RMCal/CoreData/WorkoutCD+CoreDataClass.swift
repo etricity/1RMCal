@@ -32,6 +32,10 @@ public class WorkoutCD: NSManagedObject {
         return instance
     }
     
+    func addInstance(instance : WorkoutInstanceCD) {
+        self.insertIntoInstances(instance, at: 0)
+    }
+    
     func removeInstance(index : Int) {
         
         let instanceToRemove = self.getInstance(index: index)

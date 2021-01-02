@@ -25,8 +25,38 @@ class CoreDataManager{
         managedContext = appDelegate.persistentContainer.viewContext
     }
     
+    // Model Getters
+    
+    // Get all workouts
+    func getWorkouts() -> [WorkoutCD]? {
+        var workouts : [WorkoutCD]? = nil
+        do {
+            let fectchRequest : NSFetchRequest<WorkoutCD> = WorkoutCD.fetchRequest()
+            workouts = try managedContext.fetch(fectchRequest)
+        } catch let error as NSError {
+            print("Could not load \(error), \(error.userInfo)")
+        }
+        return workouts
+    }
+    
+    // Get workouts exercises
+    func getExercises() -> [ExerciseCD]? {
+        var exercises : [ExerciseCD]? = nil
+        do {
+            let fectchRequest : NSFetchRequest<ExerciseCD> = ExerciseCD.fetchRequest()
+            exercises = try managedContext.fetch(fectchRequest)
+        } catch let error as NSError {
+            print("Could not load \(error), \(error.userInfo)")
+        }
+        return exercises
+    }
+    
+    
+    
+    // Core Data Entity Creation
+    
     //Create SetStat
-    private func createSetStat(weight : Double, repCount : Double, unitString : String) -> SetStatCD {
+    func createSetStat(weight : Double, repCount : Double, unitString : String) -> SetStatCD {
         let setStatEntity = NSEntityDescription.entity(forEntityName: "SetStatCD", in: managedContext)!
         let setStat = NSManagedObject(entity: setStatEntity, insertInto: managedContext) as! SetStatCD
 
@@ -38,7 +68,7 @@ class CoreDataManager{
     }
     
     //Create ExerciseInstance
-    private func createExerciseInstance(name : String) -> ExerciseInstanceCD {
+    func createExerciseInstance(name : String) -> ExerciseInstanceCD {
         let exerciseInstanceEntity = NSEntityDescription.entity(forEntityName: "ExerciseInstanceCD", in: managedContext)!
         let exerciseInstance = NSManagedObject(entity: exerciseInstanceEntity, insertInto: managedContext) as! ExerciseInstanceCD
 
@@ -50,7 +80,7 @@ class CoreDataManager{
     }
     
     //Create Exercise
-    private func createExercise(name : String) -> ExerciseCD {
+    func createExercise(name : String) -> ExerciseCD {
         let exerciseEntity = NSEntityDescription.entity(forEntityName: "ExerciseCD", in: managedContext)!
         let exercise = NSManagedObject(entity: exerciseEntity, insertInto: managedContext) as! ExerciseCD
 
@@ -61,7 +91,7 @@ class CoreDataManager{
     }
     
     //Create ExerciseManager
-    private func createExerciseManager() -> ExerciseManagerCD {
+    func createExerciseManager() -> ExerciseManagerCD {
         let exerciseManagerEntity = NSEntityDescription.entity(forEntityName: "ExerciseManagerCD", in: managedContext)!
         let exerciseManager = NSManagedObject(entity: exerciseManagerEntity, insertInto: managedContext) as! ExerciseManagerCD
 
@@ -69,7 +99,7 @@ class CoreDataManager{
     }
     
     //Create WorkoutInstance
-    private func createWorkoutInstance(name : String) -> WorkoutInstanceCD {
+    func createWorkoutInstance(name : String) -> WorkoutInstanceCD {
         let workoutInstanceEntity = NSEntityDescription.entity(forEntityName: "WorkoutInstanceCD", in: managedContext)!
         let workoutInstance = NSManagedObject(entity: workoutInstanceEntity, insertInto: managedContext) as! WorkoutInstanceCD
 
@@ -81,13 +111,12 @@ class CoreDataManager{
     }
     
     //Create Workout
-    private func createWorkout(name : String) -> WorkoutCD {
+    func createWorkout(name : String) -> WorkoutCD {
         let workoutEntity = NSEntityDescription.entity(forEntityName: "WorkoutCD", in: managedContext)!
         let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! WorkoutCD
 
         workout.name = name
         workout.workoutInstances = []
-        workout.date = Date()
         
         return workout
     }

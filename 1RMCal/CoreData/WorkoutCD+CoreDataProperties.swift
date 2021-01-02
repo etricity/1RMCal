@@ -16,7 +16,6 @@ extension WorkoutCD {
         return NSFetchRequest<WorkoutCD>(entityName: "WorkoutCD")
     }
 
-    @NSManaged public var date: Date
     @NSManaged public var name: String
     @NSManaged public var workoutInstances: NSMutableOrderedSet?
 

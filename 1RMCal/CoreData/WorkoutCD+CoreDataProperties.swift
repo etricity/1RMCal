@@ -17,8 +17,8 @@ extension WorkoutCD {
     }
 
     @NSManaged public var name: String
-    @NSManaged public var instances: NSOrderedSet?
-    @NSManaged public var exercises: NSOrderedSet?
+    @NSManaged public var instances: NSOrderedSet
+    @NSManaged public var exercises: NSOrderedSet
 
 }
 

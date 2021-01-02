@@ -12,13 +12,12 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     
 
     // View Connections
+    var workout = Workout(name: "test")
     @IBOutlet weak var workoutLayout: UITableView!
     @IBOutlet weak var history: UITableView!
-    
-    var workout : Workout!
     var workoutCD : WorkoutCD!
     var numCells : Int {
-        guard let instances = workoutCD.instances else {return 0}
+        let instances = workoutCD.instances
         return instances.count
     }
     lazy var dataSource = WorkoutTableViewDelegate(parentVC: self)
@@ -26,7 +25,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = workout.name
+        self.title = workoutCD.name
         
         workoutLayout.delegate = dataSource
         workoutLayout.dataSource = dataSource
@@ -53,7 +52,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        if let instances = workoutCD.instances?.array as? [WorkoutInstanceCD] {
+        if let instances = workoutCD.instances.array as? [WorkoutInstanceCD] {
             let date = instances[indexPath.row].date
             cell.label.text = "\(dateFormatter.string(from: date))"
             
@@ -73,7 +72,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            workout.removeInstance(index: indexPath.row)
+            workoutCD.removeInstance(index: indexPath.row)
             history.reloadData()
             
             //Erase from core data
@@ -93,7 +92,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func addWorkoutInstance(newInstance: WorkoutInstance) {
-        self.workout.addWorkoutInstance(newWorkout: newInstance)
+//        self.workout.addWorkoutInstance(newWorkout: newInstance)
         history.reloadData()
     }
     
@@ -106,7 +105,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         case "performWorkout":
             let vc = segue.destination as? WorkoutInstanceViewController
             vc?.parentVC = self
-            vc?.title = self.workout.name
+            vc?.title = self.workoutCD.name
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? WorkoutHistoryViewController

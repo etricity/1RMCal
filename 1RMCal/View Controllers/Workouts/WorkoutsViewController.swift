@@ -112,7 +112,6 @@ class WorkoutsViewController: UITableViewController {
             case "goToWorkout":
                 let index = sender as! Int
                 let vc = segue.destination as? WorkoutViewController
-                vc?.workout = Workout(name: "test")
                 vc?.workoutCD = modelManager.getWorkout(index: index)
             default:
                 break

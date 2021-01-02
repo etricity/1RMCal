@@ -92,7 +92,7 @@ class WorkoutTableViewDelegate : NSObject, UITableViewDelegate, UITableViewDataS
     
     var parentVC : WorkoutViewController
     var numCells : Int {
-        return parentVC.workoutCD.exercises?.count ?? 0
+        return parentVC.workoutCD.exercises.count
     }
     
 

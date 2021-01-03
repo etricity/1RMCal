@@ -1,6 +1,6 @@
 //
 //  ExerciseInstanceCD+CoreDataClass.swift
-//  
+//
 //
 //  Created by Isaiah Cuzzupe on 31/12/20.
 //
@@ -18,7 +18,7 @@ public class ExerciseInstanceCD: NSManagedObject {
     }
     
     func addToSets(set : SetStatCD) {
-        self.sets.add(set)
+        self.addToSets(set)
     }
     
 }

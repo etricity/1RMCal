@@ -60,14 +60,7 @@ class CoreDataManager{
         return exercise
     }
     
-    //Create ExerciseManager
-    private func createExerciseManager() -> ExerciseManagerCD {
-        let exerciseManagerEntity = NSEntityDescription.entity(forEntityName: "ExerciseManagerCD", in: managedContext)!
-        let exerciseManager = NSManagedObject(entity: exerciseManagerEntity, insertInto: managedContext) as! ExerciseManagerCD
 
-        return exerciseManager
-    }
-    
     //Create WorkoutInstance
     private func createWorkoutInstance(name : String) -> WorkoutInstanceCD {
         let workoutInstanceEntity = NSEntityDescription.entity(forEntityName: "WorkoutInstanceCD", in: managedContext)!
@@ -86,7 +79,7 @@ class CoreDataManager{
         let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! WorkoutCD
 
         workout.name = name
-        workout.workoutInstances = []
+        workout.instances = []
         workout.date = Date()
         
         return workout
@@ -105,16 +98,6 @@ class CoreDataManager{
         let workoutInstance = createWorkoutInstance(name: workout.name)
         let setStat = createSetStat(weight: 70, repCount: 12, unitString: Weight.kg.rawValue)
         
-        exerciseInstance.addToSets(set: setStat)
-        exercise.addNewInstance(instance: exerciseInstance)
-        workoutInstance.addToExerciseInstances(exerciseInstance)
-//        exerciseManager.addToExercises(exercise)
-//        exerciseManager.addToExercises(exercise2)
-        workout.addToWorkoutInstances(workoutInstance)
-        
-        
-        print(exerciseInstance.sets.count)
-        print(exercise.current1RM)
         
         
         //Save to CoreData

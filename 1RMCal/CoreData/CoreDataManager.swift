@@ -111,11 +111,12 @@ class CoreDataManager{
     }
     
     //Create Workout
-    func createWorkout(name : String) -> WorkoutCD {
+    func createWorkout(tempWorkout : WorkoutTemp) -> WorkoutCD {
         let workoutEntity = NSEntityDescription.entity(forEntityName: "WorkoutCD", in: managedContext)!
         let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! WorkoutCD
 
-        workout.name = name
+        workout.name = tempWorkout.name
+        workout.exercises = NSOrderedSet(array: tempWorkout.exercises)
         workout.instances = []
         
         return workout
@@ -138,7 +139,7 @@ class CoreDataManager{
         if addData {
             deleteCoreData()
             
-            let exercises = createWorkout(name: "Compound Movements")
+            let exercises = createWorkout(tempWorkout: WorkoutTemp(name: "Compound Movements"))
             
             let benchPress = createExercise(name: "Bench Press")
             let squat = createExercise(name: "Squat")
@@ -162,6 +163,11 @@ class CoreDataManager{
             benchPress.addNewInstance(instance: benchInstance)
             
             exercises.addToInstances(workoutInstance)
+            
+            let exerciseManager = createExerciseManager()
+            exerciseManager.addToExercises(benchPress)
+            exerciseManager.addToExercises(squat)
+            exerciseManager.addToExercises(deadlift)
             
             saveData()
         }

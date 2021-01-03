@@ -22,7 +22,6 @@ public class WorkoutCD: NSManagedObject {
         return exercise
     }
     
-    
     func getInstance(index : Int) -> WorkoutInstanceCD? {
         var instance : WorkoutInstanceCD? = nil
         let instances = self.instances.array as! [WorkoutInstanceCD]
@@ -42,10 +41,21 @@ public class WorkoutCD: NSManagedObject {
         let instanceToRemove = self.getInstance(index: index)
         
         if instanceToRemove != nil {
-            let instanceToRemove = self.getInstance(index: index)
             self.removeFromInstances(at: index)
             let cd = CoreDataManager.shared
             cd.managedContext.delete(instanceToRemove!)
+            cd.saveData()
+        }
+    }
+    
+    func removeExercise(index : Int) {
+        
+        let exerciseToRemove = self.getExercise(index: index)
+        
+        if exerciseToRemove != nil {
+            self.removeFromExercises(at: index)
+            let cd = CoreDataManager.shared
+            cd.managedContext.delete(exerciseToRemove!)
             cd.saveData()
         }
     }

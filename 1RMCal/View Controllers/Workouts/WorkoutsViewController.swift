@@ -33,6 +33,7 @@ class WorkoutsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        
         return numCells
     }
 
@@ -52,7 +53,9 @@ class WorkoutsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            modelManager.removeWorkout(index: indexPath.row)
+            if let workoutToRemove = modelManager.getWorkout(index: indexPath.row) {
+                modelManager.removeWorkout(workout: workoutToRemove)
+            }
             workoutsTableView.reloadData()
         }
     }
@@ -78,7 +81,9 @@ class WorkoutsViewController: UITableViewController {
             // add exercise to tableview
             if let newWorkout = alert.textFields![0].text {
                 //perform segue
-                self.performSegue(withIdentifier: "newWorkout", sender: newWorkout) //executing the segue on cancel
+                if !self.modelManager.workoutExists(name: newWorkout) {
+                    self.performSegue(withIdentifier: "newWorkout", sender: newWorkout) //executing the segue on cancel
+                }
             }
         } ))
         // cancel action
@@ -88,11 +93,9 @@ class WorkoutsViewController: UITableViewController {
     }
     
     // confirming new exercise in "New Exercise Alert"
-    func addNewWorkout(name : String) {
-        if modelManager.addWorkout(name: name) {
-            //reload table
-            self.workoutsTableView.reloadData()
-        }
+    func addNewWorkout(workout : WorkoutTemp) {
+        modelManager.model.createWorkout(tempWorkout : workout)
+        self.workoutsTableView.reloadData()
     }
     
     // Segue Functions
@@ -106,6 +109,8 @@ class WorkoutsViewController: UITableViewController {
                 let vc = segue.destination as? NewWorkoutViewController
                 vc?.title = workoutName
                 vc?.workoutsVC = self
+                vc?.workout = WorkoutTemp(name: workoutName)
+                vc?.allExercises = modelManager.exercises
             // Going to existing workout
             case "goToWorkout":
                 let index = sender as! Int

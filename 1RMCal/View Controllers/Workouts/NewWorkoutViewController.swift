@@ -14,7 +14,8 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var workoutLayout: UITableView!
     
     var workoutsVC : WorkoutsViewController!
-    var workout : Workout!
+    var workout : WorkoutTemp!
+    var allExercises : [ExerciseCD]!
     
     var vm : ExerciseViewModel = ExerciseViewModel()
     lazy var dataSource = ExerciseTableViewDelegate(parentVC: self)
@@ -46,13 +47,17 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutLayoutCell", for: indexPath) as! LabelCell
-        cell.label.text = workout.exercises[indexPath.row].name
+        
+        if let exercise = workout.getExercise(index: indexPath.row) {
+            cell.label.text = exercise.name
+        }
         return cell
    }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         workout.swapExercises(x: sourceIndexPath.row, y: destinationIndexPath.row)
     }
@@ -73,7 +78,8 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     // Finished creating workout (confirm creation)
     @IBAction func confirmNewWorkout(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-//        workoutsVC.addNewWorkout(newWorkout: workout)
+        // workout has already been created
+        workoutsVC.addNewWorkout(workout: workout)
     }
     
     
@@ -108,8 +114,11 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     @objc func addExerciseToWorkout(_ notification:Notification) {
         print("working")
         let index = notification.userInfo?["index"] as! Int
-        workout.addExercise(exercise: vm.getExercises()[index])
-        workoutLayout.reloadData()
+        
+        if allExercises.indices.contains(index) {
+            workout.addExercise(exercise: allExercises[index])
+            workoutLayout.reloadData()
+        }
     }
     
     // Toggle sorting / viewing mode for workout layout

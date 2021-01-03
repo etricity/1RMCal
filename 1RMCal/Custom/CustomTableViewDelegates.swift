@@ -24,15 +24,14 @@ import UIKit
 
 class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
         
-    // This will be either a NewWorkoutController or a ExercisesController
-    var parentVC : UIViewController & ExercisesView
+    var parentVC : NewWorkoutViewController
     
-    init(parentVC : UIViewController & ExercisesView) {
+    init(parentVC : NewWorkoutViewController) {
         self.parentVC = parentVC
     }
     
     var numCells : Int {
-        return parentVC.vm.getExercises().count
+        return parentVC.allExercises.count
     }
     
     // MARK: - Table view data source
@@ -49,7 +48,10 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-        cell.label.text = parentVC.vm.getExercises()[indexPath.row].name
+       
+        if parentVC.allExercises.indices.contains(indexPath.row) {
+            cell.label.text = parentVC.allExercises[indexPath.row].name
+        }
         return cell
     }
 
@@ -57,18 +59,6 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
             return false
     }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-       
-        // Editing enabled for Exercise View Controler only
-        if (editingStyle == .delete) && ((parentVC as? ExercisesViewController) != nil) {
-            // handle delete (by removing the data from your array and updating the tableview)
-            parentVC.vm.removeExercise(index: indexPath.row)
-            tableView.reloadData()
-        }
-    }
-
-
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

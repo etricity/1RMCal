@@ -89,6 +89,7 @@ enum ObjectSavableError: String, LocalizedError {
 
 extension Notification.Name {
     static let addExerciseToWorkout = Notification.Name("addExerciseToWorkout")
+    static let saveData = Notification.Name("saveData")
 }
 
 extension Date {

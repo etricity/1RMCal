@@ -12,7 +12,7 @@ class SetHistoryViewController: UITableViewController {
 
     var exerciseVC : ExerciseViewController!
     
-    var exerciseInstance : ExerciseInstance!
+    var instance : ExerciseInstanceCD!
     
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class SetHistoryViewController: UITableViewController {
     // TableView functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return exerciseInstance.sets.count
+        return instance.sets.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -39,11 +39,13 @@ class SetHistoryViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell", for: indexPath) as! LabelCell
         cell.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         
-        if exerciseInstance.sets.indices.contains(indexPath.row) {
-            let setStat : SetStat = exerciseInstance.sets[indexPath.row]
-            cell.label.text = setStat.summary
+        let validIndices = (0...instance.sets.count - 1)
+        
+        if validIndices.contains(indexPath.row) {
+            cell.label.text = instance.getSet(index: indexPath.row)?.summary
             cell.label.textColor = .gray
         }
+
         return cell
     }
 }

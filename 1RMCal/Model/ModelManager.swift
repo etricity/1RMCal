@@ -67,6 +67,11 @@ class ModelManager {
         return exercise
     }
     
+    func removeExercise(exercise : ExerciseCD) {
+        model.managedContext.delete(exercise)
+        model.saveData()
+    }
+    
     
     
     // Workout Management Functions

@@ -16,13 +16,12 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var current1RM: UILabel!
     var bestSetText : String = ""
     
-    //History Data
-    var exerciseInstance : ExerciseInstance!
+    var instance : ExerciseInstance!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         // Delegation
         self.setsTableView.delegate = self
         self.setsTableView.dataSource = self
@@ -43,8 +42,8 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     @IBAction func finishExercise(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         // ensures instance is only added if a set if performed
-        if !exerciseInstance.sets.isEmpty {
-            parentVC.addInstance(newInstance: exerciseInstance)
+        if !instance.sets.isEmpty {
+            parentVC.addInstance(newInstance: instance)
         }
     }
     
@@ -52,7 +51,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     // TableView functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var numSets = exerciseInstance.sets.count
+        var numSets = instance.sets.count
         numSets += 1
         return numSets
     }
@@ -62,8 +61,8 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! LabelCell
         cell.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         
-        if exerciseInstance.sets.indices.contains(indexPath.row) {
-            let setStat : SetStat = exerciseInstance.sets[indexPath.row]
+        if instance.sets.indices.contains(indexPath.row) {
+            let setStat : SetStat = instance.sets[indexPath.row]
             cell.label.text = setStat.summary
             cell.label.textColor = .white
         } else {
@@ -75,7 +74,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     // Perform a set
     func addSet(newSet : SetStat) {
-        exerciseInstance.addSet(newSet: newSet)
+        instance.addSet(newSet: newSet)
         setsTableView.reloadData()
     }
     

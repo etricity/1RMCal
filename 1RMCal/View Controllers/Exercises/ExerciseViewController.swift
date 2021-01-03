@@ -9,16 +9,17 @@
 import UIKit
 
 class ExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExerciseInstanceCreator {
-
+    
     
     //View connections
     @IBOutlet weak var current1RM: UILabel!
     @IBOutlet weak var history: UITableView!
     
     // Model Data
-    var exercise : Exercise!
+    var exerciseCD : ExerciseCD!
     var numCells : Int {
-        return exercise.instances.count
+        let instances = exerciseCD.instances
+        return instances.count
     }
     
     
@@ -34,15 +35,15 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func initView() {
-        self.title = exercise.name
+        self.title = exerciseCD.name
         history.tableFooterView = UIView()
-        current1RM.text = exercise.bestSet?.summary ?? "N/A"
+        current1RM.text = exerciseCD.bestSet?.summary ?? "N/A"
     }
     
     
     // TableView functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exercise.instances.count
+        return numCells
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,9 +51,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        let instance = exercise.instances[indexPath.row]
-        cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
-
+        if let instance = exerciseCD.getInstance(index: indexPath.row) {
+            cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
+        }
         return cell
     }
     
@@ -64,7 +65,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            exercise.removeInstance(index: indexPath.row)
+            exerciseCD.removeInstance(index: indexPath.row)
             history.reloadData()
             
             //Erase from core data
@@ -78,9 +79,8 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    // Perform exercise
-    func addInstance(newInstance : ExerciseInstance) {
-        exercise.addInstance(newInstance: newInstance)
+    func addInstance(newInstance: ExerciseInstance) {
+        exerciseCD.addInstance(instance: newInstance)
         history.reloadData()
     }
     
@@ -92,13 +92,13 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
             vc?.bestSetText = self.current1RM.text ?? "N/A"
-            vc?.exerciseInstance = ExerciseInstance(name: exercise.name)
             vc?.parentVC = self
+            vc?.instance = ExerciseInstance(name: self.title ?? "")
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? SetHistoryViewController
             vc?.title = self.title
-            vc?.exerciseInstance = exercise.instances[index]
+            vc?.instance = exerciseCD.getInstance(index: index)
         default:
             break
         }

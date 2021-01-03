@@ -23,9 +23,13 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
     // View Model
     var vm : ExerciseViewModel = ExerciseViewModel()
     
+    // Connection to model
+    let modelManager = ModelManager()
+    
     // Number of cells for exercise table view
     var numCells : Int {
-        return vm.getExercises().count
+        guard let exercises = modelManager.exercises else { return 0 }
+        return exercises.count
     }
 
     override func viewDidLoad() {
@@ -80,20 +84,22 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-        cell.label.text = vm.getExercises()[indexPath.row].name
+        
+        if let exercise = modelManager.getExercise(index: indexPath.row) {
+            cell.label.text = exercise.name
+        }
         return cell
     }
-        
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-       
         if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
-            vm.removeExercise(index: indexPath.row)
-            tableView.reloadData()
-            
-            //Erase from Core Data
+            // delete workout & update Table
+            if let exerciseToRemove = modelManager.getExercise(index: indexPath.row) {
+                modelManager.removeExercise(exercise : exerciseToRemove)
+                exercisesTableView.reloadData()
+            }
         }
-     }
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
@@ -109,7 +115,7 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
         case "goToExercise":
             let index = sender as! Int
             let vc = segue.destination as? ExerciseViewController
-            vc?.exercise = vm.getExercise(index: index)
+            vc?.exerciseCD = modelManager.getExercise(index: index)
         default:
             break
 

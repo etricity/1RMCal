@@ -16,6 +16,7 @@ class WorkoutsViewController: UITableViewController {
         return workouts.count
     }
     
+    // Connection to model
     let modelManager = ModelManager()
 
     override func viewDidLoad() {
@@ -52,22 +53,23 @@ class WorkoutsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
+            // delete workout & update Table
             if let workoutToRemove = modelManager.getWorkout(index: indexPath.row) {
                 modelManager.removeWorkout(workout: workoutToRemove)
+                workoutsTableView.reloadData()
             }
-            workoutsTableView.reloadData()
         }
     }
     
+    // // Go to workout
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
-        // Go to clicked workout
+
         performSegue(withIdentifier: "goToWorkout", sender: index)
         
     }
     
-    // Create new Exercise
+    // Alert to create new workout
     @IBAction func newWorkout(_ sender: Any) {
         //confirm new exercise
         let alert = UIAlertController(title: "New Workout", message: "", preferredStyle: .alert)
@@ -76,9 +78,9 @@ class WorkoutsViewController: UITableViewController {
         }
 
 
-        //confirm new exercise
+        //confirm new workout
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
-            // add exercise to tableview
+            // IF name is entered & valid --> Go to NewWorkoutViewController
             if let newWorkout = alert.textFields![0].text {
                 //perform segue
                 if !self.modelManager.workoutExists(name: newWorkout) {
@@ -92,7 +94,7 @@ class WorkoutsViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    // confirming new exercise in "New Exercise Alert"
+    // Confirmation of new workout (added to core data)
     func addNewWorkout(workout : WorkoutTemp) {
         modelManager.model.createWorkout(tempWorkout : workout)
         self.workoutsTableView.reloadData()
@@ -108,7 +110,7 @@ class WorkoutsViewController: UITableViewController {
                 let workoutName = sender as! String
                 let vc = segue.destination as? NewWorkoutViewController
                 vc?.title = workoutName
-                vc?.workoutsVC = self
+                vc?.parentVC = self
                 vc?.workout = WorkoutTemp(name: workoutName)
                 vc?.allExercises = modelManager.exercises
             // Going to existing workout

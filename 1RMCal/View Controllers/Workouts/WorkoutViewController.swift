@@ -70,7 +70,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     // Delete table cell
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
+            // delete instance from core data
             workoutCD.removeInstance(index: indexPath.row)
             history.reloadData()
         }
@@ -78,9 +78,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
-        
         performSegue(withIdentifier: "viewHistory", sender: index)
-        
     }
     
     
@@ -97,8 +95,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        
+    { 
         switch segue.identifier {
         case "performWorkout":
             let vc = segue.destination as? WorkoutInstanceViewController

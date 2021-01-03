@@ -13,8 +13,11 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var exercisesTableView: UITableView!
     @IBOutlet weak var workoutLayout: UITableView!
     
-    var workoutsVC : WorkoutsViewController!
+    // Workouts vc
+    var parentVC : WorkoutsViewController!
+    // A Temp strucutre is used to model a workout --> only when user confirms workout is the core data model created
     var workout : WorkoutTemp!
+    // all exercises added to app (core data exercises)
     var allExercises : [ExerciseCD]!
     
     var vm : ExerciseViewModel = ExerciseViewModel()
@@ -22,7 +25,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+
         // Add notification observer
         NotificationCenter.default.addObserver(self, selector: #selector(addExerciseToWorkout(_:)), name: .addExerciseToWorkout, object: nil)
         
@@ -79,7 +82,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func confirmNewWorkout(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         // workout has already been created
-        workoutsVC.addNewWorkout(workout: workout)
+        parentVC.addNewWorkout(workout: workout)
     }
     
     

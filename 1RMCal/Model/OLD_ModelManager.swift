@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Workout : ExerciseManager {
+class Workout : ExerciseManagerOLD {
     private (set) var name : String
     
     init(name : String,test : Bool = false){
@@ -36,7 +36,7 @@ class Workout : ExerciseManager {
 }
 
 // Managers all exercises
-class ExerciseManager {
+class ExerciseManagerOLD {
     private (set) var exercises : [Exercise] = []
     
     // test purposes only

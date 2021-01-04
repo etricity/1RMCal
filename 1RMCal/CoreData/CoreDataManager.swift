@@ -73,6 +73,7 @@ class CoreDataManager{
             set.exerciseInstance = exerciseInstance
             exerciseInstance.addToSets(set)
         }
+        exerciseInstance.exercise = nil
         exerciseInstance.date = Date()
 
         
@@ -158,7 +159,7 @@ class CoreDataManager{
         //Requests for CurrentWeather, DailyWeather, WeeklyWeather
         do {
             
-            let exercise = createExercise(name: "Compound Movements")
+            let exercise = createExercise(name: "Bench Press")
             self.saveData()
             
         } catch let error as NSError {

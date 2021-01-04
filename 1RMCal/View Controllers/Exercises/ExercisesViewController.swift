@@ -21,7 +21,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     @IBOutlet var exercisesTableView: UITableView!
     
     // Model Manager
-    let modelManager = ModelManager1()
+    let modelManager = ExerciseManager()
     var exercises : [Exercise]? {
         return modelManager.exercises
     }

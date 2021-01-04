@@ -12,7 +12,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
 
     @IBOutlet weak var setsTableView: UITableView!
     
-    var parentVC : (UIViewController & ExerciseInstanceCreator)!
+    var parentVC : ExerciseViewController!
     @IBOutlet weak var current1RM: UILabel!
     var bestSetText : String = ""
     
@@ -53,10 +53,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func createExerciseInstance() {
-        let cd = CoreDataManager.shared
-        let exerciseInstance = cd.createExerciseInstance(name: exerciseName, sets : sets)
-        cd.saveData()
-        parentVC.addInstance(newInstance: exerciseInstance)
+        parentVC.createInstance(name : exerciseName, sets : sets)
     }
     
     

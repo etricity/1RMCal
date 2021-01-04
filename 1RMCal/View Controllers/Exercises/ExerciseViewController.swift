@@ -8,18 +8,21 @@
 
 import UIKit
 
-class ExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExerciseInstanceCreator {
+class ExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     //View connections
     @IBOutlet weak var current1RM: UILabel!
     @IBOutlet weak var history: UITableView!
     
+    lazy var exerciseInstanceManager = ExerciseInstanceManager(exercise: exercise)
     // Model Data
     var exercise : Exercise!
     var numCells : Int {
         return exercise.instances?.count ?? 0
     }
+    
+    var segueForward : Bool = false
     
     
     override func viewDidLoad() {
@@ -31,10 +34,13 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         initView()
+        self.segueForward = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.post(name: .saveData, object: nil, userInfo: nil)
+        if !segueForward {
+            NotificationCenter.default.post(name: .saveData, object: nil, userInfo: nil)
+        }
     }
     
     func initView() {
@@ -69,8 +75,8 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             
-            if let instance : ExerciseInstance = exercise.getInstance(index: indexPath.row) {
-                exercise.removeInstance(index: indexPath.row)
+            if exerciseInstanceManager.removeInstance(index: indexPath.row) {
+                history.reloadData()
             }
         }
     }
@@ -82,14 +88,22 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    // Perform exercise
-    func addInstance(newInstance : ExerciseInstance) {
-        exercise.addInstance(instance: newInstance)
+    func createInstance(name : String, sets : [SetStat]) {
+        // self.exercise is automatically updated when core data is saved
+        let instance = exerciseInstanceManager.createInstance(name: name, sets: sets)
         history.reloadData()
     }
     
+//    // Perform exercise
+//    func addInstance(newInstance : ExerciseInstance) {
+//        exercise.addInstance(instance: newInstance)
+//        history.reloadData()
+//    }
+    
     // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        self.segueForward = true
         
         switch segue.identifier {
         case "newInstance":

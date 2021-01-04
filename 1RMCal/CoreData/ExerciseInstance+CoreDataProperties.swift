@@ -1,6 +1,6 @@
 //
 //  ExerciseInstance+CoreDataProperties.swift
-//
+//  
 //
 //  Created by Isaiah Cuzzupe on 4/1/21.
 //
@@ -19,6 +19,7 @@ extension ExerciseInstance {
     @NSManaged public var date: Date
     @NSManaged public var name: String
     @NSManaged public var sets: NSOrderedSet
+    @NSManaged public var exercise: Exercise?
 
 }
 

@@ -15,7 +15,7 @@ import Foundation
 class ExerciseViewModel {
     
     // Connection to Model
-    private (set) var model : ExerciseManager = ExerciseManager(test: true)
+    private (set) var model : ExerciseManagerOLD = ExerciseManagerOLD(test: true)
     
     func getExercises() -> [Exercise] {
         return model.exercises

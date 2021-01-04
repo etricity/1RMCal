@@ -77,6 +77,6 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
         vc?.title = exerciseName
         vc?.bestSetText = self.parentVC.workout.exercises[index].bestSet?.summary ?? "N/A"
 //        vc?.exerciseInstance = ExerciseInstance(name: exerciseName)
-        vc?.parentVC = self
+//        vc?.parentVC = self
     }
 }

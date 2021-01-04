@@ -51,13 +51,16 @@ public class Exercise: NSManagedObject {
     func updateBestSet() {
         guard let instances : [ExerciseInstance] = self.instances?.allObjects as? [ExerciseInstance] else {return}
         
-        for instance in instances {
-            if let sets : [SetStat] = instance.sets.array as? [SetStat] {
-                self.bestSet = sets.max { (a, b) -> Bool in
-                    a.oneRM > b.oneRM
+        if instances.count > 0 {
+            for instance in instances {
+                if let sets : [SetStat] = instance.sets.array as? [SetStat] {
+                    self.bestSet = sets.max { (a, b) -> Bool in
+                        a.oneRM > b.oneRM
+                    }
                 }
             }
+        } else {
+            bestSet = nil
         }
-        print(bestSet?.summary)
     }
 }

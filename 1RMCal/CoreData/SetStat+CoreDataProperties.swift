@@ -1,6 +1,6 @@
 //
-//  SetStatCD+CoreDataProperties.swift
-//  
+//  SetStat+CoreDataProperties.swift
+//
 //
 //  Created by Isaiah Cuzzupe on 4/1/21.
 //
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension SetStatCD {
+extension SetStat {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<SetStatCD> {
-        return NSFetchRequest<SetStatCD>(entityName: "SetStatCD")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<SetStat> {
+        return NSFetchRequest<SetStat>(entityName: "SetStat")
     }
 
     @NSManaged public var repCount: Double

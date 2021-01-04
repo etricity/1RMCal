@@ -32,7 +32,7 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     //1RM Values
     let repRange : [Int] = Array(0...100)
     
-    var currentReps : Int = 0
+    var currentReps : Double = 0
     var currentWeight : Measurement = Measurement(value: 0, unit: UnitMass.kilograms)
     
 
@@ -59,9 +59,14 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     @IBAction func done(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-        let newSet = SetStat(weight: self.currentWeight.value, repCount: self.currentReps, units: globalUnits)
-        exerciseVC?.addSet(newSet: newSet)
-        
+        self.createSetStat()
+    }
+    
+    func createSetStat() {
+        let cd = CoreDataManager.shared
+        let set = cd.createSetStat(weight: self.currentWeight.value, repCount: self.currentReps, unitString: globalUnits.rawValue)
+        exerciseVC?.addSet(newSet: set)
+        cd.testData()
     }
     
     @IBAction func unitsChanged(_ sender: UISegmentedControl) {
@@ -166,7 +171,7 @@ extension CalViewController {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent  component: Int) {
-        currentReps = repRange[row]
+        currentReps = Double(repRange[row])
         updateNew1RM()
     }
     

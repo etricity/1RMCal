@@ -17,7 +17,7 @@ extension ExerciseCD {
     }
 
     @NSManaged public var name: String
-    @NSManaged public var bestSet: SetStatCD?
+    @NSManaged public var bestSet: SetStat?
     @NSManaged public var instances: NSMutableOrderedSet
 
 }

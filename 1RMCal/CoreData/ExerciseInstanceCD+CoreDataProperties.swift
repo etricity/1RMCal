@@ -26,28 +26,28 @@ extension ExerciseInstanceCD {
 extension ExerciseInstanceCD {
 
     @objc(insertObject:inSetsAtIndex:)
-    @NSManaged public func insertIntoSets(_ value: SetStatCD, at idx: Int)
+    @NSManaged public func insertIntoSets(_ value: SetStat, at idx: Int)
 
     @objc(removeObjectFromSetsAtIndex:)
     @NSManaged public func removeFromSets(at idx: Int)
 
     @objc(insertSets:atIndexes:)
-    @NSManaged public func insertIntoSets(_ values: [SetStatCD], at indexes: NSIndexSet)
+    @NSManaged public func insertIntoSets(_ values: [SetStat], at indexes: NSIndexSet)
 
     @objc(removeSetsAtIndexes:)
     @NSManaged public func removeFromSets(at indexes: NSIndexSet)
 
     @objc(replaceObjectInSetsAtIndex:withObject:)
-    @NSManaged public func replaceSets(at idx: Int, with value: SetStatCD)
+    @NSManaged public func replaceSets(at idx: Int, with value: SetStat)
 
     @objc(replaceSetsAtIndexes:withSets:)
-    @NSManaged public func replaceSets(at indexes: NSIndexSet, with values: [SetStatCD])
+    @NSManaged public func replaceSets(at indexes: NSIndexSet, with values: [SetStat])
 
     @objc(addSetsObject:)
-    @NSManaged public func addToSets(_ value: SetStatCD)
+    @NSManaged public func addToSets(_ value: SetStat)
 
     @objc(removeSetsObject:)
-    @NSManaged public func removeFromSets(_ value: SetStatCD)
+    @NSManaged public func removeFromSets(_ value: SetStat)
 
     @objc(addSets:)
     @NSManaged public func addToSets(_ values: NSOrderedSet)

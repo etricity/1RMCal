@@ -2,15 +2,15 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ExerciseCD" representedClassName="ExerciseCD" syncable="YES">
         <attribute name="name" attributeType="String"/>
-        <relationship name="bestSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SetStatCD"/>
+        <relationship name="bestSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SetStat"/>
         <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseInstanceCD"/>
     </entity>
     <entity name="ExerciseInstanceCD" representedClassName="ExerciseInstanceCD" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SetStatCD"/>
+        <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SetStat"/>
     </entity>
-    <entity name="SetStatCD" representedClassName="SetStatCD" syncable="YES">
+    <entity name="SetStat" representedClassName="SetStat" syncable="YES">
         <attribute name="repCount" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="unitString" attributeType="String"/>
         <attribute name="weight" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -18,7 +18,7 @@
     <entity name="WorkoutCD" representedClassName="WorkoutCD" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WorkoutInstanceCD"/>
+        <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WorkoutInstanceCD"/>
     </entity>
     <entity name="WorkoutInstanceCD" representedClassName="WorkoutInstanceCD" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
@@ -28,7 +28,7 @@
     <elements>
         <element name="ExerciseCD" positionX="-28204.83862304687" positionY="-14244.48957824707" width="128" height="74"/>
         <element name="ExerciseInstanceCD" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="74"/>
-        <element name="SetStatCD" positionX="-28014.72387695313" positionY="-13873.33982849121" width="128" height="74"/>
+        <element name="SetStat" positionX="-28014.72387695313" positionY="-13873.33982849121" width="128" height="74"/>
         <element name="WorkoutCD" positionX="-28445.64788818359" positionY="-14160.0079498291" width="128" height="74"/>
         <element name="WorkoutInstanceCD" positionX="-28458.23443603516" positionY="-14014.4794921875" width="128" height="74"/>
     </elements>

@@ -1,5 +1,5 @@
 //
-//  SetStatCD+CoreDataClass.swift
+//  SetStat+CoreDataClass.swift
 //
 //
 //  Created by Isaiah Cuzzupe on 31/12/20.
@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-@objc(SetStatCD)
-public class SetStatCD: NSManagedObject {
+@objc(SetStat)
+public class SetStat: NSManagedObject {
     
     var units: Weight {
       get {

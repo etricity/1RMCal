@@ -101,26 +101,26 @@ class ExerciseInstance {
 
 
 // Represents a single set in a exercise instance
-class SetStat {
-    
-    private (set) var repCount : Int
-    private (set) var weight : Double
-    private (set) var units : Weight
-    
-    var oneRM : Double {
-        var val = self.weight * (1 + (Double(self.repCount)/30))
-        val = val.rounded()
-        return val
-    }
-    
-    var summary : String {
-        return "\(self.oneRM) \(self.units) (\(self.weight) \(self.units) x \(self.repCount))"
-    }
-    
-    init(weight : Double, repCount : Int, units : Weight) {
-        self.repCount = repCount
-        self.weight = weight
-        self.units = units
-    }
-}
+//class SetStat {
+//    
+//    private (set) var repCount : Int
+//    private (set) var weight : Double
+//    private (set) var units : Weight
+//    
+//    var oneRM : Double {
+//        var val = self.weight * (1 + (Double(self.repCount)/30))
+//        val = val.rounded()
+//        return val
+//    }
+//    
+//    var summary : String {
+//        return "\(self.oneRM) \(self.units) (\(self.weight) \(self.units) x \(self.repCount))"
+//    }
+//    
+//    init(weight : Double, repCount : Int, units : Weight) {
+//        self.repCount = repCount
+//        self.weight = weight
+//        self.units = units
+//    }
+//}
 

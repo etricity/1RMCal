@@ -26,14 +26,13 @@ class CoreDataManager{
     }
     
     //Create SetStat
-    private func createSetStat(weight : Double, repCount : Double, unitString : String) -> SetStatCD {
-        let setStatEntity = NSEntityDescription.entity(forEntityName: "SetStatCD", in: managedContext)!
-        let setStat = NSManagedObject(entity: setStatEntity, insertInto: managedContext) as! SetStatCD
+    func createSetStat(weight : Double, repCount : Double, unitString : String) -> SetStat {
+        let setStatEntity = NSEntityDescription.entity(forEntityName: "SetStat", in: managedContext)!
+        let setStat = NSManagedObject(entity: setStatEntity, insertInto: managedContext) as! SetStat
 
         setStat.weight = weight
         setStat.repCount = repCount
         setStat.unitString = unitString
-    
         return setStat
     }
     
@@ -107,6 +106,28 @@ class CoreDataManager{
             print("Could not save \(error), \(error.userInfo)")
         }
     }
+    
+    func testData() {
+        do {
+            
+            // Fetch Requests
+            let fectchRequestSS : NSFetchRequest<SetStat> = SetStat.fetchRequest()
+
+            
+            // Core Data Models
+            let setStats = try managedContext.fetch(fectchRequestSS)
+            let setStat = setStats.first
+            
+            if let set = setStat {
+                print(set.summary)
+            }
+
+        
+            
+        } catch let error as NSError {
+            print("Could not load \(error), \(error.userInfo)")
+        }
+    }
 
     func loadData() {
         
@@ -114,14 +135,14 @@ class CoreDataManager{
         do {
             
             // Fetch Requests
-            let fectchRequestSS : NSFetchRequest<SetStatCD> = SetStatCD.fetchRequest()
+            let fectchRequestSS : NSFetchRequest<SetStat> = SetStat.fetchRequest()
             let fectchRequestExIn : NSFetchRequest<ExerciseInstanceCD> = ExerciseInstanceCD.fetchRequest()
             let fectchRequestEx : NSFetchRequest<ExerciseCD> = ExerciseCD.fetchRequest()
             let fectchRequestWorkIn : NSFetchRequest<WorkoutInstanceCD> = WorkoutInstanceCD.fetchRequest()
             let fectchRequestWork : NSFetchRequest<WorkoutCD> = WorkoutCD.fetchRequest()
             
             // Core Data Models
-            let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStatCD]
+            let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStat]
             let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstanceCD]
             let exercises = try managedContext.fetch(fectchRequestEx) as! [ExerciseCD]
 //            let exerciseManagers = try managedContext.fetch(fectchRequestExMan) as! [ExerciseManagerCD]
@@ -142,10 +163,10 @@ class CoreDataManager{
     }
     
     func deleteCoreData() {
-        deleteData("SetStatCD")
+        deleteData("SetStat")
         deleteData("ExerciseInstanceCD")
         deleteData("ExerciseCD")
-        deleteData("ExerciseManagerCD")
+
         deleteData("WorkoutInstanceCD")
         deleteData("WorkoutCD")
     }

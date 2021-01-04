@@ -58,7 +58,7 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     
     // called from ExerciseInstanceController
     func addInstance(newInstance: ExerciseInstance) {
-        parentVC.workout.exercises[currentExerciseIndex].addInstance(newInstance: newInstance)
+//        parentVC.workout.exercises[currentExerciseIndex].addInstance(newInstance: newInstance)
         workoutInstance.addInstance(newInstance: newInstance)
     }
     

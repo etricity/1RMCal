@@ -63,7 +63,7 @@ class ExerciseManager {
         }
         
         if !exerciseExists {
-            self.exercises.append(Exercise(name: name, current1RM: 0))
+//            self.exercises.append(Exercise(name: name, current1RM: 0))
             return true
         } else {
             return false
@@ -93,16 +93,6 @@ class ExerciseManager {
     
     
     func testData() {
-        let benchPress = Exercise(name: "Bench Press", current1RM: 0)
-        let squat = Exercise(name: "Squat", current1RM: 0)
-        let deadlift = Exercise(name: "Deadlift", current1RM: 0)
-        
-
-        
-        // Test Data for pre-core data development
-        self.exercises.append(benchPress)
-        self.exercises.append(squat)
-        self.exercises.append(deadlift)
     }
     
 }
@@ -143,27 +133,7 @@ class WorkoutManager {
     
     
     func testData() {
-        
-        let exercises = Workout(name: "Compound Movements")
-        
-        let benchPress = Exercise(name: "Bench Press", current1RM: 0)
-        let squat = Exercise(name: "Squat", current1RM: 0)
-        let deadlift = Exercise(name: "Deadlift", current1RM: 0)
-        
-        
-        
-        
-        
-        // Test Data for pre-core data development
-        exercises.addExercise(exercise: benchPress)
-        exercises.addExercise(exercise: squat)
-        exercises.addExercise(exercise: deadlift)
-        
-        let workoutInstance = WorkoutInstance()
-        
-        exercises.addWorkoutInstance(newWorkout:  workoutInstance)
-        
-        self.addWorkout(newWorkout: exercises)
+
     }
 
     

@@ -1,5 +1,5 @@
 //
-//  ExerciseCD+CoreDataProperties.swift
+//  Exercise+CoreDataProperties.swift
 //  
 //
 //  Created by Isaiah Cuzzupe on 4/1/21.
@@ -10,20 +10,20 @@ import Foundation
 import CoreData
 
 
-extension ExerciseCD {
+extension Exercise {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ExerciseCD> {
-        return NSFetchRequest<ExerciseCD>(entityName: "ExerciseCD")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Exercise> {
+        return NSFetchRequest<Exercise>(entityName: "Exercise")
     }
 
     @NSManaged public var name: String
     @NSManaged public var bestSet: SetStat?
-    @NSManaged public var instances: NSMutableOrderedSet
+    @NSManaged public var instances: NSMutableSet
 
 }
 
 // MARK: Generated accessors for instances
-extension ExerciseCD {
+extension Exercise {
 
     @objc(insertObject:inInstancesAtIndex:)
     @NSManaged public func insertIntoInstances(_ value: ExerciseInstance, at idx: Int)

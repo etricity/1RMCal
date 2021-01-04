@@ -12,49 +12,49 @@ import Foundation
 
 
 // Represents a Exercise (holds info for the exxercises name & all performences of the exxcercise)
-class Exercise {
-        
-    // Name of exercise
-    private (set) var name : String
-    // Performences of Exercise
-    private (set) var instances : [ExerciseInstance] = []
-    // current 1RM
-    var bestSet : SetStat?
-    
-    // Constructor
-    init(name : String, current1RM : Double = 0) {
-        self.name = name
-    }
-    
-    // Add new instance
-    func addInstance(newInstance : ExerciseInstance) -> Bool {
-        self.instances.insert(newInstance, at: 0)
-        //update 1RM
-        
-        return updateBestSet(instance: newInstance)
-    }
-    
-    // Remove instance
-    func removeInstance(index : Int) {
-        if instances.indices.contains(index) {
-            self.instances.remove(at: index)
-        }
-    }
-    
-    // Update best set
-    func updateBestSet(instance : ExerciseInstance) -> Bool {
-        var updated : Bool = false
-        
-//        for set in instance.sets {
-//            let val = set.oneRM
-//            if val >= bestSet?.oneRM ?? 0 {
-//                bestSet = set
-//                updated = true
-//            }
+//class Exercise {
+//        
+//    // Name of exercise
+//    private (set) var name : String
+//    // Performences of Exercise
+//    private (set) var instances : [ExerciseInstance] = []
+//    // current 1RM
+//    var bestSet : SetStat?
+//    
+//    // Constructor
+//    init(name : String, current1RM : Double = 0) {
+//        self.name = name
+//    }
+//    
+//    // Add new instance
+//    func addInstance(newInstance : ExerciseInstance) -> Bool {
+//        self.instances.insert(newInstance, at: 0)
+//        //update 1RM
+//        
+//        return updateBestSet(instance: newInstance)
+//    }
+//    
+//    // Remove instance
+//    func removeInstance(index : Int) {
+//        if instances.indices.contains(index) {
+//            self.instances.remove(at: index)
 //        }
-        return updated
-    }
-}
+//    }
+//    
+//    // Update best set
+//    func updateBestSet(instance : ExerciseInstance) -> Bool {
+//        var updated : Bool = false
+//        
+////        for set in instance.sets {
+////            let val = set.oneRM
+////            if val >= bestSet?.oneRM ?? 0 {
+////                bestSet = set
+////                updated = true
+////            }
+////        }
+//        return updated
+//    }
+//}
 
 class WorkoutInstance {
     

@@ -50,8 +50,8 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        let instance = exercise.instances[indexPath.row]
-        cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
+//        let instance = exercise.instances[indexPath.row]
+//        cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
 
         return cell
     }
@@ -64,7 +64,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            exercise.removeInstance(index: indexPath.row)
+//            exercise.removeInstance(index: indexPath.row)
             history.reloadData()
             
             //Erase from core data
@@ -80,7 +80,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Perform exercise
     func addInstance(newInstance : ExerciseInstance) {
-        exercise.addInstance(newInstance: newInstance)
+//        exercise.addInstance(newInstance: newInstance)
         history.reloadData()
     }
     
@@ -98,7 +98,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
             let index = sender as! Int
             let vc = segue.destination as? SetHistoryViewController
             vc?.title = self.title
-            vc?.exerciseInstance = exercise.instances[index]
+//            vc?.exerciseInstance = exercise.instances[index]
         default:
             break
         }

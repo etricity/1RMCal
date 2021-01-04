@@ -23,6 +23,7 @@ class CoreDataManager{
         
     private init(){
         managedContext = appDelegate.persistentContainer.viewContext
+        NotificationCenter.default.addObserver(self, selector: #selector(saveData(_:)), name: .saveData, object: nil)
     }
     
     
@@ -114,6 +115,11 @@ class CoreDataManager{
     }
     
     //Load, Save & Delete functionality
+    
+    // Add exercise to Workout
+    @objc func saveData(_ notification:Notification) {
+        self.saveData()
+    }
     
     func saveData() {
     

@@ -33,6 +33,10 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         initView()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.post(name: .saveData, object: nil, userInfo: nil)
+    }
+    
     func initView() {
         self.title = exercise.name
         history.tableFooterView = UIView()
@@ -50,9 +54,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        guard let instances : [ExerciseInstance] = exercise.instances?.allObjects as? [ExerciseInstance] else {return cell}
-        guard let instance : ExerciseInstance = instances[safe: indexPath.row] else {return cell}
-        cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
+        if let instance : ExerciseInstance = exercise.getInstance(index: indexPath.row) {
+            cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
+        }
         return cell
     }
     
@@ -64,10 +68,10 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-//            exercise.removeInstance(index: indexPath.row)
-            history.reloadData()
             
-            //Erase from core data
+            if let instance : ExerciseInstance = exercise.getInstance(index: indexPath.row) {
+                exercise.removeInstance(index: indexPath.row)
+            }
         }
     }
     
@@ -80,7 +84,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     // Perform exercise
     func addInstance(newInstance : ExerciseInstance) {
-//        exercise.addInstance(newInstance: newInstance)
+        exercise.addInstance(instance: newInstance)
         history.reloadData()
     }
     

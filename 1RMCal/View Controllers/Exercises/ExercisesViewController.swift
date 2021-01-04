@@ -57,10 +57,12 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
             // add exercise to tableview
             if let newExercise = alert.textFields![0].text {
                 //add exercise if no duplicate name found
-//                if self.vm.addExercise(name: newExercise) {
+                if !self.modelManager.exerciseExists(name: newExercise) {
                     //reload able
+                    self.modelManager.addExercise(name: newExercise)
+                    NotificationCenter.default.post(name: .saveData, object: nil, userInfo: nil)
                     self.exercisesTableView.reloadData()
-//                }
+                }
             }
         } ))
         // cancel action

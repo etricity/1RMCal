@@ -24,6 +24,18 @@ class ExerciseManager : ModelManager {
         return exercise
     }
     
+    func exerciseExists(name : String) -> Bool {
+        let exerciseExists : Bool = false
+        if let exercises = self.exercises {
+            for exercise in exercises {
+                if exercise.name == name {
+                    exerciseExists
+                }
+            }
+        }
+        return exerciseExists
+    }
+    
     func addExercise(name : String) {
         cd.createExercise(name: name)
     }

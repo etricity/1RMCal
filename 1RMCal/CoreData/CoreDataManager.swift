@@ -43,8 +43,11 @@ class CoreDataManager{
 
     
         exerciseInstance.name = name
-        let nsOrderedSet = NSOrderedSet(array: sets)
-        exerciseInstance.addToSets(nsOrderedSet)
+        
+        for set in sets {
+            set.exerciseInstance = exerciseInstance
+            exerciseInstance.addToSets(set)
+        }
         exerciseInstance.date = Date()
 
         
@@ -69,7 +72,6 @@ class CoreDataManager{
         let workoutInstance = NSManagedObject(entity: workoutInstanceEntity, insertInto: managedContext) as! WorkoutInstanceCD
 
         workoutInstance.name = name
-        workoutInstance.exerciseInstances = []
         workoutInstance.date = Date()
         
         return workoutInstance
@@ -81,7 +83,6 @@ class CoreDataManager{
         let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! WorkoutCD
 
         workout.name = name
-        workout.instances = []
         workout.date = Date()
         
         return workout
@@ -90,16 +91,7 @@ class CoreDataManager{
     //Load, Save & Delete functionality
     
     func saveData() {
-        
-        let workout = createWorkout(name: "Compound Exercises")
-//        let exerciseManager = createExerciseManager()
-        let exercise = createExercise(name: "Bench Press")
-        let exercise2 = createExercise(name: "Deadlift")
-        let workoutInstance = createWorkoutInstance(name: workout.name)
-        let setStat = createSetStat(weight: 70, repCount: 12, unitString: Weight.kg.rawValue)
-        
-        
-        
+    
         //Save to CoreData
         do {
             try managedContext.save()
@@ -118,7 +110,7 @@ class CoreDataManager{
             // Core Data Models
             let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstance]
             let instance = exerciseInstances.first
-        
+            
             
         } catch let error as NSError {
             print("Could not load \(error), \(error.userInfo)")

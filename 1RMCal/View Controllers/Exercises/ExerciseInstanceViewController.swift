@@ -53,10 +53,10 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func createExerciseInstance() {
-            let cd = CoreDataManager.shared
-            let exerciseInstance = cd.createExerciseInstance(name: exerciseName, sets : sets)
+        let cd = CoreDataManager.shared
+        let exerciseInstance = cd.createExerciseInstance(name: exerciseName, sets : sets)
         parentVC.addInstance(newInstance: exerciseInstance)
-            cd.saveData()
+        cd.saveData()
         
     }
     

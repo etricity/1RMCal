@@ -1,6 +1,6 @@
 //
 //  SetStat+CoreDataProperties.swift
-//
+//  
 //
 //  Created by Isaiah Cuzzupe on 4/1/21.
 //
@@ -19,5 +19,6 @@ extension SetStat {
     @NSManaged public var repCount: Double
     @NSManaged public var unitString: String
     @NSManaged public var weight: Double
+    @NSManaged public var exerciseInstance: ExerciseInstance
 
 }

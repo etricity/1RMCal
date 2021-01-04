@@ -39,11 +39,11 @@ class SetHistoryViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell", for: indexPath) as! LabelCell
         cell.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         
-        if exerciseInstance.sets.indices.contains(indexPath.row) {
-            let setStat : SetStat = exerciseInstance.sets[indexPath.row]
-            cell.label.text = setStat.summary
-            cell.label.textColor = .gray
-        }
+//        if exerciseInstance.sets.indices.contains(indexPath.row) {
+//            let setStat : SetStat = exerciseInstance.sets[indexPath.row]
+//            cell.label.text = setStat.summary
+//            cell.label.textColor = .gray
+//        }
         return cell
     }
 }

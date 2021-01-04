@@ -66,7 +66,6 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         let cd = CoreDataManager.shared
         let set = cd.createSetStat(weight: self.currentWeight.value, repCount: self.currentReps, unitString: globalUnits.rawValue)
         exerciseVC?.addSet(newSet: set)
-        cd.testData()
     }
     
     @IBAction func unitsChanged(_ sender: UISegmentedControl) {

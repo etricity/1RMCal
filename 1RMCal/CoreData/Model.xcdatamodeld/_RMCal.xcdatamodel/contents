@@ -3,9 +3,9 @@
     <entity name="ExerciseCD" representedClassName="ExerciseCD" syncable="YES">
         <attribute name="name" attributeType="String"/>
         <relationship name="bestSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SetStat"/>
-        <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseInstanceCD"/>
+        <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseInstance"/>
     </entity>
-    <entity name="ExerciseInstanceCD" representedClassName="ExerciseInstanceCD" syncable="YES">
+    <entity name="ExerciseInstance" representedClassName="ExerciseInstance" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SetStat"/>
@@ -27,7 +27,7 @@
     </entity>
     <elements>
         <element name="ExerciseCD" positionX="-28204.83862304687" positionY="-14244.48957824707" width="128" height="74"/>
-        <element name="ExerciseInstanceCD" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="74"/>
+        <element name="ExerciseInstance" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="74"/>
         <element name="SetStat" positionX="-28014.72387695313" positionY="-13873.33982849121" width="128" height="74"/>
         <element name="WorkoutCD" positionX="-28445.64788818359" positionY="-14160.0079498291" width="128" height="74"/>
         <element name="WorkoutInstanceCD" positionX="-28458.23443603516" positionY="-14014.4794921875" width="128" height="74"/>

@@ -1,6 +1,6 @@
 //
-//  ExerciseInstanceCD+CoreDataProperties.swift
-//  
+//  ExerciseInstance+CoreDataProperties.swift
+//
 //
 //  Created by Isaiah Cuzzupe on 4/1/21.
 //
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension ExerciseInstanceCD {
+extension ExerciseInstance {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ExerciseInstanceCD> {
-        return NSFetchRequest<ExerciseInstanceCD>(entityName: "ExerciseInstanceCD")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ExerciseInstance> {
+        return NSFetchRequest<ExerciseInstance>(entityName: "ExerciseInstance")
     }
 
     @NSManaged public var date: Date
@@ -23,7 +23,7 @@ extension ExerciseInstanceCD {
 }
 
 // MARK: Generated accessors for sets
-extension ExerciseInstanceCD {
+extension ExerciseInstance {
 
     @objc(insertObject:inSetsAtIndex:)
     @NSManaged public func insertIntoSets(_ value: SetStat, at idx: Int)

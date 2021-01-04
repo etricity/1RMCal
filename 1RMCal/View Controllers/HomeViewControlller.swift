@@ -13,7 +13,6 @@ import UIKit
 class HomeViewController: UIViewController {
     
     //Segue Buttons
-
     
     //Button Actions
     @IBAction func goToWorkouts(_ sender: Any) {

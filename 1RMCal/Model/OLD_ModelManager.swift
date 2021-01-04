@@ -97,9 +97,7 @@ class ExerciseManager {
         let squat = Exercise(name: "Squat", current1RM: 0)
         let deadlift = Exercise(name: "Deadlift", current1RM: 0)
         
-        let newInstance = ExerciseInstance(name: "Bench Press")
-        
-        benchPress.addInstance(newInstance: newInstance)
+
         
         // Test Data for pre-core data development
         self.exercises.append(benchPress)
@@ -152,9 +150,9 @@ class WorkoutManager {
         let squat = Exercise(name: "Squat", current1RM: 0)
         let deadlift = Exercise(name: "Deadlift", current1RM: 0)
         
-        let newInstance = ExerciseInstance(name: "Bench Press")
         
-        benchPress.addInstance(newInstance: newInstance)
+        
+        
         
         // Test Data for pre-core data development
         exercises.addExercise(exercise: benchPress)
@@ -162,7 +160,7 @@ class WorkoutManager {
         exercises.addExercise(exercise: deadlift)
         
         let workoutInstance = WorkoutInstance()
-        workoutInstance.addInstance(newInstance: newInstance)
+        
         exercises.addWorkoutInstance(newWorkout:  workoutInstance)
         
         self.addWorkout(newWorkout: exercises)

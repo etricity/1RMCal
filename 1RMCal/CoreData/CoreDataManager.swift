@@ -37,13 +37,15 @@ class CoreDataManager{
     }
     
     //Create ExerciseInstance
-    private func createExerciseInstance(name : String) -> ExerciseInstanceCD {
-        let exerciseInstanceEntity = NSEntityDescription.entity(forEntityName: "ExerciseInstanceCD", in: managedContext)!
-        let exerciseInstance = NSManagedObject(entity: exerciseInstanceEntity, insertInto: managedContext) as! ExerciseInstanceCD
+    func createExerciseInstance(name : String, sets : [SetStat]) -> ExerciseInstance {
+        let exerciseInstanceEntity = NSEntityDescription.entity(forEntityName: "ExerciseInstance", in: managedContext)!
+        let exerciseInstance = NSManagedObject(entity: exerciseInstanceEntity, insertInto: managedContext) as! ExerciseInstance
+
 
         exerciseInstance.name = name
-        exerciseInstance.sets = []
+        exerciseInstance.addToSets(NSOrderedSet(array: sets))
         exerciseInstance.date = Date()
+
         
         return exerciseInstance
     }
@@ -87,13 +89,11 @@ class CoreDataManager{
     //Load, Save & Delete functionality
     
     func saveData() {
-        deleteCoreData()
         
         let workout = createWorkout(name: "Compound Exercises")
 //        let exerciseManager = createExerciseManager()
         let exercise = createExercise(name: "Bench Press")
         let exercise2 = createExercise(name: "Deadlift")
-        let exerciseInstance = createExerciseInstance(name: exercise.name)
         let workoutInstance = createWorkoutInstance(name: workout.name)
         let setStat = createSetStat(weight: 70, repCount: 12, unitString: Weight.kg.rawValue)
         
@@ -111,17 +111,12 @@ class CoreDataManager{
         do {
             
             // Fetch Requests
-            let fectchRequestSS : NSFetchRequest<SetStat> = SetStat.fetchRequest()
+            let fectchRequestExIn : NSFetchRequest<ExerciseInstance> = ExerciseInstance.fetchRequest()
 
             
             // Core Data Models
-            let setStats = try managedContext.fetch(fectchRequestSS)
-            let setStat = setStats.first
-            
-            if let set = setStat {
-                print(set.summary)
-            }
-
+            let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstance]
+            let instance = exerciseInstances.first
         
             
         } catch let error as NSError {
@@ -136,14 +131,14 @@ class CoreDataManager{
             
             // Fetch Requests
             let fectchRequestSS : NSFetchRequest<SetStat> = SetStat.fetchRequest()
-            let fectchRequestExIn : NSFetchRequest<ExerciseInstanceCD> = ExerciseInstanceCD.fetchRequest()
+            let fectchRequestExIn : NSFetchRequest<ExerciseInstance> = ExerciseInstance.fetchRequest()
             let fectchRequestEx : NSFetchRequest<ExerciseCD> = ExerciseCD.fetchRequest()
             let fectchRequestWorkIn : NSFetchRequest<WorkoutInstanceCD> = WorkoutInstanceCD.fetchRequest()
             let fectchRequestWork : NSFetchRequest<WorkoutCD> = WorkoutCD.fetchRequest()
             
             // Core Data Models
             let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStat]
-            let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstanceCD]
+            let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstance]
             let exercises = try managedContext.fetch(fectchRequestEx) as! [ExerciseCD]
 //            let exerciseManagers = try managedContext.fetch(fectchRequestExMan) as! [ExerciseManagerCD]
             let workoutInstances = try managedContext.fetch(fectchRequestWorkIn) as! [WorkoutInstanceCD]
@@ -164,7 +159,7 @@ class CoreDataManager{
     
     func deleteCoreData() {
         deleteData("SetStat")
-        deleteData("ExerciseInstanceCD")
+        deleteData("ExerciseInstance")
         deleteData("ExerciseCD")
 
         deleteData("WorkoutInstanceCD")

@@ -45,13 +45,13 @@ class Exercise {
     func updateBestSet(instance : ExerciseInstance) -> Bool {
         var updated : Bool = false
         
-        for set in instance.sets {
-            let val = set.oneRM
-            if val >= bestSet?.oneRM ?? 0 {
-                bestSet = set
-                updated = true
-            }
-        }
+//        for set in instance.sets {
+//            let val = set.oneRM
+//            if val >= bestSet?.oneRM ?? 0 {
+//                bestSet = set
+//                updated = true
+//            }
+//        }
         return updated
     }
 }
@@ -73,30 +73,30 @@ class WorkoutInstance {
 }
 
 // Represents a single performence/instance of a exercise
-class ExerciseInstance {
-    // name of exercise
-    private (set) var name : String
-    // time exercise was performed
-    private (set) var date : Date
-    // Sets performed
-    private (set) var sets : [SetStat]
-    // Best Set of instance
-    private (set) var bestSet : SetStat?
-
-
-    init(name : String) {
-        self.name = name
-        self.sets = []
-        self.date = Date()
-    }
-    
-    // add new set
-    func addSet(newSet : SetStat) {
-        self.sets.append(newSet)
-        
-        self.bestSet = sets.max(by: { (a,b) in a.oneRM < b.oneRM })
-    }
-}
+//class ExerciseInstance {
+//    // name of exercise
+//    private (set) var name : String
+//    // time exercise was performed
+//    private (set) var date : Date
+//    // Sets performed
+//    private (set) var sets : [SetStat]
+//    // Best Set of instance
+//    private (set) var bestSet : SetStat?
+//
+//
+//    init(name : String) {
+//        self.name = name
+//        self.sets = []
+//        self.date = Date()
+//    }
+//    
+//    // add new set
+//    func addSet(newSet : SetStat) {
+//        self.sets.append(newSet)
+//        
+//        self.bestSet = sets.max(by: { (a,b) in a.oneRM < b.oneRM })
+//    }
+//}
 
 
 

@@ -16,13 +16,17 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var current1RM: UILabel!
     var bestSetText : String = ""
     
-    //History Data
-    var exerciseInstance : ExerciseInstance!
-    
+    // ExerciseInstance variables for creation
+    var exerciseName : String = ""
+    var sets : [SetStat] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        if let exerciseName = self.title {
+            self.exerciseName = exerciseName
+        }
+        
         // Delegation
         self.setsTableView.delegate = self
         self.setsTableView.dataSource = self
@@ -42,9 +46,17 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     // Finised performing exercise
     @IBAction func finishExercise(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-        // ensures instance is only added if a set if performed
-        if !exerciseInstance.sets.isEmpty {
-            parentVC.addInstance(newInstance: exerciseInstance)
+    
+        if exerciseName.count > 0 && !sets.isEmpty {
+            
+            let cd = CoreDataManager.shared
+            if sets.indices.contains(0) {
+                let setStat : SetStat = sets[0]
+                print(setStat.summary)
+            }
+            let exerciseInstance = cd.createExerciseInstance(name: exerciseName, sets : sets)
+            cd.saveData()
+            cd.testData()
         }
     }
     
@@ -52,7 +64,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     // TableView functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var numSets = exerciseInstance.sets.count
+        var numSets = sets.count
         numSets += 1
         return numSets
     }
@@ -62,8 +74,8 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "setCell", for: indexPath) as! LabelCell
         cell.frame.inset(by: UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0))
         
-        if exerciseInstance.sets.indices.contains(indexPath.row) {
-            let setStat : SetStat = exerciseInstance.sets[indexPath.row]
+        if sets.indices.contains(indexPath.row) {
+            let setStat : SetStat = sets[indexPath.row]
             cell.label.text = setStat.summary
             cell.label.textColor = .white
         } else {
@@ -75,7 +87,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     // Perform a set
     func addSet(newSet : SetStat) {
-        exerciseInstance.addSet(newSet: newSet)
+        sets.append(newSet)
         setsTableView.reloadData()
     }
     

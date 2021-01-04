@@ -16,12 +16,12 @@ public class ExerciseCD: NSManagedObject {
         self.bestSet?.oneRM ?? 0
     }
     
-    func addNewInstance(instance : ExerciseInstanceCD) {
+    func addNewInstance(instance : ExerciseInstance) {
         self.instances.add(instance)
         self.updateBestSet(instance: instance)
     }
     
-    func updateBestSet(instance : ExerciseInstanceCD) -> Bool {
+    func updateBestSet(instance : ExerciseInstance) -> Bool {
         var updated : Bool = false
         let current1RM : Double = instance.bestSet?.oneRM ?? 0
         let setBest1RM : Double = self.bestSet?.oneRM ?? 0

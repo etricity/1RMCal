@@ -39,7 +39,7 @@ class WorkoutHistoryViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell") as! LabelCell
         let numInstances = workoutInstance.exerciseInstances.count
         let exerciseInstance = workoutInstance.exerciseInstances[numInstances - indexPath.section - 1]
-        cell.label.text = "\(exerciseInstance.sets[indexPath.row].summary)"
+//        cell.label.text = "\(exerciseInstance.sets[indexPath.row].summary)"
         return cell
     }
 }

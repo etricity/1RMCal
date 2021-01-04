@@ -24,9 +24,7 @@
 		CD087EC02574AA1200C53C9E /* _RMCalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD087EBF2574AA1200C53C9E /* _RMCalUITests.swift */; };
 		CD1FEC4225A253AF0038EAA4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC4125A253AF0038EAA4 /* CoreDataManager.swift */; };
 		CD1FEC5325A253CA0038EAA4 /* ExerciseCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC4925A253CA0038EAA4 /* ExerciseCD+CoreDataClass.swift */; };
-		CD1FEC5425A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC4A25A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataClass.swift */; };
 		CD1FEC5625A253CA0038EAA4 /* WorkoutInstanceCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC5025A253CA0038EAA4 /* WorkoutInstanceCD+CoreDataProperties.swift */; };
-		CD1FEC5725A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC5225A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataProperties.swift */; };
 		CD1FEC5825A253CA0038EAA4 /* WorkoutCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC4B25A253CA0038EAA4 /* WorkoutCD+CoreDataProperties.swift */; };
 		CD1FEC5925A253CA0038EAA4 /* WorkoutCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC4D25A253CA0038EAA4 /* WorkoutCD+CoreDataClass.swift */; };
 		CD1FEC5A25A253CA0038EAA4 /* WorkoutInstanceCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC4F25A253CA0038EAA4 /* WorkoutInstanceCD+CoreDataClass.swift */; };
@@ -34,6 +32,8 @@
 		CD1FEC7025A2A55E0038EAA4 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC6F25A2A55E0038EAA4 /* ModelManager.swift */; };
 		CD1FEC7C25A2A5C20038EAA4 /* SetStat+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC7A25A2A5C20038EAA4 /* SetStat+CoreDataProperties.swift */; };
 		CD1FEC7D25A2A5C20038EAA4 /* SetStat+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC7B25A2A5C20038EAA4 /* SetStat+CoreDataClass.swift */; };
+		CD1FEC8625A2AB0E0038EAA4 /* ExerciseInstance+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC8425A2AB0E0038EAA4 /* ExerciseInstance+CoreDataProperties.swift */; };
+		CD1FEC8725A2AB0E0038EAA4 /* ExerciseInstance+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1FEC8525A2AB0E0038EAA4 /* ExerciseInstance+CoreDataClass.swift */; };
 		CD60F05D258B17B600B41BAD /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD60F05C258B17B600B41BAD /* LabelCell.swift */; };
 		CD98EDD5258DCD44009007F6 /* ExerciseInstanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD98EDD4258DCD44009007F6 /* ExerciseInstanceViewController.swift */; };
 		CD9B1E9E2592FA0900AE14A5 /* Workouts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD9B1E9D2592FA0900AE14A5 /* Workouts.storyboard */; };
@@ -103,16 +103,16 @@
 		CD087EC12574AA1200C53C9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD1FEC4125A253AF0038EAA4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CD1FEC4925A253CA0038EAA4 /* ExerciseCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ExerciseCD+CoreDataClass.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/ExerciseCD+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		CD1FEC4A25A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ExerciseInstanceCD+CoreDataClass.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/ExerciseInstanceCD+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		CD1FEC4B25A253CA0038EAA4 /* WorkoutCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkoutCD+CoreDataProperties.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/WorkoutCD+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		CD1FEC4D25A253CA0038EAA4 /* WorkoutCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkoutCD+CoreDataClass.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/WorkoutCD+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		CD1FEC4F25A253CA0038EAA4 /* WorkoutInstanceCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkoutInstanceCD+CoreDataClass.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/WorkoutInstanceCD+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		CD1FEC5025A253CA0038EAA4 /* WorkoutInstanceCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WorkoutInstanceCD+CoreDataProperties.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/WorkoutInstanceCD+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		CD1FEC5125A253CA0038EAA4 /* ExerciseCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ExerciseCD+CoreDataProperties.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/ExerciseCD+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		CD1FEC5225A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ExerciseInstanceCD+CoreDataProperties.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/ExerciseInstanceCD+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		CD1FEC6F25A2A55E0038EAA4 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 		CD1FEC7A25A2A5C20038EAA4 /* SetStat+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SetStat+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CD1FEC7B25A2A5C20038EAA4 /* SetStat+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SetStat+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CD1FEC8425A2AB0E0038EAA4 /* ExerciseInstance+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ExerciseInstance+CoreDataProperties.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/ExerciseInstance+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		CD1FEC8525A2AB0E0038EAA4 /* ExerciseInstance+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ExerciseInstance+CoreDataClass.swift"; path = "/Users/isaiahcuzzupe/Documents/Xcode Projects/1RMCal/1RMCal/CoreData/ExerciseInstance+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		CD60F05C258B17B600B41BAD /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		CD98EDD4258DCD44009007F6 /* ExerciseInstanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseInstanceViewController.swift; sourceTree = "<group>"; };
 		CD9B1E9D2592FA0900AE14A5 /* Workouts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Workouts.storyboard; sourceTree = "<group>"; };
@@ -267,12 +267,12 @@
 		CD38AF22259D78E800CC5F21 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				CD1FEC8525A2AB0E0038EAA4 /* ExerciseInstance+CoreDataClass.swift */,
+				CD1FEC8425A2AB0E0038EAA4 /* ExerciseInstance+CoreDataProperties.swift */,
 				CD1FEC7B25A2A5C20038EAA4 /* SetStat+CoreDataClass.swift */,
 				CD1FEC7A25A2A5C20038EAA4 /* SetStat+CoreDataProperties.swift */,
 				CD1FEC4D25A253CA0038EAA4 /* WorkoutCD+CoreDataClass.swift */,
 				CD1FEC4B25A253CA0038EAA4 /* WorkoutCD+CoreDataProperties.swift */,
-				CD1FEC4A25A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataClass.swift */,
-				CD1FEC5225A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataProperties.swift */,
 				CD1FEC4F25A253CA0038EAA4 /* WorkoutInstanceCD+CoreDataClass.swift */,
 				CD1FEC5025A253CA0038EAA4 /* WorkoutInstanceCD+CoreDataProperties.swift */,
 				CD1FEC4925A253CA0038EAA4 /* ExerciseCD+CoreDataClass.swift */,
@@ -569,6 +569,7 @@
 				CD1FEC5825A253CA0038EAA4 /* WorkoutCD+CoreDataProperties.swift in Sources */,
 				CD0447DC2576E33C002035BF /* Extensions.swift in Sources */,
 				CD1FEC7025A2A55E0038EAA4 /* ModelManager.swift in Sources */,
+				CD1FEC8625A2AB0E0038EAA4 /* ExerciseInstance+CoreDataProperties.swift in Sources */,
 				CD1FEC5625A253CA0038EAA4 /* WorkoutInstanceCD+CoreDataProperties.swift in Sources */,
 				CD03A66025858A58000DA1EF /* HomeViewControlller.swift in Sources */,
 				CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */,
@@ -582,8 +583,6 @@
 				CDF4F79725931554008CBE14 /* NewWorkoutViewController.swift in Sources */,
 				CD1FEC5925A253CA0038EAA4 /* WorkoutCD+CoreDataClass.swift in Sources */,
 				CDA9030C2596BE2600D23867 /* Protocols.swift in Sources */,
-				CD1FEC5425A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataClass.swift in Sources */,
-				CD1FEC5725A253CA0038EAA4 /* ExerciseInstanceCD+CoreDataProperties.swift in Sources */,
 				CDA9031D2596D76900D23867 /* SetHistoryViewController.swift in Sources */,
 				CD03A6872585979A000DA1EF /* ExercisesViewController.swift in Sources */,
 				CDBC70DD258CB6C300AC1DD8 /* OLD_ModelManager.swift in Sources */,
@@ -600,6 +599,7 @@
 				CD9B1EB82592FF5400AE14A5 /* WorkoutViewModel.swift in Sources */,
 				CD1FEC4225A253AF0038EAA4 /* CoreDataManager.swift in Sources */,
 				CD1FEC5B25A253CA0038EAA4 /* ExerciseCD+CoreDataProperties.swift in Sources */,
+				CD1FEC8725A2AB0E0038EAA4 /* ExerciseInstance+CoreDataClass.swift in Sources */,
 				CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */,
 				CD087E9D2574AA1100C53C9E /* SceneDelegate.swift in Sources */,
 			);

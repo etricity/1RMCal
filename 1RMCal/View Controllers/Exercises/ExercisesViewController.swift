@@ -43,6 +43,11 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         exercisesTableView.tableFooterView = UIView()
     }
     
+    func addExercise(name : String) {
+        self.modelManager.addExercise(name: name)
+        NotificationCenter.default.post(name: .saveData, object: nil, userInfo: nil)
+    }
+    
     
     //Adding new exercise to table view
     @IBAction func addExercise(_ sender: Any) {
@@ -59,8 +64,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
                 //add exercise if no duplicate name found
                 if !self.modelManager.exerciseExists(name: newExercise) {
                     //reload able
-                    self.modelManager.addExercise(name: newExercise)
-                    NotificationCenter.default.post(name: .saveData, object: nil, userInfo: nil)
+                    self.addExercise(name: newExercise)
                     self.exercisesTableView.reloadData()
                 }
             }

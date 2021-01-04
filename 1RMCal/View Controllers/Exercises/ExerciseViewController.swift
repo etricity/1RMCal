@@ -76,6 +76,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
             // handle delete (by removing the data from your array and updating the tableview)
             
             if exerciseInstanceManager.removeInstance(index: indexPath.row) {
+                current1RM.text = exercise.bestSet?.summary
                 history.reloadData()
             }
         }

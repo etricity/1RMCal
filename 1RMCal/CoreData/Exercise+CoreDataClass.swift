@@ -32,6 +32,7 @@ public class Exercise: NSManagedObject {
         cd.deleteObject(object: instance)
     }
     
+    // update when added new instance
     func updateBestSet(instance : ExerciseInstance) -> Bool {
         var updated : Bool = false
 
@@ -44,5 +45,19 @@ public class Exercise: NSManagedObject {
             }
         }
         return updated
+    }
+    
+    // update when deleting instance
+    func updateBestSet() {
+        guard let instances : [ExerciseInstance] = self.instances?.allObjects as? [ExerciseInstance] else {return}
+        
+        for instance in instances {
+            if let sets : [SetStat] = instance.sets.array as? [SetStat] {
+                self.bestSet = sets.max { (a, b) -> Bool in
+                    a.oneRM > b.oneRM
+                }
+            }
+        }
+        print(bestSet?.summary)
     }
 }

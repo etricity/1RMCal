@@ -9,7 +9,7 @@
 import Foundation
 
 class ModelManager {
-    let cd = CoreDataManager.shared
+    fileprivate let cd = CoreDataManager.shared
 }
 
 class ExerciseManager : ModelManager {
@@ -47,6 +47,7 @@ class ExerciseInstanceManager : ModelManager {
         
         // relation is inversed & data saved
         exerciseInstance.exercise = self.exercise
+        exercise.updateBestSet(instance: exerciseInstance)
         cd.saveData()
         return exerciseInstance
     }
@@ -56,8 +57,18 @@ class ExerciseInstanceManager : ModelManager {
         
         if let _ : ExerciseInstance = exercise.getInstance(index: index) {
             exercise.removeInstance(index: index)
+            exercise.updateBestSet()
             instanceRemoved = true
         }
         return instanceRemoved
+    }
+}
+
+class SetStatManager : ModelManager {
+    
+    func createSetStat(weight: Double, repCount: Double, unitString: String) -> SetStat {
+        let set = cd.createSetStat(weight: weight, repCount: repCount, unitString: unitString)
+        cd.saveData()
+        return set
     }
 }

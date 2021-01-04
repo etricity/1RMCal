@@ -12,6 +12,8 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
 
     @IBOutlet weak var setsTableView: UITableView!
     
+    var setStatManager = SetStatManager()
+    
     var parentVC : ExerciseViewController!
     @IBOutlet weak var current1RM: UILabel!
     var bestSetText : String = ""
@@ -80,9 +82,8 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         return cell
     }
     
-    
-    // Perform a set
-    func addSet(newSet : SetStat) {
+    func createSet(weight: Double, repCount: Double, unitString: String) {
+        let newSet = setStatManager.createSetStat(weight: weight, repCount: repCount, unitString: unitString)
         sets.append(newSet)
         setsTableView.reloadData()
     }
@@ -93,7 +94,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         
         if segue.destination is CalViewController {
             let vc = segue.destination as? CalViewController
-            vc?.exerciseVC = self   
+            vc?.parentVC = self   
         }
     }
 }

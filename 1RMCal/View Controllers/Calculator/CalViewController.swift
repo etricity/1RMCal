@@ -22,7 +22,7 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var repPicker: UIPickerView!
     @IBOutlet weak var navBar: UINavigationItem!
     
-    var exerciseVC : ExerciseInstanceViewController?
+    var parentVC : ExerciseInstanceViewController!
     
     //Settings current & global
     let settings = Settings.shared
@@ -63,10 +63,7 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     func createSetStat() {
-        let cd = CoreDataManager.shared
-        let set = cd.createSetStat(weight: self.currentWeight.value, repCount: self.currentReps, unitString: globalUnits.rawValue)
-        cd.saveData()
-        exerciseVC?.addSet(newSet: set)
+        parentVC.createSet(weight: self.currentWeight.value, repCount: self.currentReps, unitString: globalUnits.rawValue)
     }
     
     @IBAction func unitsChanged(_ sender: UISegmentedControl) {

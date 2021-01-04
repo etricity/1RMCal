@@ -41,9 +41,10 @@ class CoreDataManager{
         let exerciseInstanceEntity = NSEntityDescription.entity(forEntityName: "ExerciseInstance", in: managedContext)!
         let exerciseInstance = NSManagedObject(entity: exerciseInstanceEntity, insertInto: managedContext) as! ExerciseInstance
 
-
+    
         exerciseInstance.name = name
-        exerciseInstance.addToSets(NSOrderedSet(array: sets))
+        let nsOrderedSet = NSOrderedSet(array: sets)
+        exerciseInstance.addToSets(nsOrderedSet)
         exerciseInstance.date = Date()
 
         

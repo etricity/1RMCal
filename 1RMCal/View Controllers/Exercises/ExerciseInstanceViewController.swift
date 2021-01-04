@@ -48,16 +48,16 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         navigationController?.popViewController(animated: true)
     
         if exerciseName.count > 0 && !sets.isEmpty {
-            
-            let cd = CoreDataManager.shared
-            if sets.indices.contains(0) {
-                let setStat : SetStat = sets[0]
-                print(setStat.summary)
-            }
-            let exerciseInstance = cd.createExerciseInstance(name: exerciseName, sets : sets)
-            cd.saveData()
-            cd.testData()
+            self.createExerciseInstance()
         }
+    }
+    
+    func createExerciseInstance() {
+            let cd = CoreDataManager.shared
+            let exerciseInstance = cd.createExerciseInstance(name: exerciseName, sets : sets)
+        parentVC.addInstance(newInstance: exerciseInstance)
+            cd.saveData()
+        
     }
     
     

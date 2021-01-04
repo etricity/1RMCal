@@ -65,6 +65,7 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     func createSetStat() {
         let cd = CoreDataManager.shared
         let set = cd.createSetStat(weight: self.currentWeight.value, repCount: self.currentReps, unitString: globalUnits.rawValue)
+        cd.saveData()
         exerciseVC?.addSet(newSet: set)
     }
     

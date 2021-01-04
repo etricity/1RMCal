@@ -18,7 +18,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     // Model Data
     var exercise : Exercise!
     var numCells : Int {
-        return exercise.instances.count
+        return exercise.instances?.count ?? 0
     }
     
     
@@ -42,7 +42,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     // TableView functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exercise.instances.count
+        return numCells
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,9 +50,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-//        let instance = exercise.instances[indexPath.row]
-//        cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
-
+        guard let instances : [ExerciseInstance] = exercise.instances?.allObjects as? [ExerciseInstance] else {return cell}
+        guard let instance : ExerciseInstance = instances[safe: indexPath.row] else {return cell}
+        cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
         return cell
     }
     

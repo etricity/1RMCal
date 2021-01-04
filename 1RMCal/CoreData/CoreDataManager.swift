@@ -25,6 +25,28 @@ class CoreDataManager{
         managedContext = appDelegate.persistentContainer.viewContext
     }
     
+    
+    // Getters
+    func getExercises() -> [Exercise]? {
+        
+        var exercises : [Exercise]? = nil
+        
+        do {
+            let fectchRequest : NSFetchRequest<Exercise> = Exercise.fetchRequest()
+            exercises = try managedContext.fetch(fectchRequest)
+        } catch let error as NSError {
+            print("Could not load \(error), \(error.userInfo)")
+        }
+        return exercises
+    }
+    
+    func getWorkouts() {
+        
+    }
+    
+    
+    // Model Creation Functions
+    
     //Create SetStat
     func createSetStat(weight : Double, repCount : Double, unitString : String) -> SetStat {
         let setStatEntity = NSEntityDescription.entity(forEntityName: "SetStat", in: managedContext)!
@@ -33,6 +55,8 @@ class CoreDataManager{
         setStat.weight = weight
         setStat.repCount = repCount
         setStat.unitString = unitString
+        setStat.exerciseInstance = nil
+        setStat.exercise = nil
         return setStat
     }
     
@@ -55,12 +79,13 @@ class CoreDataManager{
     }
     
     //Create Exercise
-    private func createExercise(name : String) -> Exercise {
+    func createExercise(name : String) -> Exercise {
         let exerciseEntity = NSEntityDescription.entity(forEntityName: "Exercise", in: managedContext)!
         let exercise = NSManagedObject(entity: exerciseEntity, insertInto: managedContext) as! Exercise
-
+        
         exercise.name = name
-        exercise.instances = []
+        exercise.bestSet = nil
+        exercise.instances = nil
         
         return exercise
     }
@@ -104,12 +129,17 @@ class CoreDataManager{
         do {
             
             // Fetch Requests
-            let fectchRequestExIn : NSFetchRequest<ExerciseInstance> = ExerciseInstance.fetchRequest()
+            let fectchRequest : NSFetchRequest<Exercise> = Exercise.fetchRequest()
 
             
             // Core Data Models
-            let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstance]
-            let instance = exerciseInstances.first
+            let exxercises = try managedContext.fetch(fectchRequest)
+            let instance = exxercises.first
+            
+            if instance != nil {
+                print(instance?.name)
+                
+            }
             
             
         } catch let error as NSError {
@@ -122,28 +152,8 @@ class CoreDataManager{
         //Requests for CurrentWeather, DailyWeather, WeeklyWeather
         do {
             
-            // Fetch Requests
-            let fectchRequestSS : NSFetchRequest<SetStat> = SetStat.fetchRequest()
-            let fectchRequestExIn : NSFetchRequest<ExerciseInstance> = ExerciseInstance.fetchRequest()
-            let fectchRequestEx : NSFetchRequest<Exercise> = Exercise.fetchRequest()
-            let fectchRequestWorkIn : NSFetchRequest<WorkoutInstanceCD> = WorkoutInstanceCD.fetchRequest()
-            let fectchRequestWork : NSFetchRequest<WorkoutCD> = WorkoutCD.fetchRequest()
-            
-            // Core Data Models
-            let setStat = try managedContext.fetch(fectchRequestSS) as! [SetStat]
-            let exerciseInstances = try managedContext.fetch(fectchRequestExIn) as! [ExerciseInstance]
-            let exercises = try managedContext.fetch(fectchRequestEx) as! [Exercise]
-//            let exerciseManagers = try managedContext.fetch(fectchRequestExMan) as! [ExerciseManagerCD]
-            let workoutInstances = try managedContext.fetch(fectchRequestWorkIn) as! [WorkoutInstanceCD]
-            let workouts = try managedContext.fetch(fectchRequestWork) as! [WorkoutCD]
-            
-            // Extract neccessary elements
-            let workout = workouts.first
-            let workoutInstance = workoutInstances.first
-//            let exerciseManager = exerciseManagers.first
-            let exercise = exercises.first
-
-        
+            let exercise = createExercise(name: "Compound Movements")
+            self.saveData()
             
         } catch let error as NSError {
             print("Could not load \(error), \(error.userInfo)")
@@ -157,6 +167,10 @@ class CoreDataManager{
 
         deleteData("WorkoutInstanceCD")
         deleteData("WorkoutCD")
+    }
+    
+    func deleteObject(object : NSManagedObject) {
+        managedContext.delete(object)
     }
     
     //Erase all entities in CoreData

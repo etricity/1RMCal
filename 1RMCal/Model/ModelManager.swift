@@ -8,6 +8,28 @@
 
 import Foundation
 
-class ModelManager {
+class ModelManager1 {
+    
+    let cd = CoreDataManager.shared
+    
+    var exercises : [Exercise]? {
+        return cd.getExercises()
+    }
+    
+    // Get exercise by index
+    
+    func getExercise(index : Int) -> Exercise? {
+        guard let exercise = exercises?[safe: index] else {return nil}
+        return exercise
+    }
+    
+    func addExercise(name : String) {
+        cd.createExercise(name: name)
+    }
+    
+    func removeExercise(index : Int) {
+        guard let exercise = exercises?[safe: index] else {return}
+        cd.deleteObject(object: exercise)
+    }
     
 }

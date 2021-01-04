@@ -16,16 +16,20 @@ import UIKit
     - deleting exercises
  */
 
-class ExercisesViewController: UITableViewController, ExercisesView, UIActionSheetDelegate {
+class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     
     @IBOutlet var exercisesTableView: UITableView!
     
-    // View Model
-    var vm : ExerciseViewModel = ExerciseViewModel()
+    // Model Manager
+    let modelManager = ModelManager1()
+    var exercises : [Exercise]? {
+        return modelManager.exercises
+    }
     
     // Number of cells for exercise table view
     var numCells : Int {
-        return vm.getExercises().count
+        guard let numCells = exercises?.count else {return 0}
+        return numCells
     }
 
     override func viewDidLoad() {
@@ -53,10 +57,10 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
             // add exercise to tableview
             if let newExercise = alert.textFields![0].text {
                 //add exercise if no duplicate name found
-                if self.vm.addExercise(name: newExercise) {
+//                if self.vm.addExercise(name: newExercise) {
                     //reload able
                     self.exercisesTableView.reloadData()
-                }
+//                }
             }
         } ))
         // cancel action
@@ -80,7 +84,10 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-        cell.label.text = vm.getExercises()[indexPath.row].name
+        
+        if let exercise = modelManager.getExercise(index: indexPath.row) {
+            cell.label.text = exercise.name
+        }
         return cell
     }
         
@@ -88,10 +95,8 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
        
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            vm.removeExercise(index: indexPath.row)
+            modelManager.removeExercise(index: indexPath.row)
             tableView.reloadData()
-            
-            //Erase from Core Data
         }
      }
     
@@ -109,7 +114,7 @@ class ExercisesViewController: UITableViewController, ExercisesView, UIActionShe
         case "goToExercise":
             let index = sender as! Int
             let vc = segue.destination as? ExerciseViewController
-            vc?.exercise = vm.getExercise(index: index)
+            vc?.exercise = modelManager.getExercise(index: index)
         default:
             break
 

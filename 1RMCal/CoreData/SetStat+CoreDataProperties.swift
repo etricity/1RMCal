@@ -19,7 +19,7 @@ extension SetStat {
     @NSManaged public var repCount: Double
     @NSManaged public var unitString: String
     @NSManaged public var weight: Double
-    @NSManaged public var exerciseInstance: ExerciseInstance
+    @NSManaged public var exerciseInstance: ExerciseInstance?
     @NSManaged public var exercise: Exercise?
 
 }

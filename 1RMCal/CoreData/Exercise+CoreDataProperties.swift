@@ -18,7 +18,7 @@ extension Exercise {
 
     @NSManaged public var name: String
     @NSManaged public var bestSet: SetStat?
-    @NSManaged public var instances: NSMutableSet
+    @NSManaged public var instances: NSMutableSet?
 
 }
 

@@ -16,7 +16,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     var sets : [SetStat] {
         return setsManager.sets
     }
-    var parentVC : ExerciseViewController!
+    var parentVC : (UIViewController & ExerciseInstanceCreator)!
     @IBOutlet weak var current1RM: UILabel!
     var bestSetText : String = ""
     

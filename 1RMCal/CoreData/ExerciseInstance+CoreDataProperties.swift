@@ -19,7 +19,7 @@ extension ExerciseInstance {
     @NSManaged public var date: Date
     @NSManaged public var name: String
     @NSManaged public var exercise: Exercise?
-    @NSManaged public var sets: NSOrderedSet
+    @NSManaged public var sets: NSMutableSet
     @NSManaged public var workoutInstance: WorkoutInstance?
 
 }

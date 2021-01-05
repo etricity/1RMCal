@@ -46,7 +46,7 @@ public class Exercise: NSManagedObject {
         
         if instances.count > 0 {
             for instance in instances {
-                if let sets : [SetStat] = instance.sets.array as? [SetStat] {
+                if let sets : [SetStat] = instance.sets.allObjects as? [SetStat] {
                     self.bestSet = sets.max { (a, b) -> Bool in
                         a.oneRM > b.oneRM
                     }

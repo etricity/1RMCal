@@ -12,7 +12,7 @@ class ModelManager {
     fileprivate let cd = CoreDataManager.shared
 }
 
-class WorkoutInstanceManager : ModelManager {
+class WorkoutInstanceCreator : ModelManager {
     
     var exercises : [Exercise]
     var currentExercise : Exercise?
@@ -91,16 +91,15 @@ class WorkoutManager : ModelManager {
         self.workout = workout
     }
     
-//    func createInstance(name : String, sets : [SetStat]) -> WorkoutInstance {
-//        let workoutInstance = cd.createWorkoutInstance(name: name, sets : sets)
-//        
-//        // relation is inversed & data saved
-//        workoutInstance.workout = self.workout
-//        workout.updateBestSet(instance: workoutInstance)
-//        cd.saveData()
-//        return workoutInstance
-//    }
-//    
+    func createInstance(name : String, exerciseInstances : [ExerciseInstance]) -> WorkoutInstance {
+        let workoutInstance = cd.createWorkoutInstance(name: name, exerciseInstances : exerciseInstances)
+        
+        // relation is inversed & data saved
+        workoutInstance.workout = self.workout
+        cd.saveData()
+        return workoutInstance
+    }
+    
     func getInstance(index : Int) -> WorkoutInstance? {
         return workout.getInstance(index: index)
     }
@@ -210,6 +209,8 @@ class ExerciseManager : ModelManager {
     }
 }
 
+
+
 class SetStatManager : ModelManager {
     
     private (set) var sets : [SetStat]
@@ -230,5 +231,35 @@ class SetStatManager : ModelManager {
     
     func getSet(index : Int) -> SetStat? {
         return sets[safe: index]
+    }
+}
+
+class WorkoutInstanceManager {
+
+    var workoutInstance : WorkoutInstance?
+    
+    var numExercises : Int {
+        return workoutInstance?.workout?.exercises?.count ?? 0
+    }
+    
+    func getExerciseInstance(index : Int) -> ExerciseInstance? {
+        guard let instances : [ExerciseInstance] = workoutInstance?.exerciseInstances.allObjects as? [ExerciseInstance] else {return nil}
+        guard let instance : ExerciseInstance = instances[safe: index] else {return nil}
+        return instance
+    }
+    
+    func getInstanceSets(index : Int) -> [SetStat]? {
+        guard let instance : ExerciseInstance = self.getExerciseInstance(index: index) else {return nil}
+        return instance.sets.allObjects as? [SetStat]
+    }
+    
+    func getInstanceSet(instanceIndex : Int, setIndex : Int) -> SetStat? {
+        guard let instance : ExerciseInstance = self.getExerciseInstance(index: instanceIndex) else {return nil}
+        guard let sets : [SetStat] = instance.sets.allObjects as? [SetStat] else {return nil}
+        return sets[safe: setIndex]
+    }
+    
+    init(workoutInstance : WorkoutInstance) {
+        self.workoutInstance = workoutInstance
     }
 }

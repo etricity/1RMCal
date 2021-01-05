@@ -55,7 +55,9 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        if let date = workout.getInstance(index: indexPath.row)?.date {
+        // print exercise instances in reverse
+        let index = workoutManager.numInstances - 1 - indexPath.row
+        if let date = workout.getInstance(index: index)?.date {
             cell.label.text = "\(dateFormatter.string(from: date))"
             
             if let day = date.dayOfWeek() {
@@ -92,8 +94,9 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         performSegue(withIdentifier: "performWorkout", sender: nil)
     }
     
-    func addWorkoutInstance(newInstance: WorkoutInstance) {
-//        self.workout.addWorkoutInstance(newWorkout: newInstance)
+    func createInstance(name : String, exerciseInstances : [ExerciseInstance]) {
+        // self.exercise is automatically updated when core data is saved
+        let workoutInstance = workoutManager.createInstance(name: name, exerciseInstances: exerciseInstances)
         history.reloadData()
     }
     
@@ -106,10 +109,14 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         case "performWorkout":
             let vc = segue.destination as? WorkoutInstanceViewController 
             vc?.title = self.workout.name
+            vc?.parentVC = self
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? WorkoutHistoryViewController
-//            vc?.workoutInstance = self.workout.instances[index]
+            
+            if let instance : WorkoutInstance = workoutManager.getInstance(index: index) {
+                vc?.wim = WorkoutInstanceManager(workoutInstance: instance)
+            }
             break
         default:
             break

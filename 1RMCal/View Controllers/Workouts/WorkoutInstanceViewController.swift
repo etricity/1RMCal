@@ -11,14 +11,24 @@ import UIKit
 class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCreator {
    
     // change later
-    var wm : WorkoutInstanceManager = WorkoutInstanceManager(exercises: CoreDataManager.shared.getExercises() ?? [])
+    var wm : WorkoutInstanceCreator = WorkoutInstanceCreator(exercises: CoreDataManager.shared.getExercises() ?? [])
     var exercises : [Exercise] {
         return wm.exercises
     }
+    var parentVC : WorkoutViewController!
+    
+    // Data for workout instance creation
+    var workoutName : String?
+    var exerciseInstances : [ExerciseInstance] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        
+        if let workoutName : String = self.title {
+            self.workoutName = workoutName
+        }
+        
     }
     
     // Table View Functions
@@ -59,13 +69,17 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     }
     
     func createInstance(name: String, sets: [SetStat]) {
+        // create exercise instance
         let instance = wm.createInstance(name: name, sets: sets)
+        exerciseInstances.append(instance)
     }
 
     
     @IBAction func finishWorkout(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-//        parentVC.addWorkoutInstance(newInstance: workoutInstance)
+        if let name : String = workoutName, exerciseInstances.count > 0 {
+            parentVC.createInstance(name: name, exerciseInstances: exerciseInstances)
+        }
     }
     
     
@@ -73,8 +87,9 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         let vc = segue.destination as? ExerciseInstanceViewController
-        vc?.title = self.title
-        vc?.bestSetText = "N/A"
+        let index = sender as! Int
+        vc?.title = wm.getExercise(index: index)?.name
+        vc?.bestSetText = wm.getExercise(index: index)?.bestSet?.summary ?? "N/A"
         vc?.parentVC = self
         vc?.setsManager = SetStatManager()
     }

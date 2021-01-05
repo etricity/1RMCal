@@ -118,7 +118,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
             
             // init SetHistoryViewController SetStatManager
             if let instance = exerciseManager.getInstance(index: index),
-               let set : [SetStat] = instance.sets.array as? [SetStat] {
+               let set : [SetStat] = instance.sets.allObjects as? [SetStat] {
                 vc?.setsManager = SetStatManager(sets: set)
             }
         default:

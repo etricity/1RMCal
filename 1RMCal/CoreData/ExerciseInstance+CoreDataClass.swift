@@ -13,7 +13,7 @@ import CoreData
 public class ExerciseInstance: NSManagedObject {
 
     var bestSet : SetStat? {
-        let sets = self.sets.array as! Array<SetStat>
+        let sets = self.sets.allObjects as! Array<SetStat>
         return sets.max(by: { (a,b) in (a ).oneRM < (b).oneRM }) ?? nil
     }
     

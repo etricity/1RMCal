@@ -11,7 +11,7 @@ import UIKit
 class WorkoutHistoryViewController: UITableViewController {
     
     // Workout Instance the history data comes from
-    var workoutInstance : WorkoutInstance!
+    var wim : WorkoutInstanceManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,21 +23,28 @@ class WorkoutHistoryViewController: UITableViewController {
     
     // Table View Functions
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        // num of exercises
+        return wim.numExercises
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        return "ExerciseName"
+        // exercise name
+        return wim.getExerciseInstance(index: section)?.name
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        // num of sets
+        return wim.getInstanceSets(index: section)?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // set name
         let cell = tableView.dequeueReusableCell(withIdentifier: "setHistoryCell") as! LabelCell
-        cell.label.text = "SetStat"
+        
+        
+        if let set = wim.getInstanceSet(instanceIndex: indexPath.section, setIndex: indexPath.row) {
+            cell.label.text = set.summary
+        }
         return cell
     }
 }

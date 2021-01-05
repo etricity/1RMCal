@@ -84,7 +84,6 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
-        
         performSegue(withIdentifier: "viewHistory", sender: index)
         
     }
@@ -109,7 +108,11 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         case "performWorkout":
             let vc = segue.destination as? WorkoutInstanceViewController 
             vc?.title = self.workout.name
-            vc?.parentVC = self
+            
+            if let exercises = workoutManager.getExercises() {
+                vc?.wm = WorkoutInstanceCreator(exercises: exercises)
+                vc?.parentVC = self
+            }
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? WorkoutHistoryViewController

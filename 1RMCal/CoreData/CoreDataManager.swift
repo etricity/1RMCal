@@ -28,6 +28,8 @@ class CoreDataManager{
     
     
     // Getters
+    
+    // get all exercises
     func getExercises() -> [Exercise]? {
         
         var exercises : [Exercise]? = nil
@@ -41,6 +43,8 @@ class CoreDataManager{
         return exercises
     }
     
+    
+    // get all workouts
     func getWorkouts() -> [Workout]? {
         var workouts : [Workout]? = nil
         
@@ -52,6 +56,30 @@ class CoreDataManager{
         }
         return workouts
     }
+    
+    
+    // get a exercise
+    func getExercise(name : String) -> Exercise? {
+        
+        var exercise : Exercise? = nil
+        
+        let exerciseFR : NSFetchRequest<Exercise> = Exercise.fetchRequest()
+        exerciseFR.predicate = NSPredicate(format: "name == %@", name)
+        
+        do {
+            let exercises = try managedContext.fetch(exerciseFR)
+            
+            if exercises.count == 1 {
+                exercise = exercises.first
+            }
+            
+        } catch let error as NSError {
+            print("Could not load \(error), \(error.userInfo)")
+        }
+        return exercise
+    }
+    
+    
     
     
     // Model Creation Functions
@@ -147,14 +175,13 @@ class CoreDataManager{
     
     //Load, Save & Delete functionality
     
-    // Add exercise to Workout
+    // Notification for saving
     @objc func saveData(_ notification:Notification) {
         self.saveData()
     }
     
+    //Save CoreData
     func saveData() {
-    
-        //Save to CoreData
         do {
             try managedContext.save()
         } catch let error as NSError {
@@ -162,37 +189,7 @@ class CoreDataManager{
         }
     }
     
-    func testData() {
-        do {
-            let fectchRequest : NSFetchRequest<WorkoutInstance> = WorkoutInstance.fetchRequest()
-            let workoutInstances = try managedContext.fetch(fectchRequest)
-            let workoutInstance = workoutInstances.first!                    
-        } catch let error as NSError {
-            print("Could not load \(error), \(error.userInfo)")
-        }
-    }
-
-    func loadData() {
-        
-        //Requests for CurrentWeather, DailyWeather, WeeklyWeather
-        do {
-            
-            let exercise = createExercise(name: "Bench Press")
-            
-            let fectchRequest : NSFetchRequest<ExerciseInstance> = ExerciseInstance.fetchRequest()
-            let exercises = try managedContext.fetch(fectchRequest)
-            
-            let workoutInstance = createWorkoutInstance(name: "Test WorkoutInstance", exerciseInstances: exercises)
-            
-            print(workoutInstance.name)
-            print(workoutInstance.exerciseInstances.count)
-            self.saveData()
-            
-        } catch let error as NSError {
-            print("Could not load \(error), \(error.userInfo)")
-        }
-    }
-    
+    // Delete all data
     func deleteCoreData() {
         deleteData("SetStat")
         deleteData("ExerciseInstance")
@@ -206,7 +203,7 @@ class CoreDataManager{
         managedContext.delete(object)
     }
     
-    //Erase all entities in CoreData
+    //Erase all of a speicific entities in CoreData
     private func deleteData(_ entity:String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         fetchRequest.returnsObjectsAsFaults = false
@@ -219,5 +216,13 @@ class CoreDataManager{
         } catch let error {
             print("Detele all data in \(entity) error :", error)
         }
+    }
+    
+    // Testing Data
+    func testData() {
+        
+        let exercise = self.getExercise(name: "Bench Press")
+        print(exercise?.name)
+        
     }
 }

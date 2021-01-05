@@ -11,7 +11,7 @@ import UIKit
 class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCreator {
    
     // change later
-    var wm : WorkoutInstanceCreator = WorkoutInstanceCreator(exercises: CoreDataManager.shared.getExercises() ?? [])
+    var wm : WorkoutInstanceCreator!
     var exercises : [Exercise] {
         return wm.exercises
     }

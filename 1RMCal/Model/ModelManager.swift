@@ -83,6 +83,7 @@ class WorkoutsManager : ModelManager {
 class WorkoutManager : ModelManager {
     
     private (set) var workout : Workout
+    
     var numInstances : Int {
         return workout.instances?.count ?? 0
     }
@@ -91,6 +92,11 @@ class WorkoutManager : ModelManager {
         self.workout = workout
     }
     
+    func getExercises() -> [Exercise]? {
+        guard let exercises : [Exercise] = workout.exercises?.allObjects as? [Exercise] else {return nil}
+        return exercises
+    }
+        
     func createInstance(name : String, exerciseInstances : [ExerciseInstance]) -> WorkoutInstance {
         let workoutInstance = cd.createWorkoutInstance(name: name, exerciseInstances : exerciseInstances)
         

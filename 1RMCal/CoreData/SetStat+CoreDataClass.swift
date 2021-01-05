@@ -12,6 +12,10 @@ import CoreData
 @objc(SetStat)
 public class SetStat: NSManagedObject {
     
+    var id : String? {
+        return String(exerciseInstance?.date.hashValue ?? 0 + summary.hashValue)
+    }
+    
     var units: Weight {
       get {
         return .init(rawValue: self.unitString)

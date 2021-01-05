@@ -45,9 +45,7 @@
 		CDAB5B4A2577803800AD822A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B492577803800AD822A /* Settings.swift */; };
 		CDAB5B4D257780DA00AD822A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4C257780DA00AD822A /* Enums.swift */; };
 		CDAB5B502577871A00AD822A /* Savable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAB5B4F2577871A00AD822A /* Savable.swift */; };
-		CDBC70AF258CAC8D00AC1DD8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC70AE258CAC8D00AC1DD8 /* Model.swift */; };
 		CDBC70D5258CB50A00AC1DD8 /* ExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC70D4258CB50A00AC1DD8 /* ExerciseViewModel.swift */; };
-		CDBC70DD258CB6C300AC1DD8 /* OLD_ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC70DC258CB6C300AC1DD8 /* OLD_ModelManager.swift */; };
 		CDD4D8EF2579F66200305382 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD4D8EE2579F66200305382 /* Main.storyboard */; };
 		CDD7D8F72599931A002D7755 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */; };
 		CDD7D90D25999906002D7755 /* CustomTableViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */; };
@@ -124,9 +122,7 @@
 		CDAB5B492577803800AD822A /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CDAB5B4C257780DA00AD822A /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CDAB5B4F2577871A00AD822A /* Savable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Savable.swift; sourceTree = "<group>"; };
-		CDBC70AE258CAC8D00AC1DD8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CDBC70D4258CB50A00AC1DD8 /* ExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
-		CDBC70DC258CB6C300AC1DD8 /* OLD_ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OLD_ModelManager.swift; sourceTree = "<group>"; };
 		CDD4D8EE2579F66200305382 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CDD7D8F62599931A002D7755 /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		CDD7D90C25999906002D7755 /* CustomTableViewDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewDelegates.swift; sourceTree = "<group>"; };
@@ -331,8 +327,6 @@
 		CDDF44D72574ABA2000D3649 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CDBC70AE258CAC8D00AC1DD8 /* Model.swift */,
-				CDBC70DC258CB6C300AC1DD8 /* OLD_ModelManager.swift */,
 				CDAB5B492577803800AD822A /* Settings.swift */,
 				CD1FEC6F25A2A55E0038EAA4 /* ModelManager.swift */,
 			);
@@ -572,7 +566,6 @@
 				CD1FEC8625A2AB0E0038EAA4 /* ExerciseInstance+CoreDataProperties.swift in Sources */,
 				CD03A66025858A58000DA1EF /* HomeViewControlller.swift in Sources */,
 				CDDF44DE2574B08D000D3649 /* CalViewController.swift in Sources */,
-				CDBC70AF258CAC8D00AC1DD8 /* Model.swift in Sources */,
 				CDD7D91B259A921A002D7755 /* WorkoutInstanceViewController.swift in Sources */,
 				CD2833B925A2C2F200C328CE /* Exercise+CoreDataClass.swift in Sources */,
 				CDAB5B502577871A00AD822A /* Savable.swift in Sources */,
@@ -586,7 +579,6 @@
 				CD89ABFA25A40B6000AF0143 /* WorkoutInstance+CoreDataClass.swift in Sources */,
 				CD03A6872585979A000DA1EF /* ExercisesViewController.swift in Sources */,
 				CD89ABEA25A40B2B00AF0143 /* Model.xcdatamodeld in Sources */,
-				CDBC70DD258CB6C300AC1DD8 /* OLD_ModelManager.swift in Sources */,
 				CDAB5B4A2577803800AD822A /* Settings.swift in Sources */,
 				CDBC70D5258CB50A00AC1DD8 /* ExerciseViewModel.swift in Sources */,
 				CD98EDD5258DCD44009007F6 /* ExerciseInstanceViewController.swift in Sources */,

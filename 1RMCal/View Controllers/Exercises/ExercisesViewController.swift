@@ -40,13 +40,14 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         exercisesTableView.tableFooterView = UIView()
     }
     
+    // Create new exercise
     func addExercise(name : String) {
         self.modelManager.addExercise(name: name)
         NotificationCenter.default.post(name: .saveData, object: nil, userInfo: nil)
     }
     
     
-    //Adding new exercise to table view
+    //Alert for creating new exercise
     @IBAction func addExercise(_ sender: Any) {
         // Alert configuration
         let alert = UIAlertController(title: "New Exercise", message: "", preferredStyle: .alert)
@@ -74,7 +75,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     
     
     
-    // Tabke View Data Source & Delegate Functions
+    // Table View Data Source & Delegate Functions
      override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -97,7 +98,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        
         if (editingStyle == .delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
+            // delete exercise & save
             modelManager.removeExercise(index: indexPath.row)
             tableView.reloadData()
         }
@@ -117,6 +118,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         case "goToExercise":
             let index = sender as! Int
             let vc = segue.destination as? ExerciseViewController
+            // init ExerciseViewController exerciseManager
             if let exercise = modelManager.getExercise(index: index) {
                 vc?.exerciseManager = ExerciseManager(exercise: exercise)
             }

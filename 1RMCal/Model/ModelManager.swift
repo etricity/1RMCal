@@ -38,11 +38,13 @@ class AllExercisesManager : ModelManager {
     
     func addExercise(name : String) {
         cd.createExercise(name: name)
+        cd.saveData()
     }
     
     func removeExercise(index : Int) {
         guard let exercise = exercises?[safe: index] else {return}
         cd.deleteObject(object: exercise)
+        cd.saveData()
     }
 }
 
@@ -77,6 +79,7 @@ class ExerciseManager : ModelManager {
         if let _ : ExerciseInstance = exercise.getInstance(index: index) {
             exercise.removeInstance(index: index)
             exercise.updateBestSet()
+            cd.saveData()
             instanceRemoved = true
         }
         return instanceRemoved

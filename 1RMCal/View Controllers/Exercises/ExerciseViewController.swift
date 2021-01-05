@@ -36,6 +36,8 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         self.segueForward = false
     }
     
+    // called to save Data when going back to ExercisesViewController
+    // prevent saving when going to ExerciseInstanceViewController
     override func viewWillDisappear(_ animated: Bool) {
         if !segueForward {
             NotificationCenter.default.post(name: .saveData, object: nil, userInfo: nil)
@@ -102,17 +104,20 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         self.segueForward = true
         
         switch segue.identifier {
+        // Performing exercise
         case "newInstance":
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
             vc?.bestSetText = self.current1RM.text ?? "N/A"
             vc?.parentVC = self
             vc?.setsManager = SetStatManager()
+        // Viewing History
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? SetHistoryViewController
             vc?.title = self.title
             
+            // init SetHistoryViewController SetStatManager
             if let instance = exerciseManager.getInstance(index: index),
                let set : [SetStat] = instance.sets.array as? [SetStat] {
                 vc?.setsManager = SetStatManager(sets: set)

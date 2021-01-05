@@ -16,7 +16,6 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     var sets : [SetStat] {
         return setsManager.sets
     }
-    
     var parentVC : ExerciseViewController!
     @IBOutlet weak var current1RM: UILabel!
     var bestSetText : String = ""
@@ -56,6 +55,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
     
+    // Finished performing exercise --> create instance
     func createExerciseInstance() {
         parentVC.createInstance(name : exerciseName, sets : sets)
     }
@@ -84,6 +84,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         return cell
     }
     
+    // Performed set 
     func createSet(weight: Double, repCount: Double, unitString: String) {
         let newSet = setsManager.createSetStat(weight: weight, repCount: repCount, unitString: unitString)
         setsManager.addSet(set: newSet)

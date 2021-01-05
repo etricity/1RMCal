@@ -17,15 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let cd = CoreDataManager.shared
-        if false {
-            cd.deleteCoreData()
-            cd.loadData()
-            cd.testData()
-        } else {
-            cd.testData()
-        }
-        
         return true
     }
 

@@ -12,9 +12,13 @@ class WorkoutsViewController: UITableViewController {
     
     @IBOutlet var workoutsTableView: UITableView!
     // View Model
-    var vm : WorkoutViewModel = WorkoutViewModel()
+    // Model Manager
+    let workoutManager = WorkoutsManager()
+    
+    // Number of cells for exercise table view
     var numCells : Int {
-        return vm.getWorkouts().count
+        guard let numCells = workoutManager.workouts?.count else {return 0}
+        return numCells
     }
 
     override func viewDidLoad() {
@@ -37,7 +41,10 @@ class WorkoutsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutCell", for: indexPath)  as! LabelCell
-        cell.label.text = vm.getWorkouts()[indexPath.row].name
+        
+        if let workout = workoutManager.getWorkout(index: indexPath.row) {
+            cell.label.text = workout.name
+        }
         return cell
     }
     
@@ -48,10 +55,8 @@ class WorkoutsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            vm.removeWorkout(index: indexPath.row)
+            workoutManager.removeWorkout(index: indexPath.row)
             workoutsTableView.reloadData()
-            
-            //Erase from Core Data
         }
     }
     
@@ -60,6 +65,15 @@ class WorkoutsViewController: UITableViewController {
         // Go to clicked workout
         performSegue(withIdentifier: "goToWorkout", sender: index)
         
+    }
+    
+    
+    func presentErrorAlert(name : String) {
+        let message : String = "Workout called '\(name)' already exists. Enter a different name."
+        let alert = UIAlertController(title: "Workout Already Exists", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+
     }
     
     // Create new Exercise
@@ -76,7 +90,12 @@ class WorkoutsViewController: UITableViewController {
             // add exercise to tableview
             if let newWorkout = alert.textFields![0].text {
                 //perform segue
-                self.performSegue(withIdentifier: "newWorkout", sender: newWorkout) //executing the segue on cancel
+                
+                if !self.workoutManager.workoutExists(name: newWorkout) {
+                    self.performSegue(withIdentifier: "newWorkout", sender: newWorkout) //executing the segue on cancel
+                } else {
+                    self.presentErrorAlert(name: newWorkout)
+                }
             }
         } ))
         // cancel action
@@ -86,11 +105,8 @@ class WorkoutsViewController: UITableViewController {
     }
     
     // confirming new exercise in "New Exercise Alert"
-    func addNewWorkout(newWorkout : Workout) {
-        if self.vm.addWorkout(workout: newWorkout) {
-            //reload able
-            self.workoutsTableView.reloadData()
-        }
+    func addNewWorkout(name : String, exercises : [String]) {
+        workoutManager.addWorkout(name: name, exercises: exercises)
     }
     
     // Segue Functions
@@ -102,14 +118,14 @@ class WorkoutsViewController: UITableViewController {
             case "newWorkout":
                 let workoutName = sender as! String
                 let vc = segue.destination as? NewWorkoutViewController
-                vc?.workout = Workout(name: workoutName)
+                vc?.workoutName = workoutName
                 vc?.title = workoutName
-                vc?.workoutsVC = self
+                vc?.parentVC = self
             // Going to existing workout
             case "goToWorkout":
                 let index = sender as! Int
                 let vc = segue.destination as? WorkoutViewController
-                vc?.workout = vm.getWorkout(index: index)
+//                vc?.workout = vm.getWorkout(index: index)
             default:
                 break
         }

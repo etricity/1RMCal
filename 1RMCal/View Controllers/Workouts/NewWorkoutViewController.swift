@@ -13,11 +13,14 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var exercisesTableView: UITableView!
     @IBOutlet weak var workoutLayout: UITableView!
     
-    var workoutsVC : WorkoutsViewController!
-    var workout : Workout!
+    let modelManager : ExercisesManager = ExercisesManager()
     
-    var vm : ExerciseViewModel = ExerciseViewModel()
-    lazy var dataSource = ExerciseTableViewDelegate(data: vm.getExercises(), parentVC: self)
+    // data for workout creation
+    var workoutName : String?
+    lazy var exerciseNames : [String] = []
+    
+    var parentVC : WorkoutsViewController!
+    lazy var dataSource = ExerciseTableViewDelegate(parentVC: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,15 +41,18 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         workoutLayout.tableFooterView = UIView()
 
     }
-    
+
     // Workout Layout Table View Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workout.exercises.count
+        return exerciseNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutLayoutCell", for: indexPath) as! LabelCell
-        cell.label.text = workout.exercises[indexPath.row].name
+        
+        if let exerciseName : String = exerciseNames[safe: indexPath.row] {
+            cell.label.text = exerciseName
+        }
         return cell
    }
     
@@ -54,17 +60,25 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         return true
     }
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        workout.swapExercises(x: sourceIndexPath.row, y: destinationIndexPath.row)
+        
+        let x = sourceIndexPath.row
+        let y = destinationIndexPath.row
+        if exerciseNames.indices.contains(x) && exerciseNames.indices.contains(y) {
+            exerciseNames.swapAt(x, y)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
        
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            workout.removeExercise(index: indexPath.row)
-            tableView.reloadData()
             
-            //Erase from Core Data
+            if exerciseNames.indices.contains(indexPath.row) {
+                exerciseNames.remove(at: indexPath.row)
+            }
+            
+            tableView.reloadData()
         }
      }
     
@@ -73,7 +87,19 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     // Finished creating workout (confirm creation)
     @IBAction func confirmNewWorkout(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-        workoutsVC.addNewWorkout(newWorkout: workout)
+        
+        if workoutName != nil {
+            parentVC.addNewWorkout(name: workoutName!, exercises: exerciseNames)
+            parentVC.workoutsTableView.reloadData()
+        }
+    }
+    
+    func presentErrorAlert(name : String) {
+        let message : String = "Exercise called '\(name)' already exists. Enter a different name."
+        let alert = UIAlertController(title: "Exercise Already Exists", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+
     }
     
     
@@ -88,13 +114,15 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         //confirm new exercise
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {action in
             // add exercise to tableview
-            if let newExercise = alert.textFields![0].text {
+            if let exerciseName = alert.textFields![0].text {
                 //add exercise
-                if self.vm.addExercise(name: newExercise) {
+                // CHECK FOR EXERCISE
+                if !self.modelManager.exerciseExists(name: exerciseName) {
                     // update exercise table
+                    self.modelManager.addExercise(name: exerciseName)
                     self.exercisesTableView.reloadData()
                 } else {
-                    print("DUPLICATE")
+                    self.presentErrorAlert(name: exerciseName)
                 }
             }
         } ))
@@ -106,9 +134,8 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // Add exercise to Workout
     @objc func addExerciseToWorkout(_ notification:Notification) {
-        print("working")
-        let index = notification.userInfo?["index"] as! Int
-        workout.addExercise(exercise: vm.getExercises()[index])
+        let name = notification.userInfo?["exerciseName"] as! String
+        exerciseNames.append(name)
         workoutLayout.reloadData()
     }
     

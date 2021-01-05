@@ -44,10 +44,58 @@ class WorkoutInstanceManager : ModelManager {
     }
 }
 
-class AllExercisesManager : ModelManager {
+class WorkoutsManager : ModelManager {
+    
+    var workouts : [Workout]? {
+        return cd.getWorkouts()
+    }
+    
+    // Get exercise by index
+    func getWorkout(index : Int) -> Workout? {
+        guard let workout = workouts?[safe: index] else {return nil}
+        return workout
+    }
+    
+    func workoutExists(name : String) -> Bool {
+        var workoutExists : Bool = false
+        if let workouts = self.workouts {
+            for workout in workouts {
+                if workout.name == name {
+                    workoutExists = true
+                }
+            }
+        }
+        return workoutExists
+    }
+    
+    func addWorkout(name : String, exercises : [String]) {
+        cd.createWorkout(name : name, exercises : exercises)
+        cd.saveData()
+    }
+    
+    func removeWorkout(index : Int) {
+        guard let workout = workouts?[safe: index] else {return}
+        cd.deleteObject(object: workout)
+        cd.saveData()
+    }
+}
+
+
+class ExercisesManager : ModelManager {
         
     var exercises : [Exercise]? {
         return cd.getExercises()
+    }
+    
+    func metaData() -> [String] {
+        var metaData : [String] = []
+        
+        if let exercises = self.exercises {
+            for exercise in exercises {
+                metaData.append(exercise.name)
+            }
+        }
+        return metaData
     }
     
     // Get exercise by index

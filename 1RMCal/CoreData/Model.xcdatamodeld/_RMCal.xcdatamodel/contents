@@ -4,6 +4,7 @@
         <attribute name="name" attributeType="String"/>
         <relationship name="bestSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SetStat" inverseName="exercise" inverseEntity="SetStat"/>
         <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseInstance" inverseName="exercise" inverseEntity="ExerciseInstance"/>
+        <relationship name="workout" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="exercises" inverseEntity="Workout"/>
     </entity>
     <entity name="ExerciseInstance" representedClassName="ExerciseInstance" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
@@ -19,22 +20,23 @@
         <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="bestSet" inverseEntity="Exercise"/>
         <relationship name="exerciseInstance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseInstance" inverseName="sets" inverseEntity="ExerciseInstance"/>
     </entity>
-    <entity name="WorkoutCD" representedClassName="WorkoutCD" syncable="YES">
+    <entity name="Workout" representedClassName="Workout" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="workout" inverseEntity="Exercise"/>
         <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WorkoutInstance" inverseName="workout" inverseEntity="WorkoutInstance"/>
     </entity>
     <entity name="WorkoutInstance" representedClassName="WorkoutInstance" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="exerciseInstances" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseInstance" inverseName="workoutInstance" inverseEntity="ExerciseInstance"/>
-        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutCD" inverseName="instances" inverseEntity="WorkoutCD"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="instances" inverseEntity="Workout"/>
     </entity>
     <elements>
-        <element name="Exercise" positionX="-28204.83862304687" positionY="-14244.48957824707" width="128" height="74"/>
+        <element name="Exercise" positionX="-28204.83862304687" positionY="-14244.48957824707" width="128" height="89"/>
         <element name="ExerciseInstance" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="104"/>
         <element name="SetStat" positionX="-28014.72387695313" positionY="-13873.33982849121" width="128" height="104"/>
-        <element name="WorkoutCD" positionX="-28445.64788818359" positionY="-14160.0079498291" width="128" height="74"/>
+        <element name="Workout" positionX="-28445.64788818359" positionY="-14160.0079498291" width="128" height="89"/>
         <element name="WorkoutInstance" positionX="-28458.23443603516" positionY="-14014.4794921875" width="128" height="89"/>
     </elements>
 </model>

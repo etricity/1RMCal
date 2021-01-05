@@ -2,7 +2,7 @@
 //  Exercise+CoreDataProperties.swift
 //  
 //
-//  Created by Isaiah Cuzzupe on 4/1/21.
+//  Created by Isaiah Cuzzupe on 5/1/21.
 //
 //
 
@@ -19,6 +19,7 @@ extension Exercise {
     @NSManaged public var name: String
     @NSManaged public var bestSet: SetStat?
     @NSManaged public var instances: NSMutableSet?
+    @NSManaged public var workout: NSMutableSet?
 
 }
 
@@ -54,5 +55,22 @@ extension Exercise {
 
     @objc(removeInstances:)
     @NSManaged public func removeFromInstances(_ values: NSOrderedSet)
+
+}
+
+// MARK: Generated accessors for workout
+extension Exercise {
+
+    @objc(addWorkoutObject:)
+    @NSManaged public func addToWorkout(_ value: Workout)
+
+    @objc(removeWorkoutObject:)
+    @NSManaged public func removeFromWorkout(_ value: Workout)
+
+    @objc(addWorkout:)
+    @NSManaged public func addToWorkout(_ values: NSSet)
+
+    @objc(removeWorkout:)
+    @NSManaged public func removeFromWorkout(_ values: NSSet)
 
 }

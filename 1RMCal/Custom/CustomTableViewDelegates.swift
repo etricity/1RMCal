@@ -25,14 +25,17 @@ import UIKit
 class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
         
     // This will be either a NewWorkoutController or a ExercisesController
-    var parentVC : UIViewController
+    var parentVC : NewWorkoutViewController
+    var data : [String] {
+        return parentVC.modelManager.metaData()
+    }
     
-    init(data : [Exercise], parentVC : UIViewController ) {
+    init(parentVC : NewWorkoutViewController ) {
         self.parentVC = parentVC
     }
     
     var numCells : Int {
-        return 0
+        return data.count
     }
     
     // MARK: - Table view data source
@@ -49,7 +52,7 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-//        cell.label.text = parentVC.vm.getExercises()[indexPath.row].name
+        cell.label.text = data[indexPath.row]
         return cell
     }
 
@@ -57,18 +60,6 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
             return false
     }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-       
-        // Editing enabled for Exercise View Controler only
-        if (editingStyle == .delete) && ((parentVC as? ExercisesViewController) != nil) {
-            // handle delete (by removing the data from your array and updating the tableview)
-//            parentVC.vm.removeExercise(index: indexPath.row)
-            tableView.reloadData()
-        }
-    }
-
-
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -80,7 +71,7 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
             if selectedCell.selectionStyle != .none {
                 selectedCell.label.textColor = .gray
                 selectedCell.selectionStyle = .none
-                let data : [String : Int] = ["index" : indexPath.row]
+                let data : [String : String] = ["exerciseName" : selectedCell.label.text ?? ""]
                 NotificationCenter.default.post(name: .addExerciseToWorkout, object: nil, userInfo: data)
             }
     }
@@ -92,11 +83,9 @@ class WorkoutTableViewDelegate : NSObject, UITableViewDelegate, UITableViewDataS
     
     var parentVC : WorkoutViewController
     var numCells : Int {
-        return parentVC.workout.exercises.count
+        return 2
     }
-    
 
-    
     init(parentVC : WorkoutViewController) {
         self.parentVC = parentVC
     }
@@ -106,7 +95,7 @@ class WorkoutTableViewDelegate : NSObject, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-        cell.label.text = parentVC.workout.getExercise(index: indexPath.row)?.name
+//        cell.label.text = parentVC.workout.getExercise(index: indexPath.row)?.name
         return cell
     }
     

@@ -21,7 +21,7 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     @IBOutlet var exercisesTableView: UITableView!
     
     // Model Manager
-    let modelManager = AllExercisesManager()
+    let modelManager = ExercisesManager()
     
     // Number of cells for exercise table view
     var numCells : Int {

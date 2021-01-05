@@ -8,32 +8,32 @@
 
 import Foundation
 
-class Workout : ExerciseManagerOLD {
-    private (set) var name : String
-    
-    init(name : String,test : Bool = false){
-        self.name = name
-        super.init()
-        
-        if test {
-            testData()
-        }
-        
-    }
-    
-    // Only used when used as a Workout
-    private (set) var instances : [WorkoutInstance] = []
-    
-    func addWorkoutInstance(newWorkout : WorkoutInstance) {
-        instances.insert(newWorkout, at: 0)
-    }
-    func removeInstance(index : Int) {
-        if self.instances.indices.contains(index) {
-            self.instances.remove(at: index)
-        }
-    }
-
-}
+//class Workout : ExerciseManagerOLD {
+//    private (set) var name : String
+//    
+//    init(name : String,test : Bool = false){
+//        self.name = name
+//        super.init()
+//        
+//        if test {
+//            testData()
+//        }
+//        
+//    }
+//    
+//    // Only used when used as a Workout
+//    private (set) var instances : [WorkoutInstance] = []
+//    
+//    func addWorkoutInstance(newWorkout : WorkoutInstance) {
+//        instances.insert(newWorkout, at: 0)
+//    }
+//    func removeInstance(index : Int) {
+//        if self.instances.indices.contains(index) {
+//            self.instances.remove(at: index)
+//        }
+//    }
+//
+//}
 
 // Managers all exercises
 class ExerciseManagerOLD {

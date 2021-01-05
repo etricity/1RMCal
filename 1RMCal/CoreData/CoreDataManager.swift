@@ -41,8 +41,16 @@ class CoreDataManager{
         return exercises
     }
     
-    func getWorkouts() {
+    func getWorkouts() -> [Workout]? {
+        var workouts : [Workout]? = nil
         
+        do {
+            let fectchRequest : NSFetchRequest<Workout> = Workout.fetchRequest()
+            workouts = try managedContext.fetch(fectchRequest)
+        } catch let error as NSError {
+            print("Could not load \(error), \(error.userInfo)")
+        }
+        return workouts
     }
     
     
@@ -89,6 +97,7 @@ class CoreDataManager{
         exercise.name = name
         exercise.bestSet = nil
         exercise.instances = nil
+        exercise.workout = nil
         
         return exercise
     }
@@ -112,13 +121,28 @@ class CoreDataManager{
     }
     
     //Create Workout
-    private func createWorkout(name : String) -> WorkoutCD {
-        let workoutEntity = NSEntityDescription.entity(forEntityName: "WorkoutCD", in: managedContext)!
-        let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! WorkoutCD
+    func createWorkout(name : String, exercises : [String]) -> Workout {
+        let workoutEntity = NSEntityDescription.entity(forEntityName: "Workout", in: managedContext)!
+        let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! Workout
 
         workout.name = name
         workout.date = Date()
+        workout.instances = nil
         
+        if let allExercises = self.getExercises() {
+            for name in exercises {
+                let exercise : Exercise? = {
+                    return allExercises.filter { exercise in
+                        return exercise.name == name
+                      }
+                }().first ?? nil
+                
+                if let exercise : Exercise = exercise {
+                    exercise.addToWorkout(workout)
+                    workout.addToExercises(exercise)
+                }
+            }
+        }
         return workout
     }
     
@@ -176,7 +200,7 @@ class CoreDataManager{
         deleteData("Exercise")
 
         deleteData("WorkoutInstance")
-        deleteData("WorkoutCD")
+        deleteData("Workout")
     }
     
     func deleteObject(object : NSManagedObject) {

@@ -40,7 +40,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     // TableView functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return workout.instances.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,7 +48,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        let date = workout.instances[indexPath.row].date
+        let date = Date()
         cell.label.text = "\(dateFormatter.string(from: date))"
         
         if let day = date.dayOfWeek() {
@@ -68,7 +68,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            workout.removeInstance(index: indexPath.row)
+//            workout.removeInstance(index: indexPath.row)
             history.reloadData()
             
             //Erase from core data
@@ -88,7 +88,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func addWorkoutInstance(newInstance: WorkoutInstance) {
-        self.workout.addWorkoutInstance(newWorkout: newInstance)
+//        self.workout.addWorkoutInstance(newWorkout: newInstance)
         history.reloadData()
     }
     
@@ -104,7 +104,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? WorkoutHistoryViewController
-            vc?.workoutInstance = self.workout.instances[index]
+//            vc?.workoutInstance = self.workout.instances[index]
             break
         default:
             break

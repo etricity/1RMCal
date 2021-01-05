@@ -105,9 +105,10 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
      }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let index = indexPath.row
-        performSegue(withIdentifier: "goToExercise", sender: index)
-        
+        if let currentCell : LabelCell = tableView.cellForRow(at: indexPath) as? LabelCell,
+           let exerciseName : String = currentCell.label.text {
+            performSegue(withIdentifier: "goToExercise", sender: exerciseName)
+        }
     }
     
     // Segue Functions
@@ -116,10 +117,10 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         
         switch segue.identifier {
         case "goToExercise":
-            let index = sender as! Int
+            let exerciseName = sender as! String
             let vc = segue.destination as? ExerciseViewController
             // init ExerciseViewController exerciseManager
-            if let exercise = modelManager.getExercise(index: index) {
+            if let exercise = modelManager.getExercise(name: exerciseName) {
                 vc?.exerciseManager = ExerciseManager(exercise: exercise)
             }
         default:

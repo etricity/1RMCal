@@ -57,6 +57,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // print exercise instances in reverse
         let index = workoutManager.numInstances - 1 - indexPath.row
+        print(index)
         if let date = workout.getInstance(index: index)?.date {
             cell.label.text = "\(dateFormatter.string(from: date))"
             
@@ -83,7 +84,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let index = indexPath.row
+        let index = workoutManager.numInstances - 1 - indexPath.row
         performSegue(withIdentifier: "viewHistory", sender: index)
         
     }

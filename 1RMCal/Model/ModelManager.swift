@@ -133,7 +133,9 @@ class WorkoutManager : ModelManager {
 class ExercisesManager : ModelManager {
         
     var exercises : [Exercise]? {
-        return cd.getExercises()
+        var exercises = cd.getExercises()
+        exercises?.sort(by: {(a,b) in return a.name < b.name})
+        return exercises
     }
     
     func metaData() -> [String] {
@@ -150,6 +152,11 @@ class ExercisesManager : ModelManager {
     // Get exercise by index
     func getExercise(index : Int) -> Exercise? {
         guard let exercise = exercises?[safe: index] else {return nil}
+        return exercise
+    }
+    // Get exercise by name
+    func getExercise(name : String) -> Exercise? {
+        guard let exercise = cd.getExercise(name: name) else {return nil}
         return exercise
     }
     

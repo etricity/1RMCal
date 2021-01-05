@@ -21,14 +21,11 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
     @IBOutlet var exercisesTableView: UITableView!
     
     // Model Manager
-    let modelManager = ExerciseManager()
-    var exercises : [Exercise]? {
-        return modelManager.exercises
-    }
+    let modelManager = AllExercisesManager()
     
     // Number of cells for exercise table view
     var numCells : Int {
-        guard let numCells = exercises?.count else {return 0}
+        guard let numCells = modelManager.exercises?.count else {return 0}
         return numCells
     }
 
@@ -120,7 +117,9 @@ class ExercisesViewController: UITableViewController, UIActionSheetDelegate {
         case "goToExercise":
             let index = sender as! Int
             let vc = segue.destination as? ExerciseViewController
-            vc?.exercise = modelManager.getExercise(index: index)
+            if let exercise = modelManager.getExercise(index: index) {
+                vc?.exerciseManager = ExerciseManager(exercise: exercise)
+            }
         default:
             break
 

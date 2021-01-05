@@ -135,20 +135,8 @@ class CoreDataManager{
     func testData() {
         do {
             
-            // Fetch Requests
-            let fectchRequest : NSFetchRequest<Exercise> = Exercise.fetchRequest()
 
-            
-            // Core Data Models
-            let exxercises = try managedContext.fetch(fectchRequest)
-            let instance = exxercises.first
-            
-            if instance != nil {
-                print(instance?.name)
-                
-            }
-            
-            
+                    
         } catch let error as NSError {
             print("Could not load \(error), \(error.userInfo)")
         }

@@ -12,7 +12,10 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
 
     @IBOutlet weak var setsTableView: UITableView!
     
-    var setStatManager = SetStatManager()
+    var setsManager : SetStatManager!
+    var sets : [SetStat] {
+        return setsManager.sets
+    }
     
     var parentVC : ExerciseViewController!
     @IBOutlet weak var current1RM: UILabel!
@@ -20,7 +23,6 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     // ExerciseInstance variables for creation
     var exerciseName : String = ""
-    var sets : [SetStat] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,8 +85,8 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func createSet(weight: Double, repCount: Double, unitString: String) {
-        let newSet = setStatManager.createSetStat(weight: weight, repCount: repCount, unitString: unitString)
-        sets.append(newSet)
+        let newSet = setsManager.createSetStat(weight: weight, repCount: repCount, unitString: unitString)
+        setsManager.addSet(set: newSet)
         setsTableView.reloadData()
     }
     

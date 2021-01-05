@@ -12,7 +12,7 @@ class ModelManager {
     fileprivate let cd = CoreDataManager.shared
 }
 
-class ExerciseManager : ModelManager {
+class AllExercisesManager : ModelManager {
         
     var exercises : [Exercise]? {
         return cd.getExercises()
@@ -25,11 +25,11 @@ class ExerciseManager : ModelManager {
     }
     
     func exerciseExists(name : String) -> Bool {
-        let exerciseExists : Bool = false
+        var exerciseExists : Bool = false
         if let exercises = self.exercises {
             for exercise in exercises {
                 if exercise.name == name {
-                    exerciseExists
+                    exerciseExists = true
                 }
             }
         }
@@ -46,9 +46,12 @@ class ExerciseManager : ModelManager {
     }
 }
 
-class ExerciseInstanceManager : ModelManager {
+class ExerciseManager : ModelManager {
     
-    var exercise : Exercise
+    private (set) var exercise : Exercise
+    var numInstances : Int {
+        return exercise.instances?.count ?? 0
+    }
     
     init(exercise : Exercise) {
         self.exercise = exercise
@@ -62,6 +65,10 @@ class ExerciseInstanceManager : ModelManager {
         exercise.updateBestSet(instance: exerciseInstance)
         cd.saveData()
         return exerciseInstance
+    }
+    
+    func getInstance(index : Int) -> ExerciseInstance? {
+        return exercise.getInstance(index: index)
     }
     
     func removeInstance(index : Int) -> Bool {
@@ -78,9 +85,23 @@ class ExerciseInstanceManager : ModelManager {
 
 class SetStatManager : ModelManager {
     
+    private (set) var sets : [SetStat]
+    
+    init(sets : [SetStat] = []) {
+        self.sets = sets
+    }
+    
+    func addSet(set : SetStat) {
+        sets.append(set)
+    }
+    
     func createSetStat(weight: Double, repCount: Double, unitString: String) -> SetStat {
         let set = cd.createSetStat(weight: weight, repCount: repCount, unitString: unitString)
         cd.saveData()
         return set
+    }
+    
+    func getSet(index : Int) -> SetStat? {
+        return sets[safe: index]
     }
 }

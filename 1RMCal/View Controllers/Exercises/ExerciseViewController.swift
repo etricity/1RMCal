@@ -15,11 +15,10 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var current1RM: UILabel!
     @IBOutlet weak var history: UITableView!
     
-    lazy var exerciseInstanceManager = ExerciseInstanceManager(exercise: exercise)
+    var exerciseManager : ExerciseManager!
     // Model Data
-    var exercise : Exercise!
     var numCells : Int {
-        return exercise.instances?.count ?? 0
+        return exerciseManager.exercise.instances?.count ?? 0
     }
     
     var segueForward : Bool = false
@@ -44,9 +43,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func initView() {
-        self.title = exercise.name
+        self.title = exerciseManager.exercise.name
         history.tableFooterView = UIView()
-        current1RM.text = exercise.bestSet?.summary ?? "N/A"
+        current1RM.text = exerciseManager.exercise.bestSet?.summary ?? "N/A"
     }
     
     
@@ -60,7 +59,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         
-        if let instance : ExerciseInstance = exercise.getInstance(index: indexPath.row) {
+        // print exercise instances in reverse
+        let index = exerciseManager.numInstances - 1 - indexPath.row
+        if let instance : ExerciseInstance = exerciseManager.getInstance(index: index) {
             cell.label.text = "Max 1RM: " + (instance.bestSet?.summary ?? "") + "   " + dateFormatter.string(from: instance.date)
         }
         return cell
@@ -75,8 +76,8 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             
-            if exerciseInstanceManager.removeInstance(index: indexPath.row) {
-                current1RM.text = exercise.bestSet?.summary
+            if exerciseManager.removeInstance(index: indexPath.row) {
+                current1RM.text = exerciseManager.exercise.bestSet?.summary
                 history.reloadData()
             }
         }
@@ -91,15 +92,9 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     
     func createInstance(name : String, sets : [SetStat]) {
         // self.exercise is automatically updated when core data is saved
-        let instance = exerciseInstanceManager.createInstance(name: name, sets: sets)
+        let instance = exerciseManager.createInstance(name: name, sets: sets)
         history.reloadData()
     }
-    
-//    // Perform exercise
-//    func addInstance(newInstance : ExerciseInstance) {
-//        exercise.addInstance(instance: newInstance)
-//        history.reloadData()
-//    }
     
     // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -111,13 +106,17 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
             let vc = segue.destination as? ExerciseInstanceViewController
             vc?.title = self.title
             vc?.bestSetText = self.current1RM.text ?? "N/A"
-//            vc?.exerciseInstance = ExerciseInstance(name: exercise.name)
             vc?.parentVC = self
+            vc?.setsManager = SetStatManager()
         case "viewHistory":
             let index = sender as! Int
             let vc = segue.destination as? SetHistoryViewController
             vc?.title = self.title
-//            vc?.exerciseInstance = exercise.instances[index]
+            
+            if let instance = exerciseManager.getInstance(index: index),
+               let set : [SetStat] = instance.sets.array as? [SetStat] {
+                vc?.setsManager = SetStatManager(sets: set)
+            }
         default:
             break
         }

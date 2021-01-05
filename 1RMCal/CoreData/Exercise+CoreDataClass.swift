@@ -24,27 +24,20 @@ public class Exercise: NSManagedObject {
         return instance
     }
     
-    func removeInstance(index : Int) {
-        guard let instances : [ExerciseInstance] = self.instances?.allObjects as? [ExerciseInstance] else {return}
-        guard let instance : ExerciseInstance = instances[safe: index] else {return}
+    func removeInstance(instance : ExerciseInstance) {
         self.removeFromInstances(instance)
-        let cd = CoreDataManager.shared
-        cd.deleteObject(object: instance)
+        self.updateBestSet()
     }
     
     // update when added new instance
-    func updateBestSet(instance : ExerciseInstance) -> Bool {
-        var updated : Bool = false
-
+    func updateBestSet(instance : ExerciseInstance) {
         if self.bestSet == nil , let instanceBestSet : SetStat = instance.bestSet {
             self.bestSet = instanceBestSet
         } else if let currentBestSet : SetStat = self.bestSet, let instanceBestSet : SetStat = instance.bestSet {
             if instanceBestSet.oneRM > currentBestSet.oneRM {
                 self.bestSet = instance.bestSet
-                updated = true
             }
         }
-        return updated
     }
     
     // update when deleting instance

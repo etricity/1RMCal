@@ -76,9 +76,9 @@ class ExerciseManager : ModelManager {
     func removeInstance(index : Int) -> Bool {
         var instanceRemoved : Bool = false
         
-        if let _ : ExerciseInstance = exercise.getInstance(index: index) {
-            exercise.removeInstance(index: index)
-            exercise.updateBestSet()
+        if let instance : ExerciseInstance = exercise.getInstance(index: index) {
+            exercise.removeInstance(instance: instance)
+            cd.deleteObject(object: instance)
             cd.saveData()
             instanceRemoved = true
         }

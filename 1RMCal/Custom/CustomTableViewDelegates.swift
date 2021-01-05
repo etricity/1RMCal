@@ -83,7 +83,7 @@ class WorkoutTableViewDelegate : NSObject, UITableViewDelegate, UITableViewDataS
     
     var parentVC : WorkoutViewController
     var numCells : Int {
-        return 2
+        return parentVC.workout.exercises?.count ?? 0
     }
 
     init(parentVC : WorkoutViewController) {
@@ -95,7 +95,10 @@ class WorkoutTableViewDelegate : NSObject, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-//        cell.label.text = parentVC.workout.getExercise(index: indexPath.row)?.name
+        
+        if let exercise : Exercise = parentVC.workoutManager.getExercise(index: indexPath.row) {
+            cell.label.text = exercise.name
+        }
         return cell
     }
     

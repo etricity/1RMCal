@@ -80,6 +80,50 @@ class WorkoutsManager : ModelManager {
     }
 }
 
+class WorkoutManager : ModelManager {
+    
+    private (set) var workout : Workout
+    var numInstances : Int {
+        return workout.instances?.count ?? 0
+    }
+    
+    init(workout : Workout) {
+        self.workout = workout
+    }
+    
+//    func createInstance(name : String, sets : [SetStat]) -> WorkoutInstance {
+//        let workoutInstance = cd.createWorkoutInstance(name: name, sets : sets)
+//        
+//        // relation is inversed & data saved
+//        workoutInstance.workout = self.workout
+//        workout.updateBestSet(instance: workoutInstance)
+//        cd.saveData()
+//        return workoutInstance
+//    }
+//    
+    func getInstance(index : Int) -> WorkoutInstance? {
+        return workout.getInstance(index: index)
+    }
+   
+    func removeInstance(index : Int) -> Bool {
+        var instanceRemoved : Bool = false
+        
+        if let instance : WorkoutInstance = workout.getInstance(index: index) {
+            workout.removeInstance(instance: instance)
+            cd.deleteObject(object: instance)
+            cd.saveData()
+            instanceRemoved = true
+        }
+        return instanceRemoved
+    }
+    
+    func getExercise(index : Int) -> Exercise? {
+        guard let exercise : Exercise = workout.getExercise(index: index) else {return nil}
+        return exercise
+    }
+
+}
+
 
 class ExercisesManager : ModelManager {
         

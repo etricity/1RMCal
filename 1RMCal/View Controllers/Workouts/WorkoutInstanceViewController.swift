@@ -73,5 +73,9 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         let vc = segue.destination as? ExerciseInstanceViewController
+        vc?.title = self.title
+        vc?.bestSetText = "N/A"
+        vc?.parentVC = self
+        vc?.setsManager = SetStatManager()
     }
 }

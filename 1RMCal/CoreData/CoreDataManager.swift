@@ -104,7 +104,7 @@ class CoreDataManager{
     
 
     //Create WorkoutInstance
-    private func createWorkoutInstance(name : String, exerciseInstances : [ExerciseInstance]) -> WorkoutInstance {
+    func createWorkoutInstance(name : String, exerciseInstances : [ExerciseInstance]) -> WorkoutInstance {
         let workoutInstanceEntity = NSEntityDescription.entity(forEntityName: "WorkoutInstance", in: managedContext)!
         let workoutInstance = NSManagedObject(entity: workoutInstanceEntity, insertInto: managedContext) as! WorkoutInstance
 
@@ -126,7 +126,6 @@ class CoreDataManager{
         let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! Workout
 
         workout.name = name
-        workout.date = Date()
         workout.instances = nil
         
         if let allExercises = self.getExercises() {

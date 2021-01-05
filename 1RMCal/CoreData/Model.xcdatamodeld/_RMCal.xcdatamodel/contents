@@ -10,6 +10,7 @@
         <attribute name="name" attributeType="String"/>
         <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="instances" inverseEntity="Exercise"/>
         <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="SetStat" inverseName="exerciseInstance" inverseEntity="SetStat"/>
+        <relationship name="workoutInstance" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutInstance" inverseName="exerciseInstances" inverseEntity="WorkoutInstance"/>
     </entity>
     <entity name="SetStat" representedClassName="SetStat" syncable="YES">
         <attribute name="repCount" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
@@ -21,18 +22,19 @@
     <entity name="WorkoutCD" representedClassName="WorkoutCD" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WorkoutInstanceCD"/>
+        <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WorkoutInstance" inverseName="workout" inverseEntity="WorkoutInstance"/>
     </entity>
-    <entity name="WorkoutInstanceCD" representedClassName="WorkoutInstanceCD" syncable="YES">
+    <entity name="WorkoutInstance" representedClassName="WorkoutInstance" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="exerciseInstances" attributeType="Transformable"/>
         <attribute name="name" attributeType="String"/>
+        <relationship name="exerciseInstances" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseInstance" inverseName="workoutInstance" inverseEntity="ExerciseInstance"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutCD" inverseName="instances" inverseEntity="WorkoutCD"/>
     </entity>
     <elements>
         <element name="Exercise" positionX="-28204.83862304687" positionY="-14244.48957824707" width="128" height="74"/>
-        <element name="ExerciseInstance" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="89"/>
+        <element name="ExerciseInstance" positionX="-28288.44177246094" positionY="-13971.61711120605" width="128" height="104"/>
         <element name="SetStat" positionX="-28014.72387695313" positionY="-13873.33982849121" width="128" height="104"/>
         <element name="WorkoutCD" positionX="-28445.64788818359" positionY="-14160.0079498291" width="128" height="74"/>
-        <element name="WorkoutInstanceCD" positionX="-28458.23443603516" positionY="-14014.4794921875" width="128" height="74"/>
+        <element name="WorkoutInstance" positionX="-28458.23443603516" positionY="-14014.4794921875" width="128" height="89"/>
     </elements>
 </model>

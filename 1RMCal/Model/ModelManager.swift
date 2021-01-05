@@ -12,6 +12,38 @@ class ModelManager {
     fileprivate let cd = CoreDataManager.shared
 }
 
+class WorkoutInstanceManager : ModelManager {
+    
+    var exercises : [Exercise]
+    var currentExercise : Exercise?
+    
+    init(exercises : [Exercise]) {
+        self.exercises = exercises
+    }
+    
+    func setCurrentExercise(index : Int) {
+        self.currentExercise = exercises[safe : index]
+    }
+    
+    func getExercise(index : Int) -> Exercise? {
+        guard let exercise = exercises[safe: index] else {return nil}
+        return exercise
+    }
+    
+    func createInstance(name : String, sets : [SetStat]) -> ExerciseInstance {
+        let exerciseInstance = cd.createExerciseInstance(name: name, sets : sets)
+        
+        for exercise in exercises {
+            if exercise.name == name {
+                exerciseInstance.exercise = exercise
+                exercise.updateBestSet(instance: exerciseInstance)
+            }
+        }
+        cd.saveData()
+        return exerciseInstance
+    }
+}
+
 class AllExercisesManager : ModelManager {
         
     var exercises : [Exercise]? {

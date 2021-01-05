@@ -26,28 +26,28 @@ extension WorkoutCD {
 extension WorkoutCD {
 
     @objc(insertObject:inInstancesAtIndex:)
-    @NSManaged public func insertIntoInstances(_ value: WorkoutInstanceCD, at idx: Int)
+    @NSManaged public func insertIntoInstances(_ value: WorkoutInstance, at idx: Int)
 
     @objc(removeObjectFromInstancesAtIndex:)
     @NSManaged public func removeFromInstances(at idx: Int)
 
     @objc(insertInstances:atIndexes:)
-    @NSManaged public func insertIntoInstances(_ values: [WorkoutInstanceCD], at indexes: NSIndexSet)
+    @NSManaged public func insertIntoInstances(_ values: [WorkoutInstance], at indexes: NSIndexSet)
 
     @objc(removeInstancesAtIndexes:)
     @NSManaged public func removeFromInstances(at indexes: NSIndexSet)
 
     @objc(replaceObjectInInstancesAtIndex:withObject:)
-    @NSManaged public func replaceInstances(at idx: Int, with value: WorkoutInstanceCD)
+    @NSManaged public func replaceInstances(at idx: Int, with value: WorkoutInstance)
 
     @objc(replaceInstancesAtIndexes:withInstances:)
-    @NSManaged public func replaceInstances(at indexes: NSIndexSet, with values: [WorkoutInstanceCD])
+    @NSManaged public func replaceInstances(at indexes: NSIndexSet, with values: [WorkoutInstance])
 
     @objc(addInstancesObject:)
-    @NSManaged public func addToInstances(_ value: WorkoutInstanceCD)
+    @NSManaged public func addToInstances(_ value: WorkoutInstance)
 
     @objc(removeInstancesObject:)
-    @NSManaged public func removeFromInstances(_ value: WorkoutInstanceCD)
+    @NSManaged public func removeFromInstances(_ value: WorkoutInstance)
 
     @objc(addInstances:)
     @NSManaged public func addToInstances(_ values: NSOrderedSet)

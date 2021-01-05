@@ -25,14 +25,14 @@ import UIKit
 class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataSource {
         
     // This will be either a NewWorkoutController or a ExercisesController
-    var parentVC : UIViewController & ExercisesView
+    var parentVC : UIViewController
     
-    init(data : [Exercise], parentVC : UIViewController & ExercisesView) {
+    init(data : [Exercise], parentVC : UIViewController ) {
         self.parentVC = parentVC
     }
     
     var numCells : Int {
-        return parentVC.vm.getExercises().count
+        return 0
     }
     
     // MARK: - Table view data source
@@ -49,7 +49,7 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-        cell.label.text = parentVC.vm.getExercises()[indexPath.row].name
+//        cell.label.text = parentVC.vm.getExercises()[indexPath.row].name
         return cell
     }
 
@@ -63,7 +63,7 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
         // Editing enabled for Exercise View Controler only
         if (editingStyle == .delete) && ((parentVC as? ExercisesViewController) != nil) {
             // handle delete (by removing the data from your array and updating the tableview)
-            parentVC.vm.removeExercise(index: indexPath.row)
+//            parentVC.vm.removeExercise(index: indexPath.row)
             tableView.reloadData()
         }
     }

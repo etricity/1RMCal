@@ -99,8 +99,7 @@ class WorkoutViewController: UIViewController, UITableViewDataSource, UITableVie
         
         switch segue.identifier {
         case "performWorkout":
-            let vc = segue.destination as? WorkoutInstanceViewController
-            vc?.parentVC = self
+            let vc = segue.destination as? WorkoutInstanceViewController 
             vc?.title = self.workout.name
         case "viewHistory":
             let index = sender as! Int

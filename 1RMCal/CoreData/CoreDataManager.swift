@@ -74,6 +74,7 @@ class CoreDataManager{
             exerciseInstance.addToSets(set)
         }
         exerciseInstance.exercise = nil
+        exerciseInstance.workoutInstance = nil
         exerciseInstance.date = Date()
 
         
@@ -94,12 +95,18 @@ class CoreDataManager{
     
 
     //Create WorkoutInstance
-    private func createWorkoutInstance(name : String) -> WorkoutInstanceCD {
-        let workoutInstanceEntity = NSEntityDescription.entity(forEntityName: "WorkoutInstanceCD", in: managedContext)!
-        let workoutInstance = NSManagedObject(entity: workoutInstanceEntity, insertInto: managedContext) as! WorkoutInstanceCD
+    private func createWorkoutInstance(name : String, exerciseInstances : [ExerciseInstance]) -> WorkoutInstance {
+        let workoutInstanceEntity = NSEntityDescription.entity(forEntityName: "WorkoutInstance", in: managedContext)!
+        let workoutInstance = NSManagedObject(entity: workoutInstanceEntity, insertInto: managedContext) as! WorkoutInstance
 
         workoutInstance.name = name
         workoutInstance.date = Date()
+        
+        for instance in exerciseInstances {
+            instance.workoutInstance = workoutInstance
+            workoutInstance.addToExerciseInstances(instance)
+        }
+        workoutInstance.workout = nil
         
         return workoutInstance
     }
@@ -134,9 +141,9 @@ class CoreDataManager{
     
     func testData() {
         do {
-            
-
-                    
+            let fectchRequest : NSFetchRequest<WorkoutInstance> = WorkoutInstance.fetchRequest()
+            let workoutInstances = try managedContext.fetch(fectchRequest)
+            let workoutInstance = workoutInstances.first!                    
         } catch let error as NSError {
             print("Could not load \(error), \(error.userInfo)")
         }
@@ -148,6 +155,14 @@ class CoreDataManager{
         do {
             
             let exercise = createExercise(name: "Bench Press")
+            
+            let fectchRequest : NSFetchRequest<ExerciseInstance> = ExerciseInstance.fetchRequest()
+            let exercises = try managedContext.fetch(fectchRequest)
+            
+            let workoutInstance = createWorkoutInstance(name: "Test WorkoutInstance", exerciseInstances: exercises)
+            
+            print(workoutInstance.name)
+            print(workoutInstance.exerciseInstances.count)
             self.saveData()
             
         } catch let error as NSError {
@@ -160,7 +175,7 @@ class CoreDataManager{
         deleteData("ExerciseInstance")
         deleteData("Exercise")
 
-        deleteData("WorkoutInstanceCD")
+        deleteData("WorkoutInstance")
         deleteData("WorkoutCD")
     }
     

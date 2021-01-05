@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExercisesView {
+class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var exercisesTableView: UITableView!
     @IBOutlet weak var workoutLayout: UITableView!

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let cd = CoreDataManager.shared
-        if false {
+        if true {
             cd.deleteCoreData()
             cd.loadData()
             cd.testData()

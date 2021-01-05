@@ -8,9 +8,8 @@
 
 import UIKit
 
-class ExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExerciseInstanceCreator {
 
-    
     //View connections
     @IBOutlet weak var current1RM: UILabel!
     @IBOutlet weak var history: UITableView!

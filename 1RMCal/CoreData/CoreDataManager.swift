@@ -60,7 +60,6 @@ class CoreDataManager{
     
     // get a exercise
     func getExercise(name : String) -> Exercise? {
-        
         var exercise : Exercise? = nil
         
         let exerciseFR : NSFetchRequest<Exercise> = Exercise.fetchRequest()
@@ -78,9 +77,6 @@ class CoreDataManager{
         }
         return exercise
     }
-    
-    
-    
     
     // Model Creation Functions
     

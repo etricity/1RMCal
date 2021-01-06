@@ -24,6 +24,8 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     
     var parentVC : ExerciseInstanceViewController!
     
+    var setToModify : SetStat?
+    
     //Settings current & global
     let settings = Settings.shared
     var currentUnits : UnitMass = .kilograms
@@ -59,11 +61,17 @@ class CalViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     @IBAction func done(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-        self.createSetStat()
+        
+        if setToModify == nil {
+            parentVC.createSet(weight: self.currentWeight.value, repCount: self.currentReps, unitString: globalUnits.rawValue)
+        } else {
+            parentVC.modifySet(weight: self.currentWeight.value, repCount: self.currentReps, unitString: globalUnits.rawValue, setToModify: setToModify!)
+        }
+        
     }
     
     func createSetStat() {
-        parentVC.createSet(weight: self.currentWeight.value, repCount: self.currentReps, unitString: globalUnits.rawValue)
+    
     }
     
     @IBAction func unitsChanged(_ sender: UISegmentedControl) {

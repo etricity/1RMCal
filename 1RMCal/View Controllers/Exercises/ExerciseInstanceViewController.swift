@@ -23,6 +23,10 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     // ExerciseInstance variables for creation
     var exerciseName : String = ""
     
+    
+    // used for modifying sets
+    let defaultLabel : String = "Perform Set"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -60,6 +64,16 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         parentVC.createInstance(name : exerciseName, sets : sets)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        let currentSet = tableView.cellForRow(at: indexPath) as! LabelCell
+        
+        if currentSet.label.text == defaultLabel {
+            performSegue(withIdentifier: "performSet", sender: nil)
+        } else {
+            performSegue(withIdentifier: "performSet", sender: index)
+        }
+    }
     
     // TableView functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,7 +93,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
             cell.label.text = setStat.summary
             cell.label.textColor = .white
         } else {
-            cell.label.text = "Perform Set"
+            cell.label.text = defaultLabel
         }
         return cell
     }
@@ -91,13 +105,25 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
         setsTableView.reloadData()
     }
     
+    func modifySet(weight: Double, repCount: Double, unitString: String, setToModify : SetStat) {
+        setsManager.modifySet(weight: weight, repCount: repCount, unitString: unitString, set: setToModify)
+        setsTableView.reloadData()
+    }
+    
     
     // Segue Functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
+        
         if segue.destination is CalViewController {
             let vc = segue.destination as? CalViewController
-            vc?.parentVC = self   
+            vc?.parentVC = self
+            
+            if let index : Int = sender as? Int {
+                vc?.setToModify = sets[safe: index]
+            }
+            
         }
     }
 }

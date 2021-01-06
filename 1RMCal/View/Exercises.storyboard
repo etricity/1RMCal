@@ -223,7 +223,6 @@
                                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                         <connections>
                                             <outlet property="label" destination="6RQ-gX-xhT" id="nti-VP-cgs"/>
-                                            <segue destination="m0r-Kf-Lzh" kind="show" id="D9a-rR-R0I"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -275,6 +274,7 @@
                     <connections>
                         <outlet property="current1RM" destination="1BQ-lY-SAM" id="hvL-kn-28V"/>
                         <outlet property="setsTableView" destination="1I4-t8-GXH" id="Ul9-Tu-KY0"/>
+                        <segue destination="m0r-Kf-Lzh" kind="show" identifier="performSet" id="wgo-od-EW6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwK-5c-YqC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

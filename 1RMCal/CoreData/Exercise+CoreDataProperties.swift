@@ -18,8 +18,8 @@ extension Exercise {
 
     @NSManaged public var name: String
     @NSManaged public var bestSet: SetStat?
-    @NSManaged public var instances: NSMutableSet?
-    @NSManaged public var workout: NSMutableSet?
+    @NSManaged public var instances: NSMutableOrderedSet?
+    @NSManaged public var workout: NSMutableOrderedSet?
 
 }
 

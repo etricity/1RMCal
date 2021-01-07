@@ -16,8 +16,8 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     let modelManager : ExercisesManager = ExercisesManager()
     
     // data for workout creation
-    var workoutName : String?
-    lazy var exerciseNames : [String] = []
+    var workoutName : String? 
+    lazy var exercises : [Exercise] = []
     
     var parentVC : WorkoutsViewController!
     lazy var dataSource = ExerciseTableViewDelegate(parentVC: self)
@@ -41,13 +41,13 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
 
     // Workout Layout Table View Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exerciseNames.count
+        return exercises.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "workoutLayoutCell", for: indexPath) as! LabelCell
         
-        if let exerciseName : String = exerciseNames[safe: indexPath.row] {
+        if let exerciseName : String = exercises[safe: indexPath.row]?.name {
             cell.label.text = exerciseName
         }
         return cell
@@ -60,8 +60,8 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let x = sourceIndexPath.row
         let y = destinationIndexPath.row
-        if exerciseNames.indices.contains(x) && exerciseNames.indices.contains(y) {
-            exerciseNames.swapAt(x, y)
+        if exercises.indices.contains(x) && exercises.indices.contains(y) {
+            exercises.swapAt(x, y)
         }
         
     }
@@ -71,8 +71,8 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
             
-            if exerciseNames.indices.contains(indexPath.row) {
-                exerciseNames.remove(at: indexPath.row)
+            if exercises.indices.contains(indexPath.row) {
+                exercises.remove(at: indexPath.row)
             }
             
             tableView.reloadData()
@@ -86,7 +86,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         navigationController?.popViewController(animated: true)
         
         if workoutName != nil {
-            parentVC.addNewWorkout(name: workoutName!, exercises: exerciseNames)
+            parentVC.addNewWorkout(name: workoutName!, exercises: exercises)
             parentVC.workoutsTableView.reloadData()
         }
     }
@@ -130,8 +130,8 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // Add exercise to Workout
-    func addExerciseToWorkout(name : String) {
-        exerciseNames.append(name)
+    func addExerciseToWorkout(exercise : Exercise) {
+        exercises.append(exercise)
         workoutLayout.reloadData()
     }
     

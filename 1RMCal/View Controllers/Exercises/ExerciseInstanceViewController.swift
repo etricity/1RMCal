@@ -64,7 +64,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     // Finished performing exercise --> create instance
     func createExerciseInstance() {
-        parentVC.createInstance(name : exerciseName, sets : sets)
+        parentVC.createInstance(sets : sets)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

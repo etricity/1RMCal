@@ -105,7 +105,7 @@ class WorkoutsViewController: UITableViewController {
     }
     
     // confirming new exercise in "New Exercise Alert"
-    func addNewWorkout(name : String, exercises : [String]) {
+    func addNewWorkout(name : String, exercises : [Exercise]) {
         workoutManager.addWorkout(name: name, exercises: exercises)
     }
     

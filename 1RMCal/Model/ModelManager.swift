@@ -37,7 +37,7 @@ class WorkoutsManager : ModelManager {
         return workoutExists
     }
     
-    func addWorkout(name : String, exercises : [String]) {
+    func addWorkout(name : String, exercises : [Exercise]) {
         cd.createWorkout(name : name, exercises : exercises)
         cd.saveData()
     }
@@ -67,7 +67,7 @@ class WorkoutManager : ModelManager {
     }
         
     func createInstance(name : String, exerciseInstances : [ExerciseInstance]) -> WorkoutInstance {
-        let workoutInstance = cd.createWorkoutInstance(name: name, exerciseInstances : exerciseInstances)
+        let workoutInstance = cd.createWorkoutInstance(workout: workout, exerciseInstances : exerciseInstances)
         
         // relation is inversed & data saved
         workoutInstance.workout = self.workout
@@ -107,19 +107,19 @@ class WorkoutInstanceManager {
     }
     
     func getExerciseInstance(index : Int) -> ExerciseInstance? {
-        guard let instances : [ExerciseInstance] = workoutInstance?.exerciseInstances.allObjects as? [ExerciseInstance] else {return nil}
+        guard let instances : [ExerciseInstance] = workoutInstance?.exerciseInstances?.array as? [ExerciseInstance] else {return nil}
         guard let instance : ExerciseInstance = instances[safe: index] else {return nil}
         return instance
     }
     
     func getInstanceSets(index : Int) -> [SetStat]? {
         guard let instance : ExerciseInstance = self.getExerciseInstance(index: index) else {return nil}
-        return instance.sets.allObjects as? [SetStat]
+        return instance.sets.array as? [SetStat]
     }
     
     func getInstanceSet(instanceIndex : Int, setIndex : Int) -> SetStat? {
         guard let instance : ExerciseInstance = self.getExerciseInstance(index: instanceIndex) else {return nil}
-        guard let sets : [SetStat] = instance.sets.allObjects as? [SetStat] else {return nil}
+        guard let sets : [SetStat] = instance.sets.array as? [SetStat] else {return nil}
         return sets[safe: setIndex]
     }
     
@@ -147,11 +147,11 @@ class WorkoutInstanceCreator : ModelManager {
         return exercise
     }
     
-    func createInstance(name : String, sets : [SetStat]) -> ExerciseInstance {
-        let exerciseInstance = cd.createExerciseInstance(name: name, sets : sets)
+    func createInstance(sets : [SetStat]) -> ExerciseInstance {
+        let exerciseInstance = cd.createExerciseInstance(exercise: currentExercise!, sets : sets)
         
         for exercise in exercises {
-            if exercise.name == name {
+            if exercise.name == currentExercise?.name {
                 exerciseInstance.exercise = exercise
                 exercise.updateBestSet(instance: exerciseInstance)
             }
@@ -170,15 +170,9 @@ class ExercisesManager : ModelManager {
         return exercises
     }
     
-    func metaData() -> [String] {
-        var metaData : [String] = []
-        
-        if let exercises = self.exercises {
-            for exercise in exercises {
-                metaData.append(exercise.name)
-            }
-        }
-        return metaData
+    func getAllExercises() -> [Exercise]? {
+        guard let allExercises : [Exercise] = cd.getExercises() else {return nil}
+        return allExercises
     }
     
     // Get exercise by index
@@ -227,8 +221,8 @@ class ExerciseManager : ModelManager {
         self.exercise = exercise
     }
     
-    func createInstance(name : String, sets : [SetStat]) -> ExerciseInstance {
-        let exerciseInstance = cd.createExerciseInstance(name: name, sets : sets)
+    func createInstance(sets : [SetStat]) -> ExerciseInstance {
+        let exerciseInstance = cd.createExerciseInstance(exercise: exercise, sets : sets)
         
         // relation is inversed & data saved
         exerciseInstance.exercise = self.exercise

@@ -2,7 +2,7 @@
 //  ExerciseInstance+CoreDataProperties.swift
 //  
 //
-//  Created by Isaiah Cuzzupe on 5/1/21.
+//  Created by Isaiah Cuzzupe on 7/1/21.
 //
 //
 
@@ -19,7 +19,7 @@ extension ExerciseInstance {
     @NSManaged public var date: Date
     @NSManaged public var name: String
     @NSManaged public var exercise: Exercise?
-    @NSManaged public var sets: NSMutableSet
+    @NSManaged public var sets: NSMutableOrderedSet
     @NSManaged public var workoutInstance: WorkoutInstance?
 
 }

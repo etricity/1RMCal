@@ -9,5 +9,5 @@
 import UIKit
 
 protocol ExerciseInstanceCreator {
-    func createInstance(name : String, sets : [SetStat])
+    func createInstance(sets : [SetStat])
 }

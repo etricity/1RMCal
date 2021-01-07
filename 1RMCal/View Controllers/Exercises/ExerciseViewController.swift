@@ -85,15 +85,16 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let index = indexPath.row
+        let index = exerciseManager.numInstances - 1 - indexPath.row
+
         
         performSegue(withIdentifier: "viewHistory", sender: index)
         
     }
     
-    func createInstance(name : String, sets : [SetStat]) {
+    func createInstance(sets : [SetStat]) {
         // self.exercise is automatically updated when core data is saved
-        let instance = exerciseManager.createInstance(name: name, sets: sets)
+        let instance = exerciseManager.createInstance(sets: sets)
         history.reloadData()
     }
     
@@ -118,7 +119,7 @@ class ExerciseViewController: UIViewController, UITableViewDelegate, UITableView
             
             // init SetHistoryViewController SetStatManager
             if let instance = exerciseManager.getInstance(index: index),
-               let set : [SetStat] = instance.sets.allObjects as? [SetStat] {
+               let set : [SetStat] = instance.sets.array as? [SetStat] {
                 vc?.setsManager = SetStatManager(sets: set)
             }
         default:

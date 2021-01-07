@@ -26,15 +26,15 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
         
     // This will be either a NewWorkoutController or a ExercisesController
     var parentVC : NewWorkoutViewController
-    lazy var data : [String] = parentVC.modelManager.metaData()
-    lazy var selectedCells : [Bool] = Array(repeating: false, count: self.data.count)
+    lazy var data : [Exercise]? = parentVC.modelManager.getAllExercises()
+    lazy var selectedCells : [Bool] = Array(repeating: false, count: self.data?.count ?? 0)
         
     init(parentVC : NewWorkoutViewController ) {
         self.parentVC = parentVC
     }
     
     var numCells : Int {
-        return data.count
+        return data?.count ?? 0
     }
     
     // MARK: - Table view data source
@@ -51,17 +51,19 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-       cell.label.text = data[indexPath.row]
-       
-        switch !selectedCells[indexPath.row] {
-        case true:
-            cell.selectionStyle = .default
-            cell.label.textColor = .white
-        case false:
-            cell.selectionStyle = .gray
-            cell.label.textColor = .gray
+        
+        if let data = data {
+            cell.label.text = data[indexPath.row].name
+           
+            switch !selectedCells[indexPath.row] {
+            case true:
+                cell.selectionStyle = .default
+                cell.label.textColor = .white
+            case false:
+                cell.selectionStyle = .gray
+                cell.label.textColor = .gray
+            }
         }
-       
        return cell
    }
 
@@ -77,10 +79,9 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
        let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
        
        // add exercise to workout layout & disable cell
-       if !selectedCells[index] {
-           let exerciseName : String = selectedCell.label.text ?? ""
+    if !selectedCells[index], let exercise = data?[index] {
            selectedCells[index] = true
-           parentVC.addExerciseToWorkout(name: exerciseName)
+           parentVC.addExerciseToWorkout(exercise: exercise)
        }
        tableView.reloadData()
    }

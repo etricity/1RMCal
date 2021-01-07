@@ -19,7 +19,7 @@ public class Exercise: NSManagedObject {
     }
     
     func getInstance(index : Int) -> ExerciseInstance? {
-        guard let instances : [ExerciseInstance] = self.instances?.allObjects as? [ExerciseInstance] else {return nil}
+        guard let instances : [ExerciseInstance] = self.instances?.array as? [ExerciseInstance] else {return nil}
         guard let instance : ExerciseInstance = instances[safe: index] else {return nil}
         return instance
     }
@@ -42,11 +42,11 @@ public class Exercise: NSManagedObject {
     
     // update when deleting instance
     func updateBestSet() {
-        guard let instances : [ExerciseInstance] = self.instances?.allObjects as? [ExerciseInstance] else {return}
+        guard let instances : [ExerciseInstance] = self.instances?.array as? [ExerciseInstance] else {return}
         
         if instances.count > 0 {
             for instance in instances {
-                if let sets : [SetStat] = instance.sets.allObjects as? [SetStat] {
+                if let sets : [SetStat] = instance.sets.array as? [SetStat] {
                     self.bestSet = sets.max { (a, b) -> Bool in
                         a.oneRM > b.oneRM
                     }

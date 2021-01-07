@@ -94,20 +94,20 @@ class CoreDataManager{
     }
     
     //Create ExerciseInstance
-    func createExerciseInstance(name : String, sets : [SetStat]) -> ExerciseInstance {
+    func createExerciseInstance(exercise : Exercise, sets : [SetStat], date : Date = Date()) -> ExerciseInstance {
         let exerciseInstanceEntity = NSEntityDescription.entity(forEntityName: "ExerciseInstance", in: managedContext)!
         let exerciseInstance = NSManagedObject(entity: exerciseInstanceEntity, insertInto: managedContext) as! ExerciseInstance
 
     
-        exerciseInstance.name = name
+        exerciseInstance.name = exercise.name
         
         for set in sets {
             set.exerciseInstance = exerciseInstance
             exerciseInstance.addToSets(set)
         }
-        exerciseInstance.exercise = nil
+        exerciseInstance.exercise = exercise
         exerciseInstance.workoutInstance = nil
-        exerciseInstance.date = Date()
+        exerciseInstance.date = date
 
         
         return exerciseInstance
@@ -128,48 +128,133 @@ class CoreDataManager{
     
 
     //Create WorkoutInstance
-    func createWorkoutInstance(name : String, exerciseInstances : [ExerciseInstance]) -> WorkoutInstance {
+    func createWorkoutInstance(workout : Workout, exerciseInstances : [ExerciseInstance], date : Date = Date()) -> WorkoutInstance {
         let workoutInstanceEntity = NSEntityDescription.entity(forEntityName: "WorkoutInstance", in: managedContext)!
         let workoutInstance = NSManagedObject(entity: workoutInstanceEntity, insertInto: managedContext) as! WorkoutInstance
 
-        workoutInstance.name = name
-        workoutInstance.date = Date()
+        workoutInstance.name = workout.name
+        workoutInstance.date = date
         
         for instance in exerciseInstances {
             instance.workoutInstance = workoutInstance
             workoutInstance.addToExerciseInstances(instance)
         }
-        workoutInstance.workout = nil
+        workoutInstance.workout = workout
         
         return workoutInstance
     }
     
     //Create Workout
-    func createWorkout(name : String, exercises : [String]) -> Workout {
+    func createWorkout(name : String, exercises : [Exercise]) -> Workout {
         let workoutEntity = NSEntityDescription.entity(forEntityName: "Workout", in: managedContext)!
         let workout = NSManagedObject(entity: workoutEntity, insertInto: managedContext) as! Workout
 
         workout.name = name
         workout.instances = nil
         
-        if let allExercises = self.getExercises() {
-            for name in exercises {
-                let exercise : Exercise? = {
-                    return allExercises.filter { exercise in
-                        return exercise.name == name
-                      }
-                }().first ?? nil
-                
-                if let exercise : Exercise = exercise {
-                    exercise.addToWorkout(workout)
-                    workout.addToExercises(exercise)
-                }
-            }
+        for exercise in exercises {
+            exercise.addToWorkout(workout)
+            workout.addToExercises(exercise)
         }
         return workout
     }
     
     //Load, Save & Delete functionality
+    
+    func loadData() {
+        
+        // exercises
+        let benchPress = createExercise(name: "Bench Press")
+        let bbRow = createExercise(name: "BB Row")
+        let inclineBP = createExercise(name: "Incline Bench Press")
+        let chinUps = createExercise(name: "Chin Ups")
+        let declineBP = createExercise(name: "Decline Bench Press")
+        let latMachine = createExercise(name: "Lat Machine")
+        let pecDeck = createExercise(name: "Pec Deck")
+        let pushUps = createExercise(name: "Push Ups")
+        let absMachine = createExercise(name: "AB Machine (straight)")
+        
+        var exercises : [Exercise] = []
+        exercises.append(benchPress)
+        exercises.append(bbRow)
+        exercises.append(inclineBP)
+        exercises.append(chinUps)
+        exercises.append(declineBP)
+        exercises.append(latMachine)
+        exercises.append(pecDeck)
+        exercises.append(pushUps)
+        exercises.append(absMachine)
+        
+        // exercise instances
+        let date1 = Date(timeIntervalSince1970: 1609750800)
+        let bps1 = createSetStat(weight: 74.5, repCount: 12, unitString: Weight.kg.rawValue)
+        let bps2 = createSetStat(weight: 83.5, repCount: 9, unitString: Weight.kg.rawValue)
+        let bps3 = createSetStat(weight: 88, repCount: 8, unitString: Weight.kg.rawValue)
+        let bpInst = createExerciseInstance(exercise: benchPress, sets: [bps1, bps2, bps3], date: date1)
+    
+        
+        let bbs1 = createSetStat(weight: 80, repCount: 12, unitString: Weight.kg.rawValue)
+        let bbs2 = createSetStat(weight: 80, repCount: 12, unitString: Weight.kg.rawValue)
+        let bbs3 = createSetStat(weight: 90, repCount: 9, unitString: Weight.kg.rawValue)
+        let bbInst = createExerciseInstance(exercise: bbRow, sets: [bbs1, bbs2, bbs3], date: date1)
+        
+        let ins1 = createSetStat(weight: 70, repCount: 8, unitString: Weight.kg.rawValue)
+        let ins2 = createSetStat(weight: 70, repCount: 8, unitString: Weight.kg.rawValue)
+        let ins3 = createSetStat(weight: 70, repCount: 8, unitString: Weight.kg.rawValue)
+        let inInst = createExerciseInstance(exercise: inclineBP, sets: [ins1, ins2, ins3], date: date1)
+        
+        let chin1 = createSetStat(weight: 70, repCount: 16, unitString: Weight.kg.rawValue)
+        let chin2 = createSetStat(weight: 70, repCount: 11, unitString: Weight.kg.rawValue)
+        let chin3 = createSetStat(weight: 70, repCount: 12, unitString: Weight.kg.rawValue)
+        let chinIst = createExerciseInstance(exercise: chinUps, sets: [chin1, chin2, chin3], date: date1)
+        
+        let dec1 = createSetStat(weight: 83.5, repCount: 16, unitString: Weight.kg.rawValue)
+        let dec2 = createSetStat(weight: 83.5, repCount: 11, unitString: Weight.kg.rawValue)
+        let dec3 = createSetStat(weight: 83.5, repCount: 12, unitString: Weight.kg.rawValue)
+        let decInst = createExerciseInstance(exercise: declineBP, sets: [dec1, dec2, dec3], date: date1)
+        
+        let latM1 = createSetStat(weight: 81.5, repCount: 11, unitString: Weight.kg.rawValue)
+        let latM2 = createSetStat(weight: 81.5, repCount: 8, unitString: Weight.kg.rawValue)
+        let latM3 = createSetStat(weight: 81.5, repCount: 7, unitString: Weight.kg.rawValue)
+        let latM = createExerciseInstance(exercise: latMachine, sets: [latM1, latM2, latM3], date: date1)
+        
+        let pec1 = createSetStat(weight: 50, repCount: 9, unitString: Weight.kg.rawValue)
+        let pec2 = createSetStat(weight: 50, repCount: 8, unitString: Weight.kg.rawValue)
+        let pec3 = createSetStat(weight: 50, repCount: 7, unitString: Weight.kg.rawValue)
+        let pec = createExerciseInstance(exercise: pecDeck, sets: [pec1, pec2, pec3], date: date1)
+        
+        let push1 = createSetStat(weight: 0, repCount: 10, unitString: Weight.kg.rawValue)
+        let push2 = createSetStat(weight: 0, repCount: 10, unitString: Weight.kg.rawValue)
+        let push3 = createSetStat(weight: 0, repCount: 10, unitString: Weight.kg.rawValue)
+        let push = createExerciseInstance(exercise: pushUps, sets: [push1, push2, push3], date: date1)
+        
+        let ab1 = createSetStat(weight: 120, repCount: 20, unitString: Weight.kg.rawValue)
+        let ab2 = createSetStat(weight: 120, repCount: 18, unitString: Weight.kg.rawValue)
+        let ab3 = createSetStat(weight: 120, repCount: 16, unitString: Weight.kg.rawValue)
+        let ab = createExerciseInstance(exercise: absMachine, sets: [ab1, ab2, ab3], date: date1)
+
+    
+        
+        // exercises Instances
+        var exerciseInstances : [ExerciseInstance] = []
+        exerciseInstances.append(bpInst)
+        exerciseInstances.append(bbInst)
+        exerciseInstances.append(inInst)
+        exerciseInstances.append(chinIst)
+        exerciseInstances.append(decInst)
+        exerciseInstances.append(latM)
+        exerciseInstances.append(pec)
+        exerciseInstances.append(push)
+        exerciseInstances.append(ab)
+        
+    
+        // workout
+        let jan2021 = createWorkout(name: "Jan 2021", exercises: exercises)
+        
+        // workout instance
+        let workoutInst = createWorkoutInstance(workout: jan2021, exerciseInstances: exerciseInstances, date: date1)
+        jan2021.addToInstances(workoutInst)
+    }
     
     // Notification for saving
     @objc func saveData(_ notification:Notification) {

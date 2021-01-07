@@ -28,7 +28,7 @@
     <entity name="WorkoutInstance" representedClassName="WorkoutInstance" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="exerciseInstances" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseInstance" inverseName="workoutInstance" inverseEntity="ExerciseInstance"/>
+        <relationship name="exerciseInstances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExerciseInstance" inverseName="workoutInstance" inverseEntity="ExerciseInstance"/>
         <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="instances" inverseEntity="Workout"/>
     </entity>
     <elements>

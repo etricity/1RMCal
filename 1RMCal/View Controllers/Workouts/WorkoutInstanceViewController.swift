@@ -9,6 +9,7 @@
 import UIKit
 
 class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCreator {
+    
    
     // change later
     var wm : WorkoutInstanceCreator!
@@ -77,9 +78,9 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
         }
     }
     
-    func createInstance(name: String, sets: [SetStat]) {
+    func createInstance(sets: [SetStat]) {
         // create exercise instance
-        let instance = wm.createInstance(name: name, sets: sets)
+        let instance = wm.createInstance(sets: sets)
         exerciseInstances.append(instance)
     }
         
@@ -101,7 +102,7 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
         vc?.parentVC = self
         
         if modifyingInstance {
-            vc?.setsManager = SetStatManager(sets: wm.modifyingInstance?.sets.allObjects as? [SetStat] ?? [])
+            vc?.setsManager = SetStatManager(sets: wm.modifyingInstance?.sets.array as? [SetStat] ?? [])
             vc?.modifyingExistingInstance = true
         } else {
             vc?.setsManager = SetStatManager()

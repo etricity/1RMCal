@@ -26,10 +26,9 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
         
     // This will be either a NewWorkoutController or a ExercisesController
     var parentVC : NewWorkoutViewController
-    var data : [String] {
-        return parentVC.modelManager.metaData()
-    }
-    
+    lazy var data : [String] = parentVC.modelManager.metaData()
+    lazy var selectedCells : [Bool] = Array(repeating: false, count: self.data.count)
+        
     init(parentVC : NewWorkoutViewController ) {
         self.parentVC = parentVC
     }
@@ -50,32 +49,41 @@ class ExerciseTableViewDelegate: NSObject, UITableViewDelegate, UITableViewDataS
     }
 
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
-        cell.label.text = data[indexPath.row]
-        return cell
-    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! LabelCell
+       cell.label.text = data[indexPath.row]
+       
+        switch !selectedCells[indexPath.row] {
+        case true:
+            cell.selectionStyle = .default
+            cell.label.textColor = .white
+        case false:
+            cell.selectionStyle = .gray
+            cell.label.textColor = .gray
+        }
+       
+       return cell
+   }
 
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            return false
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // Disabling cells for NewWorkoutController only
-    
-            let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
-            
-            // add exercise to workout layout & disable cell
-            if selectedCell.selectionStyle != .none {
-                selectedCell.label.textColor = .gray
-                selectedCell.selectionStyle = .none
-                let data : [String : String] = ["exerciseName" : selectedCell.label.text ?? ""]
-                NotificationCenter.default.post(name: .addExerciseToWorkout, object: nil, userInfo: data)
-            }
-    }
-
+   
+   func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+           return false
+   }
+   
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+       // Disabling cells for NewWorkoutController only
+       let index = indexPath.row
+       let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
+       
+       // add exercise to workout layout & disable cell
+       if !selectedCells[index] {
+           let exerciseName : String = selectedCell.label.text ?? ""
+           selectedCells[index] = true
+           parentVC.addExerciseToWorkout(name: exerciseName)
+       }
+       tableView.reloadData()
+   }
 }
 
 class WorkoutTableViewDelegate : NSObject, UITableViewDelegate, UITableViewDataSource {

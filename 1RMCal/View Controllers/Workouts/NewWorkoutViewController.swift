@@ -24,10 +24,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        // Add notification observer
-        NotificationCenter.default.addObserver(self, selector: #selector(addExerciseToWorkout(_:)), name: .addExerciseToWorkout, object: nil)
-        
+                        
         // Table View Delegation & Config
         exercisesTableView.delegate = dataSource
         exercisesTableView.dataSource = dataSource
@@ -133,8 +130,7 @@ class NewWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // Add exercise to Workout
-    @objc func addExerciseToWorkout(_ notification:Notification) {
-        let name = notification.userInfo?["exerciseName"] as! String
+    func addExerciseToWorkout(name : String) {
         exerciseNames.append(name)
         workoutLayout.reloadData()
     }

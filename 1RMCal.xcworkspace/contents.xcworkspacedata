@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:1RMCal/CoreData/Exercise+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
-      location = "group:1RMCal/CoreData/Workout+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:1RMCal.xcodeproj">
    </FileRef>
    <FileRef

@@ -22,7 +22,7 @@
     </entity>
     <entity name="Workout" representedClassName="Workout" syncable="YES">
         <attribute name="name" attributeType="String"/>
-        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="workout" inverseEntity="Exercise"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Exercise" inverseName="workout" inverseEntity="Exercise"/>
         <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WorkoutInstance" inverseName="workout" inverseEntity="WorkoutInstance"/>
     </entity>
     <entity name="WorkoutInstance" representedClassName="WorkoutInstance" syncable="YES">

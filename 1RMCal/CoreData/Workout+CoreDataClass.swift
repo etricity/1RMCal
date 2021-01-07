@@ -13,8 +13,7 @@ import CoreData
 public class Workout: NSManagedObject {
 
     func getInstance(index : Int) -> WorkoutInstance? {
-        guard let instances : [WorkoutInstance] = self.instances?.allObjects as? [WorkoutInstance] else {return nil}
-        guard let instance : WorkoutInstance = instances[safe: index] else {return nil}
+        guard let instance : WorkoutInstance = self.instances?.object(at: index) as? WorkoutInstance else {return nil}
         return instance
     }
     
@@ -23,8 +22,7 @@ public class Workout: NSManagedObject {
     }
     
     func getExercise(index : Int) -> Exercise? {
-        guard let workoutExercises : [Exercise] = self.exercises?.allObjects as? [Exercise] else {return nil}
-        guard let exercise : Exercise = workoutExercises[safe: index] else {return nil}
+        guard let exercise : Exercise = self.exercises?.object(at: index) as? Exercise else {return nil}
         return exercise
     }
 

@@ -26,6 +26,7 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     
     // used for modifying sets
     let defaultLabel : String = "Perform Set"
+    var modifyingExistingInstance : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,9 @@ class ExerciseInstanceViewController: UIViewController, UITableViewDelegate, UIT
     @IBAction func finishExercise(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     
-        if exerciseName.count > 0 && !sets.isEmpty {
+        if modifyingExistingInstance {
+            NotificationCenter.default.post(name: .saveData, object: nil, userInfo: nil)
+        } else if exerciseName.count > 0 && !sets.isEmpty {
             self.createExerciseInstance()
         }
     }

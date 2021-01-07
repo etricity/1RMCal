@@ -62,7 +62,7 @@ class WorkoutManager : ModelManager {
     }
     
     func getExercises() -> [Exercise]? {
-        guard let exercises : [Exercise] = workout.exercises?.allObjects as? [Exercise] else {return nil}
+        guard let exercises : [Exercise] = workout.exercises?.array as? [Exercise] else {return nil}
         return exercises
     }
         
@@ -132,6 +132,7 @@ class WorkoutInstanceCreator : ModelManager {
     
     var exercises : [Exercise]
     var currentExercise : Exercise?
+    var modifyingInstance : ExerciseInstance?
     
     init(exercises : [Exercise]) {
         self.exercises = exercises

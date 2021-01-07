@@ -15,6 +15,7 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     var exercises : [Exercise] {
         return wm.exercises
     }
+    var modifyingInstance : Bool {wm.modifyingInstance != nil}
     var parentVC : WorkoutViewController!
     
     // Data for workout instance creation
@@ -53,17 +54,25 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let index = indexPath.row
         let selectedCell = tableView.cellForRow(at: indexPath) as! LabelCell
         // IF cell has not been selected
-        if selectedCell.selectionStyle != .none {
-            // disable cell
+        if selectedCell.label.textColor != .gray {
+            // update cell style
             selectedCell.label.textColor = .gray
-            selectedCell.selectionStyle = .none
-            
             // perform exercise
-            let index = indexPath.row
             wm.setCurrentExercise(index: index)
+            wm.modifyingInstance = nil
             performSegue(withIdentifier: "performExercise", sender: index)
+        
+            // modifying exercise
+        } else {
+            if let modifyingExInstance = exerciseInstances.filter({ $0.name == selectedCell.label.text }).first {
+                wm.modifyingInstance = modifyingExInstance
+                wm.setCurrentExercise(index: index)
+                performSegue(withIdentifier: "performExercise", sender: index)
+            }
+            
             
         }
     }
@@ -73,8 +82,7 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
         let instance = wm.createInstance(name: name, sets: sets)
         exerciseInstances.append(instance)
     }
-
-    
+        
     @IBAction func finishWorkout(_ sender: Any) {
         navigationController?.popViewController(animated: true)
         if let name : String = workoutName, exerciseInstances.count > 0 {
@@ -88,9 +96,16 @@ class WorkoutInstanceViewController: UITableViewController, ExerciseInstanceCrea
     {
         let vc = segue.destination as? ExerciseInstanceViewController
         let index = sender as! Int
-        vc?.title = wm.getExercise(index: index)?.name
-        vc?.bestSetText = wm.getExercise(index: index)?.bestSet?.summary ?? "N/A"
+        vc?.title = wm.currentExercise?.name
+        vc?.bestSetText = wm.currentExercise?.bestSet?.summary ?? "N/A"
         vc?.parentVC = self
-        vc?.setsManager = SetStatManager()
+        
+        if modifyingInstance {
+            vc?.setsManager = SetStatManager(sets: wm.modifyingInstance?.sets.allObjects as? [SetStat] ?? [])
+            vc?.modifyingExistingInstance = true
+        } else {
+            vc?.setsManager = SetStatManager()
+            vc?.modifyingExistingInstance = false
+        }
     }
 }
